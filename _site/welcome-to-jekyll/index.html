@@ -9,16 +9,7 @@
     <meta name="description" content="Put your description here.">
 
     <!-- Google Authorship Markup -->
-    <link rel="author" href="https://plus.google.com/+lorem_ipsum?rel=author">
-
-    <!-- Social: Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@lorem_ipsum">
-    <meta name="twitter:title" content="Welcome to Jekyll">
-    <meta name="twitter:description" content="Put your description here.">
-    
-    <meta property="twitter:image:src" content="http://localhost:4000/assets/img/">
-    
+    <link rel="author" href="https://plus.google.com/+?rel=author">
 
     <!-- Social: Facebook / Open Graph -->
     <meta property="og:url" content="http://localhost:4000/welcome-to-jekyll/">
@@ -120,7 +111,11 @@ To add new posts, simply add a file in the <code>_posts</code> directory that fo
   <span class="nb">puts</span> <span class="s2">&quot;Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
 <span class="k">end</span>
 <span class="n">print_hi</span><span class="p">(</span><span class="s1">&#39;Tom&#39;</span><span class="p">)</span>
+
 <span class="c1">#=&gt; prints &#39;Hi, Tom&#39; to STDOUT.</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">sample_func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+	<span class="n">a</span><span class="o">+</span><span class="n">b</span></code></pre></div>
 
 <p>Check out the <a href="http://jekyllrb.com">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/mojombo/jekyll">Jekyll’s GitHub repo</a>.</p>
 
@@ -129,7 +124,7 @@ To add new posts, simply add a file in the <code>_posts</code> directory that fo
 
             <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;Put your twitter description here.&quot;%20http://localhost:4000/welcome-to-jekyll/%20via%20&#64;lorem_ipsum&hashtags=jekyll,web,"
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;Put your twitter description here.&quot;%20http://localhost:4000/welcome-to-jekyll/%20via%20&#64;&hashtags=jekyll,web,"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
@@ -147,7 +142,7 @@ To add new posts, simply add a file in the <code>_posts</code> directory that fo
         <img itemprop="image" class="img-rounded" src="/assets/img/blog-author.jpg" alt="">
         <p class="def">Author</p>
         <h3 class="name">
-            <a itemprop="name" href="https://plus.google.com/+lorem_ipsum/posts">hrishioa</a>
+            <a itemprop="name" href="https://plus.google.com/+/posts">hrishioa</a>
         </h3>
         <p class="desc">Yale-NUS '18.</p>
         <a itemprop="email" class="email" href="mailto:hrishioa@gmail.com">hrishioa@gmail.com</a>
@@ -164,7 +159,7 @@ To add new posts, simply add a file in the <code>_posts</code> directory that fo
     function load_disqus()
     {
         disqus_loaded = true;
-        var disqus_shortname = 'hrishioa';
+        var disqus_shortname = '';
         var disqus_title = 'Welcome to Jekyll';
         var disqus_url = '/welcome-to-jekyll/';
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -1,5 +1,5 @@
 # Site settings
-description: Test version of my first ever blog
+description: Personal Blog and Data Repository
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://localhost:4000" # the base hostname & protocol for your site 
 
@@ -8,10 +8,7 @@ username: hrishioa
 user_description: Yale-NUS '18.
 user_title: Hrishi Olickel
 email: hrishioa@gmail.com
-twitter_username: lorem_ipsum
 github_username:  hrishioa
-gplus_username:  lorem_ipsum
-disqus_username: hrishioa
 
 # Build settings
 markdown: kramdown
