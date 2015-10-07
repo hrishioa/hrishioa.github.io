@@ -26,6 +26,8 @@ print_hi('Tom')
 #=> prints 'Hi, Tom' along with stuff to STDOUT.
 {% endhighlight %}
 
+Here is a sample in python
+
 {% highlight python %}
 def sample_func(a,b):
 	a+b

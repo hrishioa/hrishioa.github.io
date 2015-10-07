@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Implementing a Lucas-Kanade tracker from Scratch",
+      "category" : "",
+      "tags"     : "Lucas-Kanade, Optical Flow, C++, and XCode",
+      "url"      : "/implementing-a-lucas-kanade-tracker-from-scratch/",
+      "date"     : "06 Oct 2015"
+    } ,
+  
+    {
       "title"    : "Welcome to Jekyll",
       "category" : "jekyll is awesome",
       "tags"     : "jekyll and web",
