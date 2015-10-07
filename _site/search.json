@@ -2,7 +2,7 @@
   
     {
       "title"    : "Implementing a Lucas-Kanade tracker from Scratch",
-      "category" : "",
+      "category" : "implementing optical flow",
       "tags"     : "Lucas-Kanade, Optical Flow, C++, and XCode",
       "url"      : "/implementing-a-lucas-kanade-tracker-from-scratch/",
       "date"     : "06 Oct 2015"

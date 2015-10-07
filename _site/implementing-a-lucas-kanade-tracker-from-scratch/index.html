@@ -50,6 +50,7 @@
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="canonical" href="http://localhost:3000/implementing-a-lucas-kanade-tracker-from-scratch/">
     <link rel="alternate" type="application/rss+xml" title="" href="http://localhost:3000/feed.xml" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 
     <body>
@@ -102,110 +103,207 @@
         <section class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
             <article role="article" id="scroll" class="post-content" itemprop="articleBody">
-                <p>So I got an assignment a while ago to implement a <a href="https://en.wikipedia.org/wiki/Lucas%E2%80%93Kanade_method">Lucas-Kanade Tracker</a> from scratch.</p>
+                <h1 id="theory">Theory</h1>
 
-<p>Text goes here:</p>
+<h2 id="background">Background</h2>
 
-<p>Sample code to test formatting:</p>
+<p>In Computer Vision, <a href="https://en.wikipedia.org/wiki/Optical_flow">Optical Flow</a> deals with the detection of apparent movement between the frames of a video, or between images. 
+The simplest of these is called a <a href="https://en.wikipedia.org/wiki/Lucas%E2%80%93Kanade_method">Lucas-Kanade Tracker</a>, which attempts to solve the Optical Flow equation using the least-squares method.</p>
 
-<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">Mat</span> <span class="nf">lucasKanade</span><span class="p">(</span><span class="n">Mat</span> <span class="n">imgA</span><span class="p">,</span> <span class="n">Mat</span> <span class="n">imgB</span><span class="p">,</span> <span class="kt">int</span> <span class="n">xsarea</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ysarea</span><span class="p">,</span> <span class="kt">int</span> <span class="n">xarea</span><span class="p">,</span> <span class="kt">int</span> <span class="n">yarea</span><span class="p">,</span> <span class="n">deque</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">corners</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">verbose</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span> <span class="kt">char</span> <span class="n">filename</span><span class="p">[]</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Mat</span> <span class="n">outimg</span> <span class="o">=</span> <span class="n">imgB</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span>
+<h2 id="method">Method</h2>
+
+<p>The Optical-flow equation for Lucas-Kanade assumes that the change - or displacement - of moving objects between sucessive frames is small. This can be extended to fast-moving objects using other methods, and we will cover that in a separate post. Assuming small movement between frames, we end up with the following simple equation:
+<script type="math/tex">\begin{align}
+I_xV_x+I_yV_y = -I_t
+\end{align}</script></p>
+
+<p>The proof can be would on wikipedia so I’m not going to go into detail. But in simple terms, <script type="math/tex">I_x</script> and <script type="math/tex">I_y</script> denotes intensity change in the x and y directions, and <script type="math/tex">V_x</script> and <script type="math/tex">V_y</script> stand for velocity, which we need to solve for. <script type="math/tex">I_t</script> is the change in intensity w.r.t time (between frames).</p>
+
+<p>If you’re astute in math you will have noticed that this is a single equation in two unknowns (<script type="math/tex">V_x</script> and <script type="math/tex">V_y</script>). In order to solve it, we need to introduce additional restrictions. In order to do that, we need to make assumptions about the data. At the basic level, different solutions make different assumptions to solve for different conditions.</p>
+
+<h2 id="lucas-kanade-solution">Lucas-Kanade Solution</h2>
+
+<p>Lucas-Kanade is one of the oldest solutions for the Optical Flow equation, and it assumes that the movement between successive frames is small and uniform within a the window being considered. If we do this, we can assume that the solution for the equation we saw before is the same for all these pixels. Namely,</p>
+
+<script type="math/tex; mode=display">\begin{bmatrix}
+    I_x(p_1) \dot I_y(p_1) \\
+    I_x(p_2) \dot I_y(p_2) \\
+    I_x(p_3) \dot I_y(p_3) \\
+    ...
+\end{bmatrix}
+\times
+\begin{bmatrix}
+    V_x \\
+    V_y
+\end{bmatrix}
+=
+\begin{bmatrix}
+    -I_t(p_1) \\
+    -I_t(p_2) \\
+    -I_t(p_3) \\
+\end{bmatrix}</script>
+
+<p>Now, we have more equations than we have unknowns. Once again, the assumption of uniform velocity reduces the size of <script type="math/tex">V_x</script> and <script type="math/tex">V_y</script> to two variables for a small window. Now all we need are windows to look into.</p>
+
+<h2 id="corner-tracking">Corner Tracking</h2>
+
+<p>We need to identify points where motion can be detected in successive frames. It stands to reason that motion can be detected easily in corners, as there may not be enough detection in uniform areas within the tracked object.</p>
+
+<p>The science of corner detection is almost as deep as that of opical flow, and the two often go hand in hand. For this implementation, as we’re focusing on Optical Flow (and because of my inexperience), we’re going to pick the simplest. <a href="https://en.wikipedia.org/wiki/Corner_detection">Moravec Corner-Detection</a> makes the assumption that a corner is a point of low self-similarity. There are many complex mathematical implementations of this, but we’re simply looking for a few corners so we can see our algorithm in action. But before we do that, we need to set up.</p>
+
+<h1 id="implementation">Implementation</h1>
+
+<h2 id="xcode">XCode</h2>
+
+<p>We’re going to need some functionality for capturing and representing images. For this purpose, (and this purpose alone) we’re going to use OpenCV. Later on - once this concept is stable - we can start using functions from OpenCV so we’re not building on reinvented wheels.</p>
+
+<p>Setting up OpenCV in XCode turned out to be relatively painless. There are two tutorials online that made this easy, <a href="http://blogs.wcode.org/2014/10/howto-install-build-and-use-opencv-macosx-10-10/">one on installing OpenCV libraries on Mac</a>, and <a href="http://blogs.wcode.org/2014/11/howto-setup-xcode-6-1-to-work-with-opencv-libraries/">the other on linking the installed libraries to XCode</a>.
+Make sure the libraries are installed by running the following piece of code.</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include &lt;opencv2/imgcodecs.hpp&gt;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">ac</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">av</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Mat</span> <span class="n">img</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>If it compiles and links fine, we’re ready for implementation.</p>
+
+<h2 id="moravec-corner-detection">Moravec Corner Detection</h2>
+
+<p>Implementation here is quite easy. Here’s a simplified version of the full system:</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">deque</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">findCorners</span><span class="p">(</span><span class="n">Mat</span> <span class="n">img</span><span class="p">,</span> <span class="kt">int</span> <span class="n">xarea</span><span class="p">,</span> <span class="kt">int</span> <span class="n">yarea</span><span class="p">,</span> <span class="kt">int</span> <span class="n">thres</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">verbose</span><span class="o">=</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">deque</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">corners</span><span class="p">;</span>
         
-        <span class="kt">int</span> <span class="n">dimx</span> <span class="o">=</span> <span class="n">imgA</span><span class="p">.</span><span class="n">cols</span><span class="p">,</span> <span class="n">dimy</span> <span class="o">=</span> <span class="n">imgA</span><span class="p">.</span><span class="n">rows</span><span class="p">;</span>
+        <span class="n">ofstream</span> <span class="n">log</span><span class="p">;</span> <span class="c1">//This will be used for dumping raw data for corner analysis</span>
+        <span class="n">log</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">&quot;log.csv&quot;</span><span class="p">);</span>
+        <span class="n">log</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;x,y,score1,score2</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
         
-        <span class="c1">//iterate through each corner to find flow vectors</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">corners</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">Point</span> <span class="n">cur_corner</span> <span class="o">=</span> <span class="n">corners</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-            <span class="n">Point</span> <span class="n">corner_mid</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">corners</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span><span class="o">+</span><span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">xarea</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="n">cur_corner</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">yarea</span><span class="o">/</span><span class="mi">2</span><span class="p">));</span>
-            
-            <span class="c1">//Draw the corner in the out-image</span>
-            <span class="n">rectangle</span><span class="p">(</span><span class="n">outimg</span><span class="p">,</span> <span class="n">cur_corner</span><span class="p">,</span> <span class="n">cur_corner</span><span class="o">+</span><span class="n">Point</span><span class="p">(</span><span class="n">xarea</span><span class="p">,</span><span class="n">yarea</span><span class="p">),</span> <span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">);</span>
-            
-            <span class="c1">//Set range parameters</span>
-            <span class="n">Range</span> <span class="n">sry</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">corner_mid</span><span class="p">.</span><span class="n">y</span><span class="o">-</span><span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">ysarea</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span> <span class="n">min</span><span class="p">(</span><span class="n">dimy</span><span class="p">,</span><span class="n">corner_mid</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">ysarea</span><span class="o">/</span><span class="mi">2</span><span class="p">)));</span>
-            <span class="n">Range</span> <span class="n">srx</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">corner_mid</span><span class="p">.</span><span class="n">x</span><span class="o">-</span><span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">xsarea</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span> <span class="n">min</span><span class="p">(</span><span class="n">dimx</span><span class="p">,</span><span class="n">corner_mid</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">xsarea</span><span class="o">/</span><span class="mi">2</span><span class="p">)));</span>
-            
-            <span class="c1">//Now that we&#39;ve found search windows, we can proceed to calculate Ix and Iy for each pixel in the search window</span>
-            <span class="c1">//Ix</span>
-            <span class="n">Mat</span> <span class="n">Ix</span> <span class="o">=</span> <span class="n">imgA</span><span class="p">.</span><span class="n">clone</span><span class="p">(),</span> <span class="n">Iy</span><span class="o">=</span><span class="n">imgA</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span>
-            
-            <span class="kt">int</span> <span class="n">range</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-            <span class="kt">double</span> <span class="n">G</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
-            <span class="kt">double</span> <span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
-            
-            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">=</span><span class="n">srx</span><span class="p">.</span><span class="n">start</span><span class="p">;</span> <span class="n">x</span><span class="o">&lt;=</span><span class="n">srx</span><span class="p">.</span><span class="n">end</span><span class="p">;</span> <span class="n">x</span><span class="o">++</span><span class="p">)</span>
-                <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">y</span><span class="o">=</span><span class="n">sry</span><span class="p">.</span><span class="n">start</span><span class="p">;</span><span class="n">y</span><span class="o">&lt;=</span><span class="n">sry</span><span class="p">.</span><span class="n">end</span><span class="p">;</span><span class="n">y</span><span class="o">++</span><span class="p">)</span>
+        <span class="c1">//Image for marking up corners</span>
+        <span class="n">Mat</span> <span class="n">outimg</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span> 
+        
+        <span class="c1">//Dimensions</span>
+        <span class="kt">int</span> <span class="n">dimx</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">cols</span><span class="p">,</span> <span class="n">dimy</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">rows</span><span class="p">;</span>
+        
+        <span class="c1">//Count number of corners, start looping</span>
+        <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">startx</span><span class="o">=</span><span class="mi">0</span><span class="p">;(</span><span class="n">startx</span><span class="o">+</span><span class="n">xarea</span><span class="p">)</span><span class="o">&lt;</span><span class="n">dimx</span><span class="p">;</span><span class="n">startx</span><span class="o">+=</span><span class="n">xarea</span><span class="p">)</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">starty</span><span class="o">=</span><span class="mi">0</span><span class="p">;(</span><span class="n">starty</span><span class="o">+</span><span class="n">yarea</span><span class="p">)</span><span class="o">&lt;</span><span class="n">dimy</span><span class="p">;</span><span class="n">starty</span><span class="o">+=</span><span class="n">yarea</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+                <span class="n">Mat</span> <span class="n">curarea</span> <span class="o">=</span> <span class="n">img</span><span class="p">(</span><span class="n">Range</span><span class="p">(</span><span class="n">starty</span><span class="p">,</span><span class="n">min</span><span class="p">(</span><span class="n">starty</span><span class="o">+</span><span class="n">yarea</span><span class="p">,</span><span class="n">dimy</span><span class="p">)),</span><span class="n">Range</span><span class="p">(</span><span class="n">startx</span><span class="p">,</span><span class="n">min</span><span class="p">(</span><span class="n">dimx</span><span class="p">,</span><span class="n">startx</span><span class="o">+</span><span class="n">xarea</span><span class="p">)));</span>
+                <span class="kt">double</span> <span class="n">results</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+                <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">dir</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">dir</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">dir</span><span class="o">++</span><span class="p">)</span>
                 <span class="p">{</span>
-                    <span class="kt">int</span> <span class="n">px</span><span class="o">=</span><span class="n">x</span><span class="o">-</span><span class="n">range</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="n">range</span><span class="p">;</span>
-                    <span class="kt">int</span> <span class="n">py</span><span class="o">=</span><span class="n">y</span><span class="o">-</span><span class="n">range</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="n">y</span><span class="o">+</span><span class="n">range</span><span class="p">;</span>
-                    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="n">px</span><span class="o">=</span><span class="n">x</span><span class="p">;</span>
-                    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;=</span><span class="p">(</span><span class="n">dimx</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="n">nx</span><span class="o">=</span><span class="n">x</span><span class="p">;</span>
-                    <span class="k">if</span><span class="p">(</span><span class="n">y</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="n">py</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-                    <span class="k">if</span><span class="p">(</span><span class="n">y</span><span class="o">&gt;=</span><span class="p">(</span><span class="n">dimy</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="n">ny</span><span class="o">=</span><span class="n">y</span><span class="p">;</span>
-  
-                    <span class="kt">double</span> <span class="n">curIx</span> <span class="o">=</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">imgA</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">px</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">imgA</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-                    <span class="kt">double</span> <span class="n">curIy</span> <span class="o">=</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">imgA</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">py</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">imgA</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ny</span><span class="p">,</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-                    <span class="n">Ix</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">curIx</span><span class="p">;</span>
-                    <span class="n">Iy</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">curIy</span><span class="p">;</span>
-                    
-                    <span class="c1">//calculate G and b</span>
-                    <span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">curIx</span><span class="o">*</span><span class="n">curIx</span><span class="p">;</span>
-                    <span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">curIx</span><span class="o">*</span><span class="n">curIy</span><span class="p">;</span>
-                    <span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">curIx</span><span class="o">*</span><span class="n">curIy</span><span class="p">;</span>
-                    <span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">curIy</span><span class="o">*</span><span class="n">curIy</span><span class="p">;</span>
-                    
-                    <span class="kt">double</span> <span class="n">curdI</span> <span class="o">=</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">imgA</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">imgB</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">));</span>
-                    
-                    <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">curdI</span><span class="o">*</span><span class="n">curIx</span><span class="p">;</span>
-                    <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">curdI</span><span class="o">*</span><span class="n">curIy</span><span class="p">;</span>
+                    <span class="kt">int</span> <span class="n">newsx</span><span class="o">=</span><span class="n">startx</span><span class="p">,</span><span class="n">newsy</span><span class="o">=</span><span class="n">starty</span><span class="p">;</span>
+                    <span class="c1">//Check similarity in each direction</span>
+                    <span class="k">switch</span><span class="p">(</span><span class="n">dir</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="k">case</span> <span class="mi">0</span><span class="o">:</span> <span class="c1">//left</span>
+                            <span class="n">newsx</span><span class="o">-=</span><span class="n">xarea</span><span class="p">;</span>
+                            <span class="n">newsx</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">newsx</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+                            <span class="k">break</span><span class="p">;</span>
+                        <span class="k">case</span> <span class="mi">1</span><span class="o">:</span> <span class="c1">//top</span>
+                            <span class="n">newsy</span><span class="o">-=</span><span class="n">yarea</span><span class="p">;</span>
+                            <span class="n">newsy</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">newsy</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+                            <span class="k">break</span><span class="p">;</span>
+                        <span class="k">case</span> <span class="mi">2</span><span class="o">:</span> <span class="c1">//right</span>
+                            <span class="n">newsx</span><span class="o">+=</span><span class="n">xarea</span><span class="p">;</span>
+                            <span class="n">newsx</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">newsx</span><span class="p">,</span><span class="n">dimx</span><span class="p">);</span>
+                            <span class="k">break</span><span class="p">;</span>
+                        <span class="k">case</span> <span class="mi">3</span><span class="o">:</span> <span class="c1">//down</span>
+                            <span class="n">newsy</span><span class="o">+=</span><span class="n">yarea</span><span class="p">;</span>
+                            <span class="n">newsy</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">newsy</span><span class="p">,</span><span class="n">dimy</span><span class="p">);</span>
+                            <span class="k">break</span><span class="p">;</span>
+                        <span class="k">default</span><span class="o">:</span>
+                            <span class="k">break</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="n">Mat</span> <span class="n">newarea</span> <span class="o">=</span> <span class="n">img</span><span class="p">(</span><span class="n">Range</span><span class="p">(</span><span class="n">newsy</span><span class="p">,</span><span class="n">min</span><span class="p">(</span><span class="n">newsy</span><span class="o">+</span><span class="n">yarea</span><span class="p">,</span><span class="n">dimy</span><span class="p">)),</span><span class="n">Range</span><span class="p">(</span><span class="n">newsx</span><span class="p">,</span><span class="n">min</span><span class="p">(</span><span class="n">newsx</span><span class="o">+</span><span class="n">xarea</span><span class="p">,</span><span class="n">dimx</span><span class="p">)));</span>
+
+                    <span class="k">if</span><span class="p">(</span><span class="n">newarea</span><span class="p">.</span><span class="n">cols</span><span class="o">!=</span><span class="n">curarea</span><span class="p">.</span><span class="n">cols</span> <span class="o">||</span> <span class="n">newarea</span><span class="p">.</span><span class="n">rows</span><span class="o">!=</span><span class="n">curarea</span><span class="p">.</span><span class="n">rows</span><span class="p">)</span>
+                        <span class="k">continue</span><span class="p">;</span>
+
+                    <span class="n">Mat</span> <span class="n">diff</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">curarea</span><span class="o">-</span><span class="n">newarea</span><span class="p">);</span>
+                    <span class="n">results</span><span class="p">[</span><span class="n">dir</span><span class="o">%</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">diff</span><span class="p">))(</span><span class="mi">0</span><span class="p">);</span>
                 <span class="p">}</span>
-            
-            <span class="c1">//Since it&#39;s a royal pain-in-the-ass to download and link matrix libraries to my XCode</span>
-            <span class="c1">//for just a single operation, we&#39;re just gonna do it by hand</span>
-            <span class="kt">double</span> <span class="n">detG</span> <span class="o">=</span> <span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span><span class="o">-</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]);</span>
-            <span class="kt">double</span> <span class="n">Ginv</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
-            <span class="n">Ginv</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">detG</span><span class="p">;</span>
-            <span class="n">Ginv</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">detG</span><span class="p">;</span>
-            <span class="n">Ginv</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">detG</span><span class="p">;</span>
-            <span class="n">Ginv</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">detG</span><span class="p">;</span>
-            
-            <span class="kt">double</span> <span class="n">V</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">Ginv</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">Ginv</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Ginv</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">Ginv</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]};</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">verbose</span><span class="p">)</span>
-                <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">For the corner (%d,%d) - v = (%f,%f)&quot;</span><span class="p">,</span><span class="n">cur_corner</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">cur_corner</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-            
-            <span class="n">line</span><span class="p">(</span><span class="n">outimg</span><span class="p">,</span> <span class="n">corner_mid</span><span class="p">,</span> <span class="n">corner_mid</span><span class="o">+</span><span class="n">Point</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span><span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="p">),</span> <span class="n">Scalar</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="n">string</span> <span class="n">winCorImg</span> <span class="o">=</span> <span class="s">&quot;Corners found&quot;</span><span class="p">;</span>
-        <span class="n">namedWindow</span><span class="p">(</span><span class="n">winCorImg</span><span class="p">,</span> <span class="n">WINDOW_AUTOSIZE</span><span class="p">);</span>
-        <span class="n">imshow</span><span class="p">(</span><span class="n">winCorImg</span><span class="p">,</span> <span class="n">outimg</span><span class="p">);</span>
-        <span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">filename</span><span class="o">!=</span><span class="nb">NULL</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">string</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Writing lkoutput to o&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">string</span><span class="p">(</span><span class="n">filename</span><span class="p">);</span>
-            <span class="n">imwrite</span><span class="p">(</span><span class="n">string</span><span class="p">(</span><span class="s">&quot;o&quot;</span><span class="p">)</span><span class="o">+</span><span class="n">string</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="n">outimg</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">outimg</span><span class="p">;</span>
-    <span class="p">}</span></code></pre></div>
+                <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/=</span><span class="mi">2</span><span class="p">;</span>
+                <span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/=</span><span class="mi">2</span><span class="p">;</span>
+                
+                <span class="c1">//thresholding</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">thres</span> <span class="o">&amp;&amp;</span> <span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">thres</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">corners</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">startx</span><span class="p">,</span><span class="n">starty</span><span class="p">));</span>
+                    <span class="n">rectangle</span><span class="p">(</span><span class="n">outimg</span><span class="p">,</span> <span class="n">Point</span><span class="p">(</span><span class="n">startx</span><span class="p">,</span><span class="n">starty</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="n">startx</span><span class="o">+</span><span class="n">xarea</span><span class="p">,</span><span class="n">starty</span><span class="o">+</span><span class="n">yarea</span><span class="p">),</span> <span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="mi">2</span><span class="p">);</span>
+                <span class="p">}</span>
+                
+                <span class="n">log</span> <span class="o">&lt;&lt;</span> <span class="n">startx</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;,&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">starty</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;,&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;,&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="n">log</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>        
+        <span class="k">return</span> <span class="n">corners</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
 
-<p>Here’s some more text. Here’s some <code>emphasized text</code> to make sure it works.</p>
+<p>We’re isolating windows, looking at equal sized windows in each direction, and compiling a score that would tell us the probability of a particular window containing a corner. We’re also taking into account the size of the image and any possible issues we could have with clipping.</p>
 
-<h2 id="ocaml-code">OCaml Code</h2>
+<p>It really shows how rusty my C++ is. There are many optimizations we can make. The simplest one would be to detect anomalies using larger windows, and zoom in using the same method to the required window size. This would cut down on the number of windows we need to analyze before we’re done. Also, there is a <a href="https://en.wikipedia.org/wiki/Corner_detection#The_Harris_.26_Stephens_.2F_Plessey_.2F_Shi.E2.80.93Tomasi_corner_detection_algorithm">better way</a> of corner detection that doesn’t depend on cardinal directions (north, south, east, west) for identificaton. However, there are already built and optimized state-of-the-art algorithms in the OpenCV library that we can use. For simplicity, we’re going to keep corner detection as it is.</p>
 
-<p>Here’s a test to make sure OCaml highlighting is good.</p>
+<p>Looking at the results, we’ve managed to isolate a few useful markers to track motion:</p>
 
-<div class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="c">(*Implementation of the fold_left, for consistency*)</span>
-<span class="k">let</span> <span class="k">rec</span> <span class="n">fold_left</span> <span class="n">f</span> <span class="kt">list</span> <span class="n">init</span> <span class="o">=</span>
-  <span class="k">match</span> <span class="kt">list</span> <span class="k">with</span>
-      <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="n">init</span>
-    <span class="o">|</span> <span class="n">h</span><span class="o">::</span><span class="n">t</span> <span class="o">-&gt;</span> <span class="n">fold_left</span> <span class="n">f</span> <span class="n">t</span> <span class="o">(</span><span class="n">f</span> <span class="n">h</span> <span class="n">init</span><span class="o">);;</span>
+<p><img src="http://localhost:3000/assets/img/LucasKanade/corners.jpg" alt="corners" /></p>
 
-<span class="c">(*Fold_right function*)</span>
-<span class="k">let</span> <span class="n">fold_right</span> <span class="n">func</span> <span class="o">=</span>
-  <span class="k">fun</span> <span class="kt">list</span> <span class="n">init</span> <span class="o">-&gt;</span> <span class="n">fold_left</span> <span class="o">(</span><span class="k">fun</span> <span class="n">v</span> <span class="n">acc</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="k">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>  <span class="n">acc</span> <span class="o">(</span><span class="n">func</span> <span class="n">v</span> <span class="n">x</span><span class="o">)))</span> <span class="kt">list</span> <span class="o">(</span><span class="k">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">)</span> <span class="n">init</span><span class="o">;;</span></code></pre></div>
+<h2 id="lucas-kanade-corner-tracking">Lucas-Kanade Corner Tracking</h2>
 
-<p>Once this code is shown, we can discuss it below using function markers. Of course, the important function here is <code>fol_right</code>, but the others are included.</p>
+<p>Remember the equation we considered before:</p>
+
+<p><script type="math/tex">A = \begin{bmatrix}
+    I_x(p_1) \dot I_y(p_1) \\
+    I_x(p_2) \dot I_y(p_2) \\
+    I_x(p_3) \dot I_y(p_3) \\
+    ...
+\end{bmatrix}</script>
+, 
+<script type="math/tex">v = 
+\begin{bmatrix}
+    V_x \\
+    V_y
+\end{bmatrix}</script>
+, 
+<script type="math/tex">T = \begin{bmatrix}
+    -I_t(p_1) \\
+    -I_t(p_2) \\
+    -I_t(p_3) \\
+\end{bmatrix}</script></p>
+
+<script type="math/tex; mode=display">Av = T</script>
+
+<p>We can solve for v:</p>
+
+<script type="math/tex; mode=display">v = A^{-1}T</script>
+
+<p>And here we can see why we’re looking for corners. The matrix <script type="math/tex">A</script> needs to be inversible, and by selecting corners we exclude the uniform areas of the image that would prevent this.</p>
+
+<p>First, we compute <script type="math/tex">I_x</script> and <script type="math/tex">I_y</script> for each pixel using the intensity values of adjacent pixels:</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">Ix</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">imgA</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">px</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">imgA</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="n">Iy</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">imgA</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">py</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">imgA</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ny</span><span class="p">,</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span></code></pre></div>
+
+<p>Computing <script type="math/tex">I_t</script> by subtracting intensity values between frames:</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">double</span> <span class="n">curdI</span> <span class="o">=</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">imgA</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">imgB</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">));</span></code></pre></div>
+
+<p>And here is the part I’m ashamed of. I was working with a vanilla install of XCode, and not wanting to bother with matrix libraries, I decided to implement it by hand:</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">double</span> <span class="n">detG</span> <span class="o">=</span> <span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span><span class="o">-</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]);</span>
+<span class="kt">double</span> <span class="n">Ginv</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+<span class="n">Ginv</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">detG</span><span class="p">;</span>
+<span class="n">Ginv</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">detG</span><span class="p">;</span>
+<span class="n">Ginv</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">detG</span><span class="p">;</span>
+<span class="n">Ginv</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">detG</span><span class="p">;</span></code></pre></div>
+
+<p>But it works, and final implementation shows both the corners and the velocity values we’ve computed.</p>
+
+<p><img src="http://localhost:3000/assets/img/LucasKanade/movement.jpg" alt="movement" /></p>
+
+<p>This is an intermediate step, and it serves to illustrate the underlying concept behind Lucas-Kanade. Next we’ll move on to Horn-Shunck and eventually arrive at a more application-specific solution.</p>
 
 
             </article>
@@ -264,7 +362,7 @@
     };
 </script>
             <footer>
-    <p>Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and <span class="love">❤</span> by <a href="http://willianjusten.com">Willian Justen</a></p>
+    <p>Theme by <a href="http://willianjusten.com">Willian Justen</a></p>
 </footer>
 <script src="/assets/js/main.js"></script>
         </section>

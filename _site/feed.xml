@@ -5,13 +5,13 @@
     <description>Personal Blog and Data Repository</description>
     <link>http://localhost:3000/</link>
     <atom:link href="http://localhost:3000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 08 Oct 2015 00:14:20 +0800</pubDate>
-    <lastBuildDate>Thu, 08 Oct 2015 00:14:20 +0800</lastBuildDate>
+    <pubDate>Thu, 08 Oct 2015 03:52:19 +0800</pubDate>
+    <lastBuildDate>Thu, 08 Oct 2015 03:52:19 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
         <title>Implementing a Lucas-Kanade tracker from Scratch</title>
-        <description>&lt;p&gt;So I got an assignment a while ago to implement a &lt;a href=&quot;https://en.wikipedia.org/wiki/Lucas%E2%80%93Kanade_method&quot;&gt;Lucas-Kanade Tracker&lt;/a&gt; from scratch.&lt;/p&gt; &lt;p&gt;Text goes here:&lt;/p&gt; &lt;p&gt;Sample code to test formatting:&lt;/p&gt; &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;n&quot;&gt;Mat&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;lucasKanade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Mat&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imgA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Mat&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imgB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xsarea&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ysarea&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xarea&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;yarea&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deque&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Point&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;corners&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;verbose&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Mat&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;outimg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imgB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span...</description>
+        <description>&lt;h1 id=&quot;theory&quot;&gt;Theory&lt;/h1&gt; &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt; &lt;p&gt;In Computer Vision, &lt;a href=&quot;https://en.wikipedia.org/wiki/Optical_flow&quot;&gt;Optical Flow&lt;/a&gt; deals with the detection of apparent movement between the frames of a video, or between images. The simplest of these is called a &lt;a href=&quot;https://en.wikipedia.org/wiki/Lucas%E2%80%93Kanade_method&quot;&gt;Lucas-Kanade Tracker&lt;/a&gt;, which attempts to solve the Optical Flow equation using the least-squares method.&lt;/p&gt; &lt;h2 id=&quot;method&quot;&gt;Method&lt;/h2&gt; &lt;p&gt;The Optical-flow equation for Lucas-Kanade assumes that the change - or displacement - of moving objects between sucessive frames is small. This can be extended to fast-moving objects using other methods, and we will cover that in a separate post. Assuming small movement between frames, we end up with the...</description>
         <pubDate>Tue, 06 Oct 2015 06:11:19 +0800</pubDate>
         <link>http://localhost:3000/implementing-a-lucas-kanade-tracker-from-scratch/</link>
         <guid isPermaLink="true">http://localhost:3000/implementing-a-lucas-kanade-tracker-from-scratch/</guid>
@@ -24,6 +24,8 @@
         
         <category>XCode</category>
         
+        
+        <category>implementing optical flow</category>
         
       </item>
     
