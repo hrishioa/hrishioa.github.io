@@ -235,9 +235,8 @@ But it works, and final implementation shows both the corners and the velocity v
 
 This is an intermediate step, and it serves to illustrate the underlying concept behind Lucas-Kanade. Next we'll move on to Horn-Shunck and eventually arrive at a more application-specific solution.
 
-The complete working implementation can be found [here][opflowgit].
+The complete working implementation can be found [here](https://github.com/hrishioa/OpFlow).
 
-[opfowgit]:https://github.com/hrishioa/OpFlow
 [harriswiki]:https://en.wikipedia.org/wiki/Corner_detection#The_Harris_.26_Stephens_.2F_Plessey_.2F_Shi.E2.80.93Tomasi_corner_detection_algorithm
 [lktwiki]:https://en.wikipedia.org/wiki/Lucas%E2%80%93Kanade_method
 [opflowiki]:https://en.wikipedia.org/wiki/Optical_flow
