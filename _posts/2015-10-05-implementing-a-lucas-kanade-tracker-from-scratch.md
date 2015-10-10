@@ -29,7 +29,7 @@ I_xV_x+I_yV_y = -I_t
 \end{align}
 $$
 
-The proof can be would on wikipedia so I'm not going to go into detail. But in simple terms, $$I_x$$ and $$I_y$$ denotes intensity change in the x and y directions, and $$V_x$$ and $$V_y$$ stand for velocity, which we need to solve for. $$I_t$$ is the change in intensity w.r.t time (between frames).
+The proof can be found on wikipedia so I'm not going to go into detail. But in simple terms, $$I_x$$ and $$I_y$$ denotes intensity change in the x and y directions, and $$V_x$$ and $$V_y$$ stand for velocity, which we need to solve for. $$I_t$$ is the change in intensity w.r.t time (between frames).
 
 If you're astute in math you will have noticed that this is a single equation in two unknowns ($$V_x$$ and $$V_y$$). In order to solve it, we need to introduce additional restrictions. In order to do that, we need to make assumptions about the data. At the basic level, different solutions make different assumptions to solve for different conditions.
 
