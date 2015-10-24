@@ -2,8 +2,8 @@
   
     {
       "title"    : "Tracking Word Documents with Git",
-      "category" : "",
-      "tags"     : "",
+      "category" : "quick hacks",
+      "tags"     : "Git, TextUtil, Word, and Pandoc",
       "url"      : "/tracking-word-documents-with-git/",
       "date"     : "25 Oct 2015"
     } ,

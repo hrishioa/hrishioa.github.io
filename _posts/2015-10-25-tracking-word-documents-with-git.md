@@ -5,7 +5,12 @@ date: 2015-10-25 05:03:02
 image: '/assets/img/'
 description:
 tags:
+- Git
+- TextUtil
+- Word
+- Pandoc
 categories:
+- Quick Hacks
 twitter_text:
 ---
  
