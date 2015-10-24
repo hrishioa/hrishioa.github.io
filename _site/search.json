@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Tracking Word Documents with Git",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/tracking-word-documents-with-git/",
+      "date"     : "25 Oct 2015"
+    } ,
+  
+    {
       "title"    : "Using the Internet of Things for measuring Worker Safety",
       "category" : "hackathon stories",
       "tags"     : "IOT, Hackathon, LinkIT One, Dweet, and Hardware",

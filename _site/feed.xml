@@ -5,9 +5,19 @@
     <description>Personal Blog and Data Repository</description>
     <link>http://hrishioa.github.io/</link>
     <atom:link href="http://hrishioa.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 11 Oct 2015 16:39:47 +0800</pubDate>
-    <lastBuildDate>Sun, 11 Oct 2015 16:39:47 +0800</lastBuildDate>
+    <pubDate>Sun, 25 Oct 2015 06:32:34 +0800</pubDate>
+    <lastBuildDate>Sun, 25 Oct 2015 06:32:34 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Tracking Word Documents with Git</title>
+        <description>&lt;p&gt;For some time now, I have been using Git to keep track of my work - both source code and otherwise. Even when you’re not using it for code, Git is perfect - easy backups to a Git server in the cloud along with the possibility of maintaining multiple working versions of my papers and writing projects is just great.&lt;/p&gt; &lt;p&gt;Except - Git treats my Word files as binaries. Different versions can be accessed just fine, but I have no access to diff functionality because Git doesn’t understand what has changed between two versions. Not to mention, most programmers will...</description>
+        <pubDate>Sun, 25 Oct 2015 13:03:02 +0800</pubDate>
+        <link>http://hrishioa.github.io/tracking-word-documents-with-git/</link>
+        <guid isPermaLink="true">http://hrishioa.github.io/tracking-word-documents-with-git/</guid>
+        
+        
+      </item>
     
       <item>
         <title>Using the Internet of Things for measuring Worker Safety</title>
