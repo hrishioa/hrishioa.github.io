@@ -1,6 +1,30 @@
 [
   
     {
+      "title"    : "Winter &#39;15: A ride across The tip of India",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/winter-'15:-a-ride-across-the-tip-of-india/",
+      "date"     : "25 Dec 2015"
+    } ,
+  
+    {
+      "title"    : "Using HTML5 to build Accelerometer-based mobile apps",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/using-purely-web-based-mobile-apps-to-collect-gps-and-accelerometer-data/",
+      "date"     : "08 Nov 2015"
+    } ,
+  
+    {
+      "title"    : "Implementing Chua&#39;s Circuit: The Power of Chaos in the palm of your hand",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/implementing-chua's-circuit:-the-power-of-chaos-in-the-palm-of-your-hand/",
+      "date"     : "25 Oct 2015"
+    } ,
+  
+    {
       "title"    : "Tracking Word Documents with Git",
       "category" : "quick hacks",
       "tags"     : "Git, TextUtil, Word, and Pandoc",
