@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Ride-sharing on the Blockchain - Part 1",
+      "category" : "gruber",
+      "tags"     : "Ethereum, Blockchain, Uber, and HacknRoll",
+      "url"      : "/ethereum-and-uber:-building-a-decentralized-ride-sharing-platform-on-the-blockchain/",
+      "date"     : "31 Jan 2016"
+    } ,
+  
+    {
       "title"    : "Winter &#39;15 Trip Logs",
       "category" : "",
       "tags"     : "",

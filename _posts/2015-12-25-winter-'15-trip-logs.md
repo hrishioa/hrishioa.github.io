@@ -3,13 +3,13 @@ layout: post
 title: "Winter '15 Trip Logs"
 date: 2015-12-25 19:27:44
 image: '/assets/img/'
-description:
+description: Winter Trip Logs
 tags:
 categories:
 twitter_text:
 ---
 
-It is winter vacation, and  my friend Parag and I have decided to take a little 6-day trip across my state, Kerala. He is from Calcutta, and he has taken a two-day train ride to get to where I am. I've arranged for the coolest of bikes, a Royal Enfield Bullet, to take us on a trip that I hope will not be shorter than a thousand kilometres. He arrives, and we visit a nearby field to take some pictures and relax before we start bright and early the next day. I'll try and jot things down in my notebook as long as it doesn't get in the way. He'll try to sketch things he finds interesting.
+It is winter vacation, and  my friend Parag and I have decided to take a little 6-day trip across my state, Kerala. He's from Calcutta, and he has taken a two-day train ride to get to where I am. I've arranged for the coolest of bikes, a Royal Enfield Bullet, to take us on a trip that I hope will not be shorter than a thousand kilometres. He arrives, and we visit a nearby field to take some pictures and relax before we start bright and early the next day. I'll try and jot things down in my notebook as long as it doesn't get in the way. He'll try to sketch things he finds interesting.
 
 ![Alappad Fields]({{site.url}}/assets/img/TripLogs/IMG_9140.jpg)
 
