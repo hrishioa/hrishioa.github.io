@@ -12,10 +12,10 @@
     <link rel="author" href="https://plus.google.com/+?rel=author">
 
     <!-- Social: Facebook / Open Graph -->
-    <meta property="og:url" content="http://localhost:3000/using-the-internet-of-things-for-measuring-worker-safety/">
+    <meta property="og:url" content="http://hrishioa.github.io/using-the-internet-of-things-for-measuring-worker-safety/">
     <meta property="og:title" content="Using the Internet of Things for measuring Worker Safety">
     
-    <meta property="og:image" content="http://localhost:3000/assets/img/">
+    <meta property="og:image" content="http://hrishioa.github.io/assets/img/">
     
     <meta property="og:description" content="Personal Blog and Data Repository">
     <meta property="og:site_name" content="">
@@ -23,7 +23,7 @@
     <!-- Social: Google+ / Schema.org  -->
     <meta itemprop="name" content="Using the Internet of Things for measuring Worker Safety"/>
     <meta itemprop="description" content="Personal Blog and Data Repository">
-    <meta itemprop="image" content="http://localhost:3000/assets/img/blog-image.png"/>
+    <meta itemprop="image" content="http://hrishioa.github.io/assets/img/blog-image.png"/>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="/assets/img/icons/favicon.ico" type="image/x-icon" />
@@ -48,8 +48,8 @@
     <meta name="theme-color" content="#0562DC">
 
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="http://localhost:3000/using-the-internet-of-things-for-measuring-worker-safety/">
-    <link rel="alternate" type="application/rss+xml" title="" href="http://localhost:3000/feed.xml" />
+    <link rel="canonical" href="http://hrishioa.github.io/using-the-internet-of-things-for-measuring-worker-safety/">
+    <link rel="alternate" type="application/rss+xml" title="" href="http://hrishioa.github.io/feed.xml" />
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 
@@ -94,15 +94,15 @@
   <h2>MENU</h2>
   <ul>
     
-      <li><a href="http://localhost:3000/">Home</a></li>
+      <li><a href="http://hrishioa.github.io/">Home</a></li>
     
-      <li><a href="http://localhost:3000/series">Series</a></li>
+      <li><a href="http://hrishioa.github.io/series">Series</a></li>
     
-      <li><a href="http://localhost:3000/tags">Tags</a></li>
+      <li><a href="http://hrishioa.github.io/tags">Tags</a></li>
     
-      <li><a href="http://localhost:3000/about">About Me</a></li>
+      <li><a href="http://hrishioa.github.io/about">About Me</a></li>
     
-    <li><a class="feed" href="http://localhost:3000/feed.xml" title="Atom/RSS feed">Feed</a></li>
+    <li><a class="feed" href="http://hrishioa.github.io/feed.xml" title="Atom/RSS feed">Feed</a></li>
   </ul>
 </nav>
 </aside>
@@ -142,7 +142,7 @@
 
 <p>We were provided the new development board from MediaTek Labs, the LinkIT One. Based on the Mediatek MT2502 SoC, the board provided Arduino-compatible ARM Development.</p>
 
-<p><img src="http://localhost:3000/assets/img/IOTHacks/package-linkit-one.png" alt="linkitOne" /></p>
+<p><img src="http://hrishioa.github.io/assets/img/IOTHacks/package-linkit-one.png" alt="linkitOne" /></p>
 
 <p>To their credit, the SDK was pretty simple to install on Windows and Mac. Despite our distaste for it, we resorted to using the Arduino IDE to save time. Using the IDE meant that we could not have an Operating System running concurrent tasks. This meant that the while data was being streamed to a server, the sensors could not be reliably operated. However, considering the scope of the prototype for the hackathon and the time constraint of 24 hours, this was considered an acceptable trade-off.</p>
 
@@ -150,13 +150,13 @@
 
 <p>We made use of the sensor kit provided at the Hackathon for the LinkIT One. We were surprised to find that it contained all the sensors we required, and we appreciated the Li-ion battery and charger included.</p>
 
-<p><img src="http://localhost:3000/assets/img/IOTHacks/linkit-kit.jpg" alt="linkitkit" /></p>
+<p><img src="http://hrishioa.github.io/assets/img/IOTHacks/linkit-kit.jpg" alt="linkitkit" /></p>
 
 <h3 id="web-frontend">Web Frontend</h3>
 
 <p>For the purposes of demonstration, we decided to use <a href="http://app.ubidots.com">Ubidot</a> as our IoT streaming platform. The prototype would send POST requests to the service API with aggregated sensor data, and we could use any online dashboard to demonstrate the proof-of-concept. This simplified things on our end, meaning that we did not have to build a complete frontend from scratch anymore. The catch was that all aggregation and backend processing would have to be done on the client-side, which meant that we would lose more cycles on the LinkIT. Despite this, we felt that the time saved in building the UI more than made up for this loss.</p>
 
-<p><img src="http://localhost:3000/assets/img/IOTHacks/ubodots.png" alt="ubikit Platform" /></p>
+<p><img src="http://hrishioa.github.io/assets/img/IOTHacks/ubodots.png" alt="ubikit Platform" /></p>
 
 <p>Now that we had the infrastructure ready, we moved on to implementation.</p>
 
@@ -224,21 +224,21 @@
 
 <p>It took us an hour to build a casing out of acrylic, add an LED Bar for some visual indication, and use soft plastic to attach it to a hard-hat.</p>
 
-<p><img src="http://localhost:3000/assets/img/IOTHacks/product_closeup.png" alt="Product Image" /></p>
+<p><img src="http://hrishioa.github.io/assets/img/IOTHacks/product_closeup.png" alt="Product Image" /></p>
 
 <p>The Front-end functioned admirably, providing a decent feed of live data. I pitched while wearing the product, and the audience could either listen to me or watch the live feed of easy-to-understand information on the projector.</p>
 
-<p><img src="http://localhost:3000/assets/img/IOTHacks/pitch.png" alt="The Pitch" /></p>
+<p><img src="http://hrishioa.github.io/assets/img/IOTHacks/pitch.png" alt="The Pitch" /></p>
 
 <p>The information displayed would be very intuitive to understand, but we added a stream of the other sensors just to demonstrate that the feed was indeed live.</p>
 
-<p><img src="http://localhost:3000/assets/img/IOTHacks/pitch-dashboard.png" alt="Dashboard at the Pitch" /></p>
+<p><img src="http://hrishioa.github.io/assets/img/IOTHacks/pitch-dashboard.png" alt="Dashboard at the Pitch" /></p>
 
 <p>We received some offers of funding at the end of the pitch - in addition to winning best product - but we decided to make our source public and pick up the project sometime later in the future.</p>
 
 <p>The code for this project can be found <a href="http://github.com/hrishioa/BlackHat">here</a>.</p>
 
-<p><img src="http://localhost:3000/assets/img/IOTHacks/IOTHacks-Photo.jpg" alt="Photo" /></p>
+<p><img src="http://hrishioa.github.io/assets/img/IOTHacks/IOTHacks-Photo.jpg" alt="Photo" /></p>
 
 <p>It was an amazing weekend with a lot of beer, and it helped me remember why I spend so many of my weekends at hackathons, losing sleep when I should be catching up on it.</p>
 
@@ -247,15 +247,15 @@
 
             <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:3000/using-the-internet-of-things-for-measuring-worker-safety/%20via%20&#64;&hashtags=IOT,Hackathon,LinkIT One,Dweet,Hardware,"
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://hrishioa.github.io/using-the-internet-of-things-for-measuring-worker-safety/%20via%20&#64;&hashtags=IOT,Hackathon,LinkIT One,Dweet,Hardware,"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
-    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:3000/using-the-internet-of-things-for-measuring-worker-safety/"
+    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://hrishioa.github.io/using-the-internet-of-things-for-measuring-worker-safety/"
     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
         <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
     </a>
-    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://localhost:3000/using-the-internet-of-things-for-measuring-worker-safety/"
+    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://hrishioa.github.io/using-the-internet-of-things-for-measuring-worker-safety/"
     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
         <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg>
     </a>
