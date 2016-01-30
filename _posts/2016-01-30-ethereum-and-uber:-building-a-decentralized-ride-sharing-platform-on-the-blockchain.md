@@ -59,7 +59,7 @@ Both the driver and the user are obligated to complete the ride, as the reputati
 
 In such a system, the only money being used is the amount spent on transactions. The nodes executing the contract are paid for their time and energy, but the rest of the capital in this economy resides with either the driver or the rider. 
 
-In the next part, I'll cover development and implementation.
+In the next part, I'll cover development and implementation of the system (as far as it was done at the Hackathon).
 
 
 [ethlink]:https://www.ethereum.org/
