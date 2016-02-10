@@ -12,10 +12,10 @@
     <link rel="author" href="https://plus.google.com/+?rel=author">
 
     <!-- Social: Facebook / Open Graph -->
-    <meta property="og:url" content="http://localhost:3000/implementing-a-lucas-kanade-tracker-from-scratch/">
+    <meta property="og:url" content="http://hrishioa.github.io/implementing-a-lucas-kanade-tracker-from-scratch/">
     <meta property="og:title" content="Implementing a Lucas-Kanade tracker from Scratch">
     
-    <meta property="og:image" content="http://localhost:3000/assets/img/blog-image.png">
+    <meta property="og:image" content="http://hrishioa.github.io/assets/img/blog-image.png">
     
     <meta property="og:description" content="Understanding the basics of Optical Flow and XCode">
     <meta property="og:site_name" content="">
@@ -23,7 +23,7 @@
     <!-- Social: Google+ / Schema.org  -->
     <meta itemprop="name" content="Implementing a Lucas-Kanade tracker from Scratch"/>
     <meta itemprop="description" content="Understanding the basics of Optical Flow and XCode">
-    <meta itemprop="image" content="http://localhost:3000/assets/img/blog-image.png"/>
+    <meta itemprop="image" content="http://hrishioa.github.io/assets/img/blog-image.png"/>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="/assets/img/icons/favicon.ico" type="image/x-icon" />
@@ -48,8 +48,8 @@
     <meta name="theme-color" content="#0562DC">
 
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="http://localhost:3000/implementing-a-lucas-kanade-tracker-from-scratch/">
-    <link rel="alternate" type="application/rss+xml" title="" href="http://localhost:3000/feed.xml" />
+    <link rel="canonical" href="http://hrishioa.github.io/implementing-a-lucas-kanade-tracker-from-scratch/">
+    <link rel="alternate" type="application/rss+xml" title="" href="http://hrishioa.github.io/feed.xml" />
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 
@@ -94,15 +94,15 @@
   <h2>MENU</h2>
   <ul>
     
-      <li><a href="http://localhost:3000/">Home</a></li>
+      <li><a href="http://hrishioa.github.io/">Home</a></li>
     
-      <li><a href="http://localhost:3000/series">Series</a></li>
+      <li><a href="http://hrishioa.github.io/series">Series</a></li>
     
-      <li><a href="http://localhost:3000/tags">Tags</a></li>
+      <li><a href="http://hrishioa.github.io/tags">Tags</a></li>
     
-      <li><a href="http://localhost:3000/about">About Me</a></li>
+      <li><a href="http://hrishioa.github.io/about">About Me</a></li>
     
-    <li><a class="feed" href="http://localhost:3000/feed.xml" title="Atom/RSS feed">Feed</a></li>
+    <li><a class="feed" href="http://hrishioa.github.io/feed.xml" title="Atom/RSS feed">Feed</a></li>
   </ul>
 </nav>
 </aside>
@@ -171,8 +171,8 @@ I_xV_x+I_yV_y = -I_t
 <p>Setting up OpenCV in XCode turned out to be relatively painless. There are two tutorials online that made this easy, <a href="http://blogs.wcode.org/2014/10/howto-install-build-and-use-opencv-macosx-10-10/">one on installing OpenCV libraries on Mac</a>, and <a href="http://blogs.wcode.org/2014/11/howto-setup-xcode-6-1-to-work-with-opencv-libraries/">the other on linking the installed libraries to XCode</a>.
 Make sure the libraries are installed by running the following piece of code.</p>
 
-<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include &lt;opencv2/imgcodecs.hpp&gt;</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">ac</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">av</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include &lt;opencv2/imgcodecs.hpp&gt;
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">ac</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">av</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">Mat</span> <span class="n">img</span><span class="p">;</span>
 <span class="p">}</span></code></pre></div>
 
@@ -182,21 +182,21 @@ Make sure the libraries are installed by running the following piece of code.</p
 
 <p>Implementation here is quite easy. Here’s a simplified version of the full system:</p>
 
-<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">deque</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">findCorners</span><span class="p">(</span><span class="n">Mat</span> <span class="n">img</span><span class="p">,</span> <span class="kt">int</span> <span class="n">xarea</span><span class="p">,</span> <span class="kt">int</span> <span class="n">yarea</span><span class="p">,</span> <span class="kt">int</span> <span class="n">thres</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">verbose</span><span class="o">=</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">deque</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">findCorners</span><span class="p">(</span><span class="n">Mat</span> <span class="n">img</span><span class="p">,</span> <span class="kt">int</span> <span class="n">xarea</span><span class="p">,</span> <span class="kt">int</span> <span class="n">yarea</span><span class="p">,</span> <span class="kt">int</span> <span class="n">thres</span><span class="p">,</span> <span class="n">bool</span> <span class="n">verbose</span><span class="o">=</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">deque</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">corners</span><span class="p">;</span>
         
-        <span class="n">ofstream</span> <span class="n">log</span><span class="p">;</span> <span class="c1">//This will be used for dumping raw data for corner analysis</span>
-        <span class="n">log</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">&quot;log.csv&quot;</span><span class="p">);</span>
-        <span class="n">log</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;x,y,score1,score2</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+        <span class="n">ofstream</span> <span class="n">log</span><span class="p">;</span> <span class="c1">//This will be used for dumping raw data for corner analysis
+</span>        <span class="n">log</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">"log.csv"</span><span class="p">);</span>
+        <span class="n">log</span> <span class="o">&lt;&lt;</span> <span class="s">"x,y,score1,score2</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
         
-        <span class="c1">//Image for marking up corners</span>
-        <span class="n">Mat</span> <span class="n">outimg</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span> 
+        <span class="c1">//Image for marking up corners
+</span>        <span class="n">Mat</span> <span class="n">outimg</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span> 
         
-        <span class="c1">//Dimensions</span>
-        <span class="kt">int</span> <span class="n">dimx</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">cols</span><span class="p">,</span> <span class="n">dimy</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">rows</span><span class="p">;</span>
+        <span class="c1">//Dimensions
+</span>        <span class="kt">int</span> <span class="n">dimx</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">cols</span><span class="p">,</span> <span class="n">dimy</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">rows</span><span class="p">;</span>
         
-        <span class="c1">//Count number of corners, start looping</span>
-        <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="c1">//Count number of corners, start looping
+</span>        <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
         <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">startx</span><span class="o">=</span><span class="mi">0</span><span class="p">;(</span><span class="n">startx</span><span class="o">+</span><span class="n">xarea</span><span class="p">)</span><span class="o">&lt;</span><span class="n">dimx</span><span class="p">;</span><span class="n">startx</span><span class="o">+=</span><span class="n">xarea</span><span class="p">)</span>
             <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">starty</span><span class="o">=</span><span class="mi">0</span><span class="p">;(</span><span class="n">starty</span><span class="o">+</span><span class="n">yarea</span><span class="p">)</span><span class="o">&lt;</span><span class="n">dimy</span><span class="p">;</span><span class="n">starty</span><span class="o">+=</span><span class="n">yarea</span><span class="p">)</span>
             <span class="p">{</span>
@@ -206,23 +206,23 @@ Make sure the libraries are installed by running the following piece of code.</p
                 <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">dir</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">dir</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">dir</span><span class="o">++</span><span class="p">)</span>
                 <span class="p">{</span>
                     <span class="kt">int</span> <span class="n">newsx</span><span class="o">=</span><span class="n">startx</span><span class="p">,</span><span class="n">newsy</span><span class="o">=</span><span class="n">starty</span><span class="p">;</span>
-                    <span class="c1">//Check similarity in each direction</span>
-                    <span class="k">switch</span><span class="p">(</span><span class="n">dir</span><span class="p">)</span>
+                    <span class="c1">//Check similarity in each direction
+</span>                    <span class="k">switch</span><span class="p">(</span><span class="n">dir</span><span class="p">)</span>
                     <span class="p">{</span>
-                        <span class="k">case</span> <span class="mi">0</span><span class="o">:</span> <span class="c1">//left</span>
-                            <span class="n">newsx</span><span class="o">-=</span><span class="n">xarea</span><span class="p">;</span>
+                        <span class="k">case</span> <span class="mi">0</span><span class="p">:</span> <span class="c1">//left
+</span>                            <span class="n">newsx</span><span class="o">-=</span><span class="n">xarea</span><span class="p">;</span>
                             <span class="n">newsx</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">newsx</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
                             <span class="k">break</span><span class="p">;</span>
-                        <span class="k">case</span> <span class="mi">1</span><span class="o">:</span> <span class="c1">//top</span>
-                            <span class="n">newsy</span><span class="o">-=</span><span class="n">yarea</span><span class="p">;</span>
+                        <span class="k">case</span> <span class="mi">1</span><span class="p">:</span> <span class="c1">//top
+</span>                            <span class="n">newsy</span><span class="o">-=</span><span class="n">yarea</span><span class="p">;</span>
                             <span class="n">newsy</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">newsy</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
                             <span class="k">break</span><span class="p">;</span>
-                        <span class="k">case</span> <span class="mi">2</span><span class="o">:</span> <span class="c1">//right</span>
-                            <span class="n">newsx</span><span class="o">+=</span><span class="n">xarea</span><span class="p">;</span>
+                        <span class="k">case</span> <span class="mi">2</span><span class="p">:</span> <span class="c1">//right
+</span>                            <span class="n">newsx</span><span class="o">+=</span><span class="n">xarea</span><span class="p">;</span>
                             <span class="n">newsx</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">newsx</span><span class="p">,</span><span class="n">dimx</span><span class="p">);</span>
                             <span class="k">break</span><span class="p">;</span>
-                        <span class="k">case</span> <span class="mi">3</span><span class="o">:</span> <span class="c1">//down</span>
-                            <span class="n">newsy</span><span class="o">+=</span><span class="n">yarea</span><span class="p">;</span>
+                        <span class="k">case</span> <span class="mi">3</span><span class="p">:</span> <span class="c1">//down
+</span>                            <span class="n">newsy</span><span class="o">+=</span><span class="n">yarea</span><span class="p">;</span>
                             <span class="n">newsy</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">newsy</span><span class="p">,</span><span class="n">dimy</span><span class="p">);</span>
                             <span class="k">break</span><span class="p">;</span>
                         <span class="k">default</span><span class="o">:</span>
@@ -239,14 +239,14 @@ Make sure the libraries are installed by running the following piece of code.</p
                 <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/=</span><span class="mi">2</span><span class="p">;</span>
                 <span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/=</span><span class="mi">2</span><span class="p">;</span>
                 
-                <span class="c1">//thresholding</span>
-                <span class="k">if</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">thres</span> <span class="o">&amp;&amp;</span> <span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">thres</span><span class="p">)</span>
+                <span class="c1">//thresholding
+</span>                <span class="k">if</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">thres</span> <span class="o">&amp;&amp;</span> <span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">thres</span><span class="p">)</span>
                 <span class="p">{</span>
                     <span class="n">corners</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">startx</span><span class="p">,</span><span class="n">starty</span><span class="p">));</span>
                     <span class="n">rectangle</span><span class="p">(</span><span class="n">outimg</span><span class="p">,</span> <span class="n">Point</span><span class="p">(</span><span class="n">startx</span><span class="p">,</span><span class="n">starty</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="n">startx</span><span class="o">+</span><span class="n">xarea</span><span class="p">,</span><span class="n">starty</span><span class="o">+</span><span class="n">yarea</span><span class="p">),</span> <span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="mi">2</span><span class="p">);</span>
                 <span class="p">}</span>
                 
-                <span class="n">log</span> <span class="o">&lt;&lt;</span> <span class="n">startx</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;,&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">starty</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;,&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;,&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+                <span class="n">log</span> <span class="o">&lt;&lt;</span> <span class="n">startx</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">starty</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
             <span class="p">}</span>
         <span class="n">log</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>        
         <span class="k">return</span> <span class="n">corners</span><span class="p">;</span>
@@ -259,7 +259,7 @@ Make sure the libraries are installed by running the following piece of code.</p
 
 <p>Looking at the results, we’ve managed to isolate a few useful markers to track motion:</p>
 
-<p><img src="http://localhost:3000/assets/img/LucasKanade/corners.jpg" alt="corners" /></p>
+<p><img src="http://hrishioa.github.io/assets/img/LucasKanade/corners.jpg" alt="corners" /></p>
 
 <h2 id="lucas-kanade-corner-tracking">Lucas-Kanade Corner Tracking</h2>
 
@@ -312,7 +312,7 @@ Make sure the libraries are installed by running the following piece of code.</p
 
 <p>But it works, and final implementation shows both the corners and the velocity values we’ve computed.</p>
 
-<p><img src="http://localhost:3000/assets/img/LucasKanade/movement.jpg" alt="movement" /></p>
+<p><img src="http://hrishioa.github.io/assets/img/LucasKanade/movement.jpg" alt="movement" /></p>
 
 <p>This is an intermediate step, and it serves to illustrate the underlying concept behind Lucas-Kanade. Next we’ll move on to Horn-Shunck and eventually arrive at a more application-specific solution.</p>
 
@@ -323,15 +323,15 @@ Make sure the libraries are installed by running the following piece of code.</p
 
             <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:3000/implementing-a-lucas-kanade-tracker-from-scratch/%20via%20&#64;&hashtags=Lucas-Kanade,Optical Flow,C++,XCode,"
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://hrishioa.github.io/implementing-a-lucas-kanade-tracker-from-scratch/%20via%20&#64;&hashtags=Lucas-Kanade,Optical Flow,C++,XCode,"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
-    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:3000/implementing-a-lucas-kanade-tracker-from-scratch/"
+    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://hrishioa.github.io/implementing-a-lucas-kanade-tracker-from-scratch/"
     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
         <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
     </a>
-    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://localhost:3000/implementing-a-lucas-kanade-tracker-from-scratch/"
+    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://hrishioa.github.io/implementing-a-lucas-kanade-tracker-from-scratch/"
     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
         <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg>
     </a>
