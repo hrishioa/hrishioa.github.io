@@ -20,7 +20,7 @@ The only problem is set-up. I rarely ever need to run a pi other than in headles
 
 I live in a [university](http://www.yale-nus.edu.sg/), where the routers refuse to give you any kind of access that would help you locate your pi, much less talk to it. This means that every time I power up my Pi, I need to find the nearest 'head' so I can get the IP (no static IPs. None.).
 
-There are a number of workarounds for this, including using a DNS service to having the Pi display it on a small set of seven-segments, but I've settled on one for now (the link is below).
+There are a number of workarounds for this, including using a DNS service to having the Pi display it on a small set of seven-segments, but I've settled on one for now (the link is below), and it solves most of my problems.
 
 It's a little script that is easy to install, lets the Pi boot up, and then [dweets](http://dweet.io) the ngrok address and ip to a preset id. It's come in handy more than once, and I'm thinking this is going to help you quite a bit, especially if you go to hackathons and have no idea what the wifi situation will be like.
 
