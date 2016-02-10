@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Decapitating Raspberry Pis with nomohead",
+      "category" : "",
+      "tags"     : "Raspberry Pi, ngrok, and IoT",
+      "url"      : "/decapitating-raspberry-pis-with-nomohead/",
+      "date"     : "11 Feb 2016"
+    } ,
+  
+    {
       "title"    : "Ride-sharing on the Blockchain - Part 1",
       "category" : "gruber",
       "tags"     : "Ethereum, Blockchain, Uber, and HacknRoll",

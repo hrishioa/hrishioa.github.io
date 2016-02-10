@@ -2,31 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	
 	  <url>
-		<loc>http://hrishioa.github.io/ethereum-and-uber:-building-a-decentralized-ride-sharing-platform-on-the-blockchain/</loc>
+		<loc>http://localhost:3000/decapitating-raspberry-pis-with-nomohead/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://hrishioa.github.io/winter-'15-trip-logs/</loc>
+		<loc>http://localhost:3000/ethereum-and-uber:-building-a-decentralized-ride-sharing-platform-on-the-blockchain/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://hrishioa.github.io/tracking-word-documents-with-git/</loc>
+		<loc>http://localhost:3000/winter-'15-trip-logs/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://hrishioa.github.io/using-the-internet-of-things-for-measuring-worker-safety/</loc>
+		<loc>http://localhost:3000/tracking-word-documents-with-git/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://hrishioa.github.io/implementing-a-lucas-kanade-tracker-from-scratch/</loc>
+		<loc>http://localhost:3000/using-the-internet-of-things-for-measuring-worker-safety/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://hrishioa.github.io/welcome-to-jekyll/</loc>
+		<loc>http://localhost:3000/implementing-a-lucas-kanade-tracker-from-scratch/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://hrishioa.github.io/how-to-use/</loc>
+		<loc>http://localhost:3000/welcome-to-jekyll/</loc>
+	  </url>
+	
+	  <url>
+		<loc>http://localhost:3000/how-to-use/</loc>
 	  </url>
 	
 </urlset>

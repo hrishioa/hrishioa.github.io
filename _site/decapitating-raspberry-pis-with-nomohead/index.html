@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Tracking Word Documents with Git</title>
+    <title>Decapitating Raspberry Pis with nomohead</title>
     <meta name="description" content="Personal Blog and Data Repository">
 
     <!-- Google Authorship Markup -->
     <link rel="author" href="https://plus.google.com/+?rel=author">
 
     <!-- Social: Facebook / Open Graph -->
-    <meta property="og:url" content="http://localhost:3000/tracking-word-documents-with-git/">
-    <meta property="og:title" content="Tracking Word Documents with Git">
+    <meta property="og:url" content="http://localhost:3000/decapitating-raspberry-pis-with-nomohead/">
+    <meta property="og:title" content="Decapitating Raspberry Pis with nomohead">
     
     <meta property="og:image" content="http://localhost:3000/assets/img/">
     
@@ -21,7 +21,7 @@
     <meta property="og:site_name" content="">
 
     <!-- Social: Google+ / Schema.org  -->
-    <meta itemprop="name" content="Tracking Word Documents with Git"/>
+    <meta itemprop="name" content="Decapitating Raspberry Pis with nomohead"/>
     <meta itemprop="description" content="Personal Blog and Data Repository">
     <meta itemprop="image" content="http://localhost:3000/assets/img/blog-image.png"/>
 
@@ -48,7 +48,7 @@
     <meta name="theme-color" content="#0562DC">
 
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="http://localhost:3000/tracking-word-documents-with-git/">
+    <link rel="canonical" href="http://localhost:3000/decapitating-raspberry-pis-with-nomohead/">
     <link rel="alternate" type="application/rss+xml" title="" href="http://localhost:3000/feed.xml" />
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
@@ -70,9 +70,9 @@
         <header class="header-post" role="banner">
     <div class="content">
         
-            <time itemprop="datePublished" datetime="2015-10-25 13:03:02 +0800" class="date">25 Oct 2015</time>
+            <time itemprop="datePublished" datetime="2016-02-11 13:24:08 +0800" class="date">11 Feb 2016</time>
         
-        <h1 class="post-title" itemprop="name">Tracking Word Documents with Git</h1>
+        <h1 class="post-title" itemprop="name">Decapitating Raspberry Pis with nomohead</h1>
         <p itemprop="description" class="subtitle"></p>
     </div>
      <a class="down" data-scroll href="#scroll"><svg class="icon icon-angle-down"><use xlink:href="#icon-angle-down"></use></svg></a>
@@ -114,95 +114,37 @@
         <section class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
             <article role="article" id="scroll" class="post-content" itemprop="articleBody">
-                <p>For some time now, I have been using Git to keep track of my work - both source code and otherwise. Even when you’re not using it for code, Git is perfect - easy backups to a Git server in the cloud along with the possibility of maintaining multiple working versions of my papers and writing projects is just great.</p>
+                <p>The Raspberry Pi is one of my favorite SoCs out there. It’s cheap, it’s everywhere and it practically runs anything. With the new update, it’s faster than ever and possibly everything I could want in most of my projects.</p>
 
-<p>Except - Git treats my Word files as binaries. Different versions can be accessed just fine, but I have no access to diff functionality because Git doesn’t understand what has changed between two versions. Not to mention, most programmers will flinch <a href="http://stackoverflow.com/questions/29674006/is-it-good-practice-to-store-binary-dependencies-in-source-control">uncontrollably</a> at my mention of storing binaries in version control - even if it’s only the stupid play I’m writing.</p>
+<p><img src="http://localhost:3000/assets/img/nomohead/piimg.jpeg" alt="raspi-img" /></p>
 
-<p>The solution is to use something that Git can understand out of the box - like Markdown - or find a way to help Git interpret <code>.docx</code> files, which you know deep (deep) down are text files. Choosing not to give up the flexibility of Word (and mostly out of habit), I started looking at ways to implement the latter.</p>
+<p>The only problem is set-up. I rarely ever need to run a pi other than in headless mode, and once the IP addresses are set up I mostly work through ssh. Occasionally I use VNC if I need to look inside the pi, but I rarely need to connect the Pi to a monitor and mouse/keyboard. Except for set-up.</p>
 
-<p><a href="http://blog.martinfenner.org/about.html">Martin Fenner</a> has a very informative <a href="http://blog.martinfenner.org/about.html">post</a> on one way of doing this. He uses <a href="http://pandoc.org/">pandoc</a> to convert docx files to markdown that git can then use to compare two versions of the same file. However, I ran into problems when using pandoc to convert files, and had to use a different implementation. I’m including both methods below, so feel free to try either.</p>
+<p>I live in a <a href="http://www.yale-nus.edu.sg/">university</a>, where the routers refuse to give you any kind of access that would help you locate your pi, much less talk to it. This means that every time I power up my Pi, I need to find the nearest ‘head’ so I can get the IP (no static IPs. None.).</p>
 
-<h2 id="using-pandoc-to-interpret-word-documents">Using Pandoc to interpret Word Documents</h2>
+<p>There are a number of workarounds for this, including using a DNS service to having the Pi display it on a small set of seven-segments, but I’ve settled on one for now (the link is below).</p>
 
-<p>Martin recommends the following steps:</p>
+<p>It’s a little script that is easy to install, lets the Pi boot up, and then <a href="http://dweet.io">dweets</a> the ngrok address and ip to a preset id. It’s come in handy more than once, and I’m thinking this is going to help you quite a bit, especially if you go to hackathons and have no idea what the wifi situation will be like.</p>
 
-<p>Before you begin, install <a href="http://pandoc.org/">pandoc</a>. On a Mac, if you have <a href="https://brew.sh">HomeBrew</a> or <a href="https://www.macports.org/">MacPorts</a>, this is as simple as typing <code>brew install pandoc</code> or <code>port install pandoc</code>. For a PC, you can find an installer on the <a href="https://github.com/jgm/pandoc/releases/tag/1.15.1.1">downloads</a> page. If you use LaTex, there’s a good chance you already have it.</p>
+<p><img src="http://localhost:3000/assets/img/nomohead/dweet.png" alt="dweet" /></p>
 
-<ul>
-  <li>Create a <code>.gitattributes</code> file in your project directory (if you don’t have one already) and add the following:</li>
-</ul>
+<p>It’s saved my ass twice this week already.</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">*.docx <span class="nv">diff</span><span class="o">=</span>pandoc</code></pre></div>
-
-<p>This will let git know what to do when it encounters files with a <code>.docx</code> extension.</p>
-
-<ul>
-  <li>Append the following to the .gitconfig file (On Mac, this should be <code>~/.gitignore</code>. For Windows, this will depend on your installation, but for default settings, it should be in your home folder - or <code>%HOMEDRIVE%%HOMEPATH%</code>) -</li>
-</ul>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">[</span>diff <span class="s2">&quot;pandoc&quot;</span><span class="o">]</span>
-  <span class="nv">textconv</span><span class="o">=</span>pandoc --to<span class="o">=</span>markdown
-  <span class="nv">prompt</span> <span class="o">=</span> <span class="nb">false</span>
-<span class="o">[</span><span class="nb">alias</span><span class="o">]</span>
-  <span class="nv">wdiff</span> <span class="o">=</span> diff --word-diff<span class="o">=</span>color --unified<span class="o">=</span>1</code></pre></div>
-
-<p>We’re adding pandoc to the config, along with creating an alias for a specific <em>diff</em> call.</p>
-
-<ul>
-  <li>Once this is done, you can make sure everything works by commiting a Word file, and running the following command:</li>
-</ul>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">git wdiff &lt;your_file&gt;.docx</code></pre></div>
-
-<p>Unfortunately, this didn’t work for me. For every file I tried, pandoc failed with a ‘UTF-8’ error. Some Googling showed that this was a common error with pandoc and some versions of Word. There were a few fixes, but none solved my problem. Not wanting to trawl the manpage for answers, I moved on to door number two.</p>
-
-<h2 id="using-a-custom-converter-for-word-in-git">Using a custom converter for Word in Git</h2>
-
-<p>If pandoc worked for you, then this is really unnecessary and you can move on to actual work. But it didn’t work for me, so I started looking for docx to markdown converters. There are a few online that are pretty good. There’s a <a href="https://github.com/benbalter/word-to-markdown">Ruby Gem</a> that does it pretty well. There’s even a <a href="https://gist.github.com/hawkrives/2305254">Visual Basic Script</a> that does it, if you’re looking for integration into Word itself. For Mac, the included <code>textutil</code> does docx conversions pretty easily. It comes pre-installed, and is pretty light-weight. Unfortunately, it doesn’t support markdown, but if you really need to track stylistic changes, there is a <a href="https://gist.github.com/ttscoff/3861434">Ruby Gem</a> that uses textutil for docx to markdown conversion that shouldn’t be hard to use. Just install it and replace the direct calls to textutil in the directions. 
-Converting to plain text was simple enough for me. I’m mostly using Terminal to track changes to my work, so textutil’s txt conversion seemed enough (at least for the time being). It also meant that I didn’t have to install new software on all my workstations.</p>
-
-<p>To implement textutil-based tracking, do the following:</p>
-
-<ul>
-  <li>Create and add the following to <code>.gitattributes</code> in your project directory (same as before):</li>
-</ul>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">*.docx <span class="nv">diff</span><span class="o">=</span>textutil</code></pre></div>
-
-<ul>
-  <li>Add these lines to <code>~/.gitconfig</code>:</li>
-</ul>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">[</span>diff <span class="s2">&quot;textutil&quot;</span><span class="o">]</span>
-  <span class="nv">textconv</span><span class="o">=</span>textutil -convert txt -stdout
-  <span class="nv">prompt</span> <span class="o">=</span> <span class="nb">false</span>
-<span class="o">[</span><span class="nb">alias</span><span class="o">]</span>
-  <span class="nv">wdiff</span> <span class="o">=</span> diff --word-diff<span class="o">=</span>color --unified<span class="o">=</span>1</code></pre></div>
-
-<p>The <code>-convert txt</code> switch lets us convert the file to plain text, and the <code>-stdout</code> switch makes sure we’re printing to standard out instead of to file.</p>
-
-<ul>
-  <li>Once this is done, you can run <code>git wdiff &lt;filename&gt;.docx</code> to see the results.</li>
-</ul>
-
-<p><img src="http://localhost:3000/assets/img/TextUtilGit/screenshot.png" alt="screenshot" /></p>
-
-<p>It should now be easy to modify Git to work with complex file formats, now that you know how.</p>
-
+<p>Here’s the code and the installation script - <a href="https://github.com/hrishioa/nomohead">nomohead</a></p>
 
             </article>
 
             <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:3000/tracking-word-documents-with-git/%20via%20&#64;&hashtags=Git,TextUtil,Word,Pandoc,"
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:3000/decapitating-raspberry-pis-with-nomohead/%20via%20&#64;&hashtags=Raspberry Pi,ngrok,IoT,"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
-    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:3000/tracking-word-documents-with-git/"
+    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:3000/decapitating-raspberry-pis-with-nomohead/"
     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
         <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
     </a>
-    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://localhost:3000/tracking-word-documents-with-git/"
+    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://localhost:3000/decapitating-raspberry-pis-with-nomohead/"
     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
         <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg>
     </a>
@@ -230,8 +172,8 @@ Converting to plain text was simple enough for me. I’m mostly using Terminal t
     {
         disqus_loaded = true;
         var disqus_shortname = 'hrishioa';
-        var disqus_title = 'Tracking Word Documents with Git';
-        var disqus_url = '/tracking-word-documents-with-git/';
+        var disqus_title = 'Decapitating Raspberry Pis with nomohead';
+        var disqus_url = '/decapitating-raspberry-pis-with-nomohead/';
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
