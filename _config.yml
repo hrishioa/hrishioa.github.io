@@ -17,7 +17,6 @@ markdown: kramdown
 highlighter: pygments
 permalink: /:title/
 
-
 # html minify
 compress_html:
   clippings: all
