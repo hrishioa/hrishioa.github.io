@@ -14,7 +14,7 @@ disqus_username: hrishioa
 
 # Build settings
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 permalink: /:title/
 
 # html minify
