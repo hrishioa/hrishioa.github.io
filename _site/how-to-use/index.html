@@ -12,10 +12,10 @@
     <link rel="author" href="https://plus.google.com/+?rel=author">
 
     <!-- Social: Facebook / Open Graph -->
-    <meta property="og:url" content="http://hrishioa.github.io/how-to-use/">
+    <meta property="og:url" content="http://localhost:3000/how-to-use/">
     <meta property="og:title" content="How to use">
     
-    <meta property="og:image" content="http://hrishioa.github.io/assets/img/">
+    <meta property="og:image" content="http://localhost:3000/assets/img/">
     
     <meta property="og:description" content="First steps to use this template">
     <meta property="og:site_name" content="">
@@ -23,7 +23,7 @@
     <!-- Social: Google+ / Schema.org  -->
     <meta itemprop="name" content="How to use"/>
     <meta itemprop="description" content="First steps to use this template">
-    <meta itemprop="image" content="http://hrishioa.github.io/assets/img/blog-image.png"/>
+    <meta itemprop="image" content="http://localhost:3000/assets/img/blog-image.png"/>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="/assets/img/icons/favicon.ico" type="image/x-icon" />
@@ -48,8 +48,8 @@
     <meta name="theme-color" content="#0562DC">
 
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="http://hrishioa.github.io/how-to-use/">
-    <link rel="alternate" type="application/rss+xml" title="" href="http://hrishioa.github.io/feed.xml" />
+    <link rel="canonical" href="http://localhost:3000/how-to-use/">
+    <link rel="alternate" type="application/rss+xml" title="" href="http://localhost:3000/feed.xml" />
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 
@@ -94,15 +94,15 @@
   <h2>MENU</h2>
   <ul>
     
-      <li><a href="http://hrishioa.github.io/">Home</a></li>
+      <li><a href="http://localhost:3000/">Home</a></li>
     
-      <li><a href="http://hrishioa.github.io/series">Series</a></li>
+      <li><a href="http://localhost:3000/series">Series</a></li>
     
-      <li><a href="http://hrishioa.github.io/tags">Tags</a></li>
+      <li><a href="http://localhost:3000/tags">Tags</a></li>
     
-      <li><a href="http://hrishioa.github.io/about">About Me</a></li>
+      <li><a href="http://localhost:3000/about">About Me</a></li>
     
-    <li><a class="feed" href="http://hrishioa.github.io/feed.xml" title="Atom/RSS feed">Feed</a></li>
+    <li><a class="feed" href="http://localhost:3000/feed.xml" title="Atom/RSS feed">Feed</a></li>
   </ul>
 </nav>
 </aside>
@@ -141,16 +141,16 @@
   <li><a href="http://jekyllrb.com">Install Jekyll</a></li>
   <li>Fork the <a href="https://github.com/willianjusten/will-jekyll-template/fork">Will Jekyll Template</a></li>
   <li>Clone the repo you just forked.</li>
-  <li>Edit <code>_config.yml</code> to personalize your site.</li>
-  <li>Check out the sample posts in <code>_posts</code> to see examples for assigning categories and tags, and other YAML data.</li>
+  <li>Edit <code class="highlighter-rouge">_config.yml</code> to personalize your site.</li>
+  <li>Check out the sample posts in <code class="highlighter-rouge">_posts</code> to see examples for assigning categories and tags, and other YAML data.</li>
   <li>Read the documentation below for further customization pointers and documentation.</li>
 </ol>
 
 <h2 id="site-and-user-settings">Site and User Settings</h2>
 
-<p>You have to fill some informations on <code>_config.yml</code> to customize your site.</p>
+<p>You have to fill some informations on <code class="highlighter-rouge">_config.yml</code> to customize your site.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Site settings</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Site settings</span>
 <span class="ss">description: </span><span class="no">A</span> <span class="n">blog</span> <span class="n">about</span> <span class="n">lorem</span> <span class="n">ipsum</span> <span class="n">dolor</span> <span class="n">sit</span> <span class="n">amet</span>
 <span class="ss">baseurl: </span><span class="s2">""</span> <span class="c1"># the subpath of your site, e.g. /blog/</span>
 <span class="ss">url: </span><span class="s2">"http://localhost:3000"</span> <span class="c1"># the base hostname &amp; protocol for your site </span>
@@ -163,25 +163,25 @@
 <span class="ss">twitter_username: </span><span class="n">lorem_ipsum</span>
 <span class="ss">github_username:  </span><span class="n">lorem_ipsum</span>
 <span class="ss">gplus_username:  </span><span class="n">lorem_ipsum</span>
-<span class="ss">disqus_username: </span><span class="n">lorem_ipsum</span></code></pre></div>
+<span class="ss">disqus_username: </span><span class="n">lorem_ipsum</span></code></pre></figure>
 
 <h2 id="color-customization">Color customization</h2>
 
-<p>All color variables are in <code>src/styl/variable</code>. To change the main color, just set the new value at <code>main</code> assignment. Another colors are for texts and the code background color.</p>
+<p>All color variables are in <code class="highlighter-rouge">src/styl/variable</code>. To change the main color, just set the new value at <code class="highlighter-rouge">main</code> assignment. Another colors are for texts and the code background color.</p>
 
 <h2 id="creating-posts">Creating posts</h2>
 
-<p>You can use the <code>initpost.sh</code> to create your new posts. Just follow the command:</p>
+<p>You can use the <code class="highlighter-rouge">initpost.sh</code> to create your new posts. Just follow the command:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">./initpost.sh -c Post Title</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">./initpost.sh -c Post Title</code></pre></figure>
 
-<p>The new file will be created at <code>_posts</code> with this format <code>date-title.md</code>.</p>
+<p>The new file will be created at <code class="highlighter-rouge">_posts</code> with this format <code class="highlighter-rouge">date-title.md</code>.</p>
 
 <h2 id="front-matter">Front-matter</h2>
 
 <p>When you create a new post, you need to fill the post information in the front-matter, follow this example:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">---</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">---</span>
 <span class="ss">layout: </span><span class="n">post</span>
 <span class="ss">title: </span><span class="s2">"How to use"</span>
 <span class="ss">date: </span><span class="mi">2015</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mo">03</span> <span class="mo">03</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">44</span>
@@ -193,7 +193,7 @@
 <span class="ss">categories:
 </span><span class="o">-</span> <span class="no">I</span> <span class="n">love</span> <span class="no">Jekyll</span>
 <span class="ss">twitter_text: </span><span class="s1">'How to install and use this template'</span>
-<span class="o">---</span></code></pre></div>
+<span class="o">---</span></code></pre></figure>
 
 <h2 id="running-the-blog-in-local">Running the blog in local</h2>
 
@@ -201,8 +201,8 @@
 
 <ul>
   <li>Install <a href="https://nodejs.org/">NodeJS</a></li>
-  <li>Run <code>npm install</code></li>
-  <li>Run <code>gulp</code></li>
+  <li>Run <code class="highlighter-rouge">npm install</code></li>
+  <li>Run <code class="highlighter-rouge">gulp</code></li>
 </ul>
 
 <h2 id="questions">Questions</h2>
@@ -220,15 +220,15 @@
 
             <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;How to install and use this template&quot;%20http://hrishioa.github.io/how-to-use/%20via%20&#64;&hashtags=jekyll,template,"
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;How to install and use this template&quot;%20http://localhost:3000/how-to-use/%20via%20&#64;&hashtags=jekyll,template,"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
-    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://hrishioa.github.io/how-to-use/"
+    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:3000/how-to-use/"
     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
         <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
     </a>
-    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://hrishioa.github.io/how-to-use/"
+    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://localhost:3000/how-to-use/"
     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
         <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg>
     </a>

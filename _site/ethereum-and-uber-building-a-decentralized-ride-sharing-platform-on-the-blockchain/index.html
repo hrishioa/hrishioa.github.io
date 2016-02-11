@@ -5,24 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Tracking Word Documents with Git</title>
-    <meta name="description" content="Personal Blog and Data Repository">
+    <title>Ride-sharing on the Blockchain - Part 1</title>
+    <meta name="description" content="Exploring the Concept of implementing ride-sharing on the Ethereum Blockchain">
 
     <!-- Google Authorship Markup -->
     <link rel="author" href="https://plus.google.com/+?rel=author">
 
     <!-- Social: Facebook / Open Graph -->
-    <meta property="og:url" content="http://localhost:3000/tracking-word-documents-with-git/">
-    <meta property="og:title" content="Tracking Word Documents with Git">
+    <meta property="og:url" content="http://localhost:3000/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/">
+    <meta property="og:title" content="Ride-sharing on the Blockchain - Part 1">
     
     <meta property="og:image" content="http://localhost:3000/assets/img/">
     
-    <meta property="og:description" content="Personal Blog and Data Repository">
+    <meta property="og:description" content="Exploring the Concept of implementing ride-sharing on the Ethereum Blockchain">
     <meta property="og:site_name" content="">
 
     <!-- Social: Google+ / Schema.org  -->
-    <meta itemprop="name" content="Tracking Word Documents with Git"/>
-    <meta itemprop="description" content="Personal Blog and Data Repository">
+    <meta itemprop="name" content="Ride-sharing on the Blockchain - Part 1"/>
+    <meta itemprop="description" content="Exploring the Concept of implementing ride-sharing on the Ethereum Blockchain">
     <meta itemprop="image" content="http://localhost:3000/assets/img/blog-image.png"/>
 
     <!-- Favicon -->
@@ -48,7 +48,7 @@
     <meta name="theme-color" content="#0562DC">
 
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="http://localhost:3000/tracking-word-documents-with-git/">
+    <link rel="canonical" href="http://localhost:3000/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/">
     <link rel="alternate" type="application/rss+xml" title="" href="http://localhost:3000/feed.xml" />
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
@@ -70,10 +70,10 @@
         <header class="header-post" role="banner">
     <div class="content">
         
-            <time itemprop="datePublished" datetime="2015-10-25 13:03:02 +0800" class="date">25 Oct 2015</time>
+            <time itemprop="datePublished" datetime="2016-01-31 04:39:37 +0800" class="date">31 Jan 2016</time>
         
-        <h1 class="post-title" itemprop="name">Tracking Word Documents with Git</h1>
-        <p itemprop="description" class="subtitle"></p>
+        <h1 class="post-title" itemprop="name">Ride-sharing on the Blockchain - Part 1</h1>
+        <p itemprop="description" class="subtitle">Exploring the Concept of implementing ride-sharing on the Ethereum Blockchain</p>
     </div>
      <a class="down" data-scroll href="#scroll"><svg class="icon icon-angle-down"><use xlink:href="#icon-angle-down"></use></svg></a>
      <div class="search-wrapper">
@@ -114,95 +114,69 @@
         <section class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
             <article role="article" id="scroll" class="post-content" itemprop="articleBody">
-                <p>For some time now, I have been using Git to keep track of my work - both source code and otherwise. Even when you’re not using it for code, Git is perfect - easy backups to a Git server in the cloud along with the possibility of maintaining multiple working versions of my papers and writing projects is just great.</p>
+                <p>I’ve recently become quite interested in <a href="https://www.ethereum.org/">Ethereum</a>, the decentralised software platform that uses the underlying concept of the Bitcoin blockchain to run code while maintaing trust. I’ve been playing around with Smart Contracts, which are modules executed by the blockchain. I’m not going to describe in detail how the system works, but there is a <a href="https://www.reddit.com/r/ethereum/comments/3vxvlx/starter_guide_almost_all_the_links_youll_need_to/">starter guide</a> on the Ethereum subreddit that you can look at for more information.</p>
 
-<p>Except - Git treats my Word files as binaries. Different versions can be accessed just fine, but I have no access to diff functionality because Git doesn’t understand what has changed between two versions. Not to mention, most programmers will flinch <a href="http://stackoverflow.com/questions/29674006/is-it-good-practice-to-store-binary-dependencies-in-source-control">uncontrollably</a> at my mention of storing binaries in version control - even if it’s only the stupid play I’m writing.</p>
+<p>During <a href="http://hacknroll.nushackers.org/">HacknRoll 2016</a>, the idea we came up with was to make use of Ethereum to implement a ride sharing service, much like Uber. Originally, the idea was to implement service-sharing, but we felt that Uber was a prime test case for decentralization. The company has been steadily <a href="http://therideshareguy.com/should-you-still-drive-for-uber-after-the-latest-rate-cuts/">cutting</a> its fee for drivers, and the incident during <a href="http://fortune.com/2012/11/02/uber-nyc-and-the-sandy-surge/">hurricane Sandy</a> served to demonstrate the perils of centralisation in a peer-to-peer system.</p>
 
-<p>The solution is to use something that Git can understand out of the box - like Markdown - or find a way to help Git interpret <code class="highlighter-rouge">.docx</code> files, which you know deep (deep) down are text files. Choosing not to give up the flexibility of Word (and mostly out of habit), I started looking at ways to implement the latter.</p>
+<p>Here’s the first part, where I will attempt to illustrate the theory behind the system.</p>
 
-<p><a href="http://blog.martinfenner.org/about.html">Martin Fenner</a> has a very informative <a href="http://blog.martinfenner.org/about.html">post</a> on one way of doing this. He uses <a href="http://pandoc.org/">pandoc</a> to convert docx files to markdown that git can then use to compare two versions of the same file. However, I ran into problems when using pandoc to convert files, and had to use a different implementation. I’m including both methods below, so feel free to try either.</p>
+<h2 id="the-concept">The Concept</h2>
 
-<h2 id="using-pandoc-to-interpret-word-documents">Using Pandoc to interpret Word Documents</h2>
+<p>We wanted to build a system that was as close to a closed system as possible. The central management system would only take as much as it needed to operate, and the rest would be distributed among users. This would achieve the lowest prices that the market can bear, with a middleman not beholden to corporate motivations. The rider would pay the driver, and that was it. We immediately sketched out the basics, and you can see the overall structure below.</p>
 
-<p>Martin recommends the following steps:</p>
+<p><img src="http://localhost:3000/assets/img/Ethereum/whiteboard.jpg" alt="Whiteboarding" /></p>
 
-<p>Before you begin, install <a href="http://pandoc.org/">pandoc</a>. On a Mac, if you have <a href="https://brew.sh">HomeBrew</a> or <a href="https://www.macports.org/">MacPorts</a>, this is as simple as typing <code class="highlighter-rouge">brew install pandoc</code> or <code class="highlighter-rouge">port install pandoc</code>. For a PC, you can find an installer on the <a href="https://github.com/jgm/pandoc/releases/tag/1.15.1.1">downloads</a> page. If you use LaTex, there’s a good chance you already have it.</p>
+<p>The most important segment is of the two contracts that exist on the blockchain. The first, called <strong>the Central Exchange</strong>, is the central system that decides the current market price per mile, and keep track of the stock (I’ll explain later) and other metadata related to each consumer account. The second, called <strong>the Rideshare</strong>, connects to the exchange when needed in order to retrieve prices. This is factored into the calculation of reputation points. There are two primary systems at work here, which will be explained below.</p>
 
-<ul>
-  <li>Create a <code class="highlighter-rouge">.gitattributes</code> file in your project directory (if you don’t have one already) and add the following:</li>
-</ul>
+<h3 id="stock">Stock</h3>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">*</span>.docx <span class="nv">diff</span><span class="o">=</span>pandoc</code></pre></figure>
+<p>The first problem we attempted to tackle is that of immutability. Any algorithm residing on the blockchain cannot be changed externally. It must decide to destroy itself (via an operation called a <code class="highlighter-rouge">suicide</code>) after telling any contracts that need it to call someone else. This needs to be done by collective consensus, and for this purpose we came up with a stakeholder system whereby each user - either driver or rider - is given points of stock that correspond to how many kilometers they’ve ridden using the system. Stocks are issued using hashes, and are re-weighted when more stocks are issued. These stocks will decide the amount given back when the system receives a profit above a fixed amount. They will also determine your voting power in making a decision about changing the central system. The voting system is fairly complex and wasn’t implemented for the purpose of the hackathon, but we are considering implementing it in the future.</p>
 
-<p>This will let git know what to do when it encounters files with a <code class="highlighter-rouge">.docx</code> extension.</p>
+<p>In a full-fledged implementation, there will be a third algorithm on the blockchain that opens and closes possible issues for voting. Each user is given a small amount as incentive for voting, and a multiple of that when the issue is resolved if he or she is on the winning side. This incentivizes voting and disincentivizes random voting in order to collect fees.</p>
 
-<ul>
-  <li>Append the following to the .gitconfig file (On Mac, this should be <code class="highlighter-rouge">~/.gitignore</code>. For Windows, this will depend on your installation, but for default settings, it should be in your home folder - or <code class="highlighter-rouge">%HOMEDRIVE%%HOMEPATH%</code>) -</li>
-</ul>
+<p>A rewrite of the system - as we foresee it - would involve one or more users posting rewritten source code online, which will be reviewed and voted on. When accepted, the system will then draw the code and bytecode, instantiate a new version and destroy itself while updating client algorithms to point to the new version.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">[</span>diff <span class="s2">"pandoc"</span><span class="o">]</span>
-  <span class="nv">textconv</span><span class="o">=</span>pandoc --to<span class="o">=</span>markdown
-  prompt <span class="o">=</span> <span class="nb">false</span>
-<span class="o">[</span><span class="nb">alias</span><span class="o">]</span>
-  wdiff <span class="o">=</span> diff --word-diff<span class="o">=</span>color --unified<span class="o">=</span>1</code></pre></figure>
+<h3 id="money-and-reputation-points">Money and Reputation Points</h3>
 
-<p>We’re adding pandoc to the config, along with creating an alias for a specific <em>diff</em> call.</p>
+<p>The rideshare system works by allocating reputation points and in-system currency to the user. For now we have made use of a custom currency, but it seems possible to implement trusted payment gateways to remove the barrier of cryptocurrency should the user so wish. Both are stored in the rideshare system, and the blockchain ensures trust and takes care of double-spending issues.</p>
 
-<ul>
-  <li>Once this is done, you can make sure everything works by commiting a Word file, and running the following command:</li>
-</ul>
+<h2 id="example">Example</h2>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git wdiff &lt;your_file&gt;.docx</code></pre></figure>
+<p>An example ride would be comprised of the following steps:</p>
 
-<p>Unfortunately, this didn’t work for me. For every file I tried, pandoc failed with a ‘UTF-8’ error. Some Googling showed that this was a common error with pandoc and some versions of Word. There were a few fixes, but none solved my problem. Not wanting to trawl the manpage for answers, I moved on to door number two.</p>
+<ol>
+  <li>A driver joins the system using a secure authentication hash (implemented by a trusted third party) of his Driver’s license.</li>
+  <li>The driver posts a contract on the rideshare system, specifying his current location, price per mile and limit (in miles) of how far he is willing to go. It holds his reputation points in escrow and posts the contract.</li>
+  <li>A client-side interface (can be implemented by anyone) pulls this informaton by analyzing the transactions to the blockchain.</li>
+  <li>A user selects from available contracts in his region, and relays this information to the rideshare system.</li>
+  <li>The system checks to see if the contract is still valid (uncancelled) and that the accounts are valid, i.e. they exist and that the user has enough money in the account to cover calculated costs and transaction fees.</li>
+  <li>The contract is successfully accepted by the system, at which point the user’s reputation points and the total cost of the ride are held in escrow.</li>
+  <li>The driver and the user successfully complete the ride.</li>
+  <li>The system receives confirmation from both the driver and the user that the ride has been completed, at which point the reputation points are released, recomputed as per the current market price (there is a dynamic penalty for exceeding the current rate) and the rating from each other, and the driver is paid.</li>
+  <li>A request is sent to the central exchange to issue stock to the driver and rider, along with the remaining transaction fees that weren’t spent during computation.</li>
+  <li>The central exchange stores the fees received in an account, and checks to see if it exceeds a dynamically calculated maximum based on the current gas (the metric for computation on the Ethereum blockchain) price.</li>
+</ol>
 
-<h2 id="using-a-custom-converter-for-word-in-git">Using a custom converter for Word in Git</h2>
+<p>Both the driver and the user are obligated to complete the ride, as the reputation points are required to register or accept a contract on the system. They can cancel the ride at any point and receive some of these points back, but the computation will assume that they have been given a rating of zero by the other party.</p>
 
-<p>If pandoc worked for you, then this is really unnecessary and you can move on to actual work. But it didn’t work for me, so I started looking for docx to markdown converters. There are a few online that are pretty good. There’s a <a href="https://github.com/benbalter/word-to-markdown">Ruby Gem</a> that does it pretty well. There’s even a <a href="https://gist.github.com/hawkrives/2305254">Visual Basic Script</a> that does it, if you’re looking for integration into Word itself. For Mac, the included <code class="highlighter-rouge">textutil</code> does docx conversions pretty easily. It comes pre-installed, and is pretty light-weight. Unfortunately, it doesn’t support markdown, but if you really need to track stylistic changes, there is a <a href="https://gist.github.com/ttscoff/3861434">Ruby Gem</a> that uses textutil for docx to markdown conversion that shouldn’t be hard to use. Just install it and replace the direct calls to textutil in the directions. 
-Converting to plain text was simple enough for me. I’m mostly using Terminal to track changes to my work, so textutil’s txt conversion seemed enough (at least for the time being). It also meant that I didn’t have to install new software on all my workstations.</p>
+<p>In such a system, the only money being used is the amount spent on transactions. The nodes executing the contract are paid for their time and energy, but the rest of the capital in this economy resides with either the driver or the rider.</p>
 
-<p>To implement textutil-based tracking, do the following:</p>
-
-<ul>
-  <li>Create and add the following to <code class="highlighter-rouge">.gitattributes</code> in your project directory (same as before):</li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">*</span>.docx <span class="nv">diff</span><span class="o">=</span>textutil</code></pre></figure>
-
-<ul>
-  <li>Add these lines to <code class="highlighter-rouge">~/.gitconfig</code>:</li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">[</span>diff <span class="s2">"textutil"</span><span class="o">]</span>
-  <span class="nv">textconv</span><span class="o">=</span>textutil -convert txt -stdout
-  prompt <span class="o">=</span> <span class="nb">false</span>
-<span class="o">[</span><span class="nb">alias</span><span class="o">]</span>
-  wdiff <span class="o">=</span> diff --word-diff<span class="o">=</span>color --unified<span class="o">=</span>1</code></pre></figure>
-
-<p>The <code class="highlighter-rouge">-convert txt</code> switch lets us convert the file to plain text, and the <code class="highlighter-rouge">-stdout</code> switch makes sure we’re printing to standard out instead of to file.</p>
-
-<ul>
-  <li>Once this is done, you can run <code class="highlighter-rouge">git wdiff &lt;filename&gt;.docx</code> to see the results.</li>
-</ul>
-
-<p><img src="http://localhost:3000/assets/img/TextUtilGit/screenshot.png" alt="screenshot" /></p>
-
-<p>It should now be easy to modify Git to work with complex file formats, now that you know how.</p>
+<p>In the next part, I’ll cover development and implementation of the system (as far as it was done at the Hackathon in 24 hours).</p>
 
 
             </article>
 
             <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:3000/tracking-word-documents-with-git/%20via%20&#64;&hashtags=Git,TextUtil,Word,Pandoc,"
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:3000/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/%20via%20&#64;&hashtags=Ethereum,Blockchain,Uber,HacknRoll,"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
-    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:3000/tracking-word-documents-with-git/"
+    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:3000/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/"
     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
         <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
     </a>
-    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://localhost:3000/tracking-word-documents-with-git/"
+    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://localhost:3000/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/"
     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
         <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg>
     </a>
@@ -230,8 +204,8 @@ Converting to plain text was simple enough for me. I’m mostly using Terminal t
     {
         disqus_loaded = true;
         var disqus_shortname = 'hrishioa';
-        var disqus_title = 'Tracking Word Documents with Git';
-        var disqus_url = '/tracking-word-documents-with-git/';
+        var disqus_title = 'Ride-sharing on the Blockchain - Part 1';
+        var disqus_url = '/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/';
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
