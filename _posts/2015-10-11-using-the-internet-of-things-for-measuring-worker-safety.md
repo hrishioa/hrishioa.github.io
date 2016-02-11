@@ -15,7 +15,7 @@ categories:
 twitter_text:
 ---
 
-As much as I hate using the phrase "Internet of Things", I must admit that it's gotten a lot easier to do so, having used it so many times during, \*sigh\* [The Internet of Things hackathon][iothacks]. During the hackathon, we were given different pieces of hardware, a collection of sensors and asked to build sometthing related to one of three themes: **Transport, Health and Construction**. We arrived at the hackathon, and realised that due to the preliminary selection process, there were a total of 10 teams. *For six prizes*. One for each category, and a 1st, 2nd and 3rd prize overall.
+I hate using the phrase "Internet of Things", but I must admit that it's gotten a lot easier to do so, having used it so many times during, \*sigh\* [The Internet of Things hackathon][iothacks]. During the hackathon, we were given different pieces of hardware, a collection of sensors and asked to build sometthing related to one of three themes: **Transport, Health and Construction**. We arrived at the hackathon, and realised that due to the preliminary selection process, there were a total of 10 teams. *For six prizes*. One for each category, and a 1st, 2nd and 3rd prize overall.
 
 We decided to go with Construction. It had nothing to do with the fact that there was only one other team in the category (sometimes it doesn't hurt to play the odds). Thinking about the issues in construction, we were delighted to find that one of our members - Aaron - could find out first hand from his father about the primary pain points in construction. We wanted to make sure we found something that solved problems for both workers and contractors to improve the possibility for adoption. 
 
