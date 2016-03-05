@@ -13,14 +13,14 @@ categories:
 - Implementing Optical Flow
 twitter_text:
 ---
-#Theory
+# Theory
 
-##Background
+## Background
 
 In Computer Vision, [Optical Flow][opflowiki] deals with the detection of apparent movement between the frames of a video, or between images. 
 The simplest of these is called a [Lucas-Kanade Tracker][lktwiki], which attempts to solve the Optical Flow equation using the least-squares method.
 
-##Method
+## Method
 
 The Optical-flow equation for Lucas-Kanade assumes that the change - or displacement - of moving objects between sucessive frames is small. This can be extended to fast-moving objects using other methods, and we will cover that in a separate post. Assuming small movement between frames, we end up with the following simple equation:
 $$
@@ -65,7 +65,7 @@ We need to identify points where motion can be detected in successive frames. It
 
 The science of corner detection is almost as deep as that of opical flow, and the two often go hand in hand. For this implementation, as we're focusing on Optical Flow (and because of my inexperience), we're going to pick the simplest. [Moravec Corner-Detection][morawiki] makes the assumption that a corner is a point of low self-similarity. There are many complex mathematical implementations of this, but we're simply looking for a few corners so we can see our algorithm in action. But before we do that, we need to set up.
 
-#Implementation
+# Implementation
 
 ## XCode
 

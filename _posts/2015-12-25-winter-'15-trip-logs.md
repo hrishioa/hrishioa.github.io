@@ -17,7 +17,7 @@ We're at Alappad, where all we can see are fields. My local friends and I come o
 
 ![]({{site.url}}/assets/img/TripLogs/IMG_9160.jpg)
 
-##Day 1
+## Day 1
 
 ![]({{site.url}}/assets/img/TripLogs/IMG_21.jpg)
 
@@ -28,7 +28,7 @@ Marottichal.
 It's a small forest catchment area nearby, and its a quick getaway before we embark on the major leg of the journey.
 Our saddle bags keep falling off, but we've reinforced them with extra rope. Hopefully they hold.
 
-###Stop 1. Murikkumpara. Odometer reads 10067.6 km.
+### Stop 1. Murikkumpara. Odometer reads 10067.6 km.
 
 ![]({{site.url}}/assets/img/TripLogs/IMG_9211.jpg)
 
@@ -38,7 +38,7 @@ We fill up with about eight litres, taking us out of reserve. I take some pictur
 
 ![]({{site.url}}/assets/img/TripLogs/IMG_9201.jpg)
 
-###Stop 2: Marottichal. Odometer reads 10072.9 km.
+### Stop 2: Marottichal. Odometer reads 10072.9 km.
 
 We stop around 10071 to let a man, a dog and a pigeon cross the road. They're unrelated, just happening to cross the road at the same time. The pigeon stops two inches from the front wheel and looks up at me like I don't belong. I've been here many times, but I guess this time I look like an outsider. The air warms as we approach 8 o'clock.
 
@@ -56,7 +56,7 @@ We wait for Parag to do a 20 minute sketch before we start climbing. The rains h
 
 ![]({{site.url}}/assets/img/TripLogs/IMG_9226.jpg)
 
-####...
+#### ...
 
 Some skinned knees and broken packets of biscuits later, we're at the top. Parag has been great, and I don't hear a word of complaint even though we're both sweating through our jeans (bad choice, I know) as we climb the final rock. 'I prefer slippery rocks to vegetation', he remarks as I help him up after he's just destroyed the humble abode of a dozen angry spiders. We don't hear the sounds of people any more. 
 
@@ -98,13 +98,13 @@ We've decided to head back to the national highway, and take the long (less scen
 
 We set off to find a suitable bed and bath.
 
-##Day 2. The odometer reads 10305.
+## Day 2. The odometer reads 10305.
 
 We start with our customary morning tea, and plan our route. We're planning to head to Wayanad, which is easily 183 km from where we are just to get into the district. The first leg of this journey is on nice roads on the highway, where we expect to be doing 110. The rest are winding hilly roads, and we'll be doing 30 at best. Let's see how this turns out.
 
 No breakfast yet, its 4.00 am. We are to wait until morning breaks.
 
-###Stop 1. Kozhikode. The odometer reads 10363.4.
+### Stop 1. Kozhikode. The odometer reads 10363.4.
 
 ![]({{site.url}}/assets/img/TripLogs/IMG_9425.jpg)
 
@@ -114,7 +114,7 @@ We stop slightly short of Kozhikode, a city I used to live in as a kid. I walk o
 
 ![]({{site.url}}/assets/img/TripLogs/IMG_9407.jpg)
 
-###Stop 2. Thamarasherri. Odometer reads 10469.8
+### Stop 2. Thamarasherri. Odometer reads 10469.8
 
 We turn off the NH to a tiny road, because Google Maps tells us its the shortest route. We immediately almost collide with a bus coming the opposite direction in what must obviously be a one-way, and I thank my stars for getting a motorcycle with huge disc brakes. The ride is filled with adrenaline. After the second bus in a row, I stop the music. We trod along at 20, hoping we make it out alive. Every bus we encounter carries with it a number of small vehiclings, each trying to overtake the other. I remark that it would be a good idea to use it as a case study for race conditions in a multi-process environment. Heh heh.
 
@@ -127,7 +127,7 @@ Riding on, we talk for a time about the Communist party and its influence in Ker
 
 Having passed Kozhikode, the Muslim League's green lampposts are gone, replaced by the familiar red. It's oddly comforting, and I wonder what that means. There is an old story about a politician who visits North India with his friend. Looking at his communist friend eat a watermelon, he decides to eat the green part and chuck the red. There is a battle of colours taking place along the highway as we move between towns, and I am just a little glad that it’s mostly green and red.
 
-###Stop 3. Thamarasherri churam. Odometer reads 10482.8
+### Stop 3. Thamarasherri churam. Odometer reads 10482.8
 
 ![]({{site.url}}/assets/img/TripLogs/IMG_9433.jpg)
 
@@ -137,13 +137,13 @@ Monkeys everywhere.
 
 ![]({{site.url}}/assets/img/TripLogs/IMG_9442.jpg)
 
-###Stop 4. Soojipara Waterfalls. Odometer reads 10631.1.
+### Stop 4. Soojipara Waterfalls. Odometer reads 10631.1.
 
 It's been a wild ride. Coming out of soochipara waterfalls is a large decline that is completely un-tarred save for the tiniest of strips of tarmac that remained. The roads are tapered on both sides, and the centre is usually the last to go. As I carefully pull the 250 kg bike with the 90kg Parag (not an accurate figure, he tells me it's lower) onto the road, I see a jeep headed up at me at full speed, straddling the tarmac in either end. He sees me and I see him. We swerve in different directions, and miss. I'm safe, but as I set my foot down it meets thin air. The road is too steep on either end, and I know that my ride will be far too heavy and unstable by the time my foot hits the ground. I decide to put her down, mid-motion. I quickly turn the ignition off, and slowly begin setting her down. In effect, I drop her. I recover safely, having been the first person to know this was going to happen. I turn around in horror to see Parag's leg pinned under the bike. Yells all around; the men in the jeep are now helping me lift the bike. It moves, begrudgingly. Parag scrambles to his feet, and I'm glad to see he is okay. The bike has lost some paint though. It could have been worse, and I believe this is the best outcome possible given this impossible situation.
 
 ![]({{site.url}}/assets/img/TripLogs/IMG_9443.jpg)
 
-###Final Stop. Somewhere in Wayanad. Odometer reads 10670.0.
+### Final Stop. Somewhere in Wayanad. Odometer reads 10670.0.
 
 We stop for a while to eat and drink. We find a small dirt road among the bushes, leading away from the road. It seems deserted, and I pull the bike sharply into the path despite Parag's protestations. The path is awfully small, and I wedge the bike in quite a-ways before turning the engine off. It is rather steep as well, and I will have to deal with turning the bike around and getting it back down later. I'm slightly worried about this, but it is soon forgotten as I look around. We could not have picked a better place to stop.
 
@@ -151,7 +151,7 @@ We stop for a while to eat and drink. We find a small dirt road among the bushes
 
 We'll eat and quickly be on our way. There is still a long way to go and the sun will set very soon.
 
-###Rest Stop. National Highway 33. Odometer reads 10710.0.
+### Rest Stop. National Highway 33. Odometer reads 10710.0.
 
 This has turned into the longest ride of my life. I say that with a bit of regret, desperation and even pride. I've been riding about eleven hours without sleep today. I'm on the last leg, about 40 km to go in the total 200 I've ridden back. The road lays empty and black, no streetlights, no compatriots, just me and Parag and the road.
 
@@ -161,7 +161,7 @@ Around 10680, I'm watching the sky and the road as I manoevre at 80, and I sudde
 
 Parag and I settle into a strong groove, him giving me instructions and holding on as I navigate. He tells me he is worried, and I tell him to trust me, doubtful that I would do the same in his position. I know myself well, and I trust me to stop and resign when I know I can't complete this. It hasn't happened yet. We're still in the first day of the malayalam calendar month of Dhanu, and the cold wind it promised has already begun assaulting me. Invigorated, I continue.
 
-##Day 3. 
+## Day 3. 
 
 The odometer reads 10792.0.
 
@@ -169,13 +169,13 @@ The thing about riding at night with little sleep is that it's a lot like gettin
 
 This time though, we're starting around 6.30. The sun's up, and it'll be a little hot, but we’re heading to one of the biggest lakes in Kerala and riding along the coastline to get there. Its the last ride on our little trip, and I've decided we'll be as relaxed as we can be. Many rest stops, no speeding, and definitely no pressure. We get there when we get there and we get back when we get back. Parag tells me his leg has healed somewhat. I'm glad.
 
-###Rest-stop. Odometer reads 10868.9.
+### Rest-stop. Odometer reads 10868.9.
 
 ![]({{site.url}}/assets/img/TripLogs/GOPR0160.jpg)
 
 We've had a few rest stops at some great a looking places, but I guess I didn't have the  time. We're almost in Kochi now, one of the biggest cities in Kerala. Quite the tech hub. I'd like to live here at some point, and I would have already had it not been for the insufferable traffic. Speaking of which, the gridlock is going to be insane for a while. Rush hour is setting in.
-
-###Stop 1. Kuttanad. Odometer reads 10896.0
+ 
+### Stop 1. Kuttanad. Odometer reads 10896.0
 
 ![]({{site.url}}/assets/img/TripLogs/IMG_9522.jpg)
 
@@ -189,7 +189,7 @@ Life is fine again. But a life of simplicity by this lake would have been nice a
 
 ![]({{site.url}}/assets/img/TripLogs/IMG_9521.jpg)
 
-###Stop 2. Odometer reads 10920.
+### Stop 2. Odometer reads 10920.
 
 Water laps against my toes and I wonder if my indifference for beaches is well founded after all. I have nothing against them; they all just seem the same, and I always go in the water against my better decisions and return with sand on my ass. A giant wave follows me to drench my rolled-up dhoti; it seems I'm not breaking the cycle today. Parag likes it, but he doesn't go in the water. He simply tries (unsuccessfully) to take Photo Spheres as I wonder how to get the sand off my pants.  Maybe if I catch the waves on their way in, I could wash it off. I am unsuccessful, and I reiterate my commitment to forgetting about beaches. It is quite a sight to behold though.
 
@@ -199,7 +199,7 @@ We stop for freshly caught oysters and tapioca. I haven’t had oysters in a lon
 
 Now to get on the bike with my sand-covered bottom. It itches....
 
-###Final Stop. NH47. Odometer reads 11003.
+### Final Stop. NH47. Odometer reads 11003.
 
 There is a bike in front of us, the back of which is mangled beyond belief. I'm hobbling around my bike, looking for signs of trouble. I feel a small ache build up in my foot and travel upward. I have had my first accident. How did we get here?
 
@@ -207,7 +207,7 @@ We're traveling home on the highway, and I'm glad for this trip. We're almost ho
 
 We're on the highway as we get on an overpass. The overpasses if I remember are built out of large concrete slabs built and set somewhere else and lifted onto giant pillars with machinery just as big. There's a small gap between these slabs, meant to be covered up with tar that is the first to go as the highway ages. A small scooter jumps in front of us as it cuts through the traffic, moving at what I estimate to be 110 to the traffic's 60. It repeats the manoeuver in front of he small Hero Honda Splendor ahead of us. The Splendor brakes, unprepared; I brake as soon as I see the brake lights, but I hit the gap in the freeway not much later. The front of the Bullet lifts up, suspended for a minute in mid air as my left leg jams onto the rear gear pedal. The engine races, giving us a jolt of speed and pushing us into the now slowing Splendor. There is a large bang; I hear Parag yell as my muscles clench up. We've hit something. The handlebar oscillates wildly, and my training kicks in as I use my body weight to lean it to the side, braking lightly both front and back. Never try to stabilise an oscillating bike; your muscles will only push the waves to a critical point. I consider ditching the bike, but I cannot be sure if the traffic has slowed, and I am with pillion. Thankfully the bike steadies, and we coast to a stop alongside. There is some damage to the bike, most of it to the splendor. My leg is crushed, and I see myself losing some blood, but I can make it home. I will make it home.
 
-##The End.
+## The End.
 
 Odometer reads 11100.
 
