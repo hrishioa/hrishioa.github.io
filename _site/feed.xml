@@ -5,9 +5,9 @@
     <description>Personal Blog and Data Repository</description>
     <link>http://localhost:3000/</link>
     <atom:link href="http://localhost:3000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 11 Feb 2016 19:28:32 +0800</pubDate>
-    <lastBuildDate>Thu, 11 Feb 2016 19:28:32 +0800</lastBuildDate>
-    <generator>Jekyll v3.1.1</generator>
+    <pubDate>Sat, 12 Mar 2016 20:42:59 +0800</pubDate>
+    <lastBuildDate>Sat, 12 Mar 2016 20:42:59 +0800</lastBuildDate>
+    <generator>Jekyll v3.1.2</generator>
     
       <item>
         <title>Decapitating Raspberry Pis with nomohead</title>
@@ -77,7 +77,7 @@
     
       <item>
         <title>Using the Internet of Things for measuring Worker Safety</title>
-        <description>&lt;p&gt;As much as I hate using the phrase “Internet of Things”, I must admit that it’s gotten a lot easier to do so, having used it so many times during, *sigh* &lt;a href=&quot;http://iothackathon.sg/&quot;&gt;The Internet of Things hackathon&lt;/a&gt;. During the hackathon, we were given different pieces of hardware, a collection of sensors and asked to build sometthing related to one of three themes: &lt;strong&gt;Transport, Health and Construction&lt;/strong&gt;. We arrived at the hackathon, and realised that due to the preliminary selection process, there were a total of 10 teams. &lt;em&gt;For six prizes&lt;/em&gt;. One for each category, and a 1st, 2nd and 3rd...</description>
+        <description>&lt;p&gt;I hate using the phrase “Internet of Things”, but I must admit that it has gotten a lot easier to do so, having used it so many times during, *sigh* &lt;a href=&quot;http://iothackathon.sg/&quot;&gt;The Internet of Things hackathon&lt;/a&gt;. During the hackathon, we were given different pieces of hardware, a collection of sensors and asked to build sometthing related to one of three themes: &lt;strong&gt;Transport, Health and Construction&lt;/strong&gt;. We arrived at the hackathon, and realised that due to the preliminary selection process, there were a total of 10 teams. &lt;em&gt;For six prizes&lt;/em&gt;. One for each category, and a 1st, 2nd and 3rd prize...</description>
         <pubDate>Sun, 11 Oct 2015 10:24:55 +0800</pubDate>
         <link>http://localhost:3000/using-the-internet-of-things-for-measuring-worker-safety/</link>
         <guid isPermaLink="true">http://localhost:3000/using-the-internet-of-things-for-measuring-worker-safety/</guid>
