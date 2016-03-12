@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Automating Git Commits",
+      "category" : "",
+      "tags"     : "Git and Python",
+      "url"      : "/automating-git-commits/",
+      "date"     : "12 Mar 2016"
+    } ,
+  
+    {
       "title"    : "Decapitating Raspberry Pis with nomohead",
       "category" : "",
       "tags"     : "Raspberry Pi, ngrok, and IoT",

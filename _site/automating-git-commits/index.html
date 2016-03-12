@@ -5,24 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Ride-sharing on the Blockchain - Part 1</title>
-    <meta name="description" content="Exploring the Concept of implementing ride-sharing on the Ethereum Blockchain">
+    <title>Automating Git Commits</title>
+    <meta name="description" content="Quick look at the why and the how">
 
     <!-- Google Authorship Markup -->
     <link rel="author" href="https://plus.google.com/+?rel=author">
 
     <!-- Social: Facebook / Open Graph -->
-    <meta property="og:url" content="http://localhost:3006/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/">
-    <meta property="og:title" content="Ride-sharing on the Blockchain - Part 1">
+    <meta property="og:url" content="http://localhost:3006/automating-git-commits/">
+    <meta property="og:title" content="Automating Git Commits">
     
     <meta property="og:image" content="http://localhost:3006/assets/img/">
     
-    <meta property="og:description" content="Exploring the Concept of implementing ride-sharing on the Ethereum Blockchain">
+    <meta property="og:description" content="Quick look at the why and the how">
     <meta property="og:site_name" content="">
 
     <!-- Social: Google+ / Schema.org  -->
-    <meta itemprop="name" content="Ride-sharing on the Blockchain - Part 1"/>
-    <meta itemprop="description" content="Exploring the Concept of implementing ride-sharing on the Ethereum Blockchain">
+    <meta itemprop="name" content="Automating Git Commits"/>
+    <meta itemprop="description" content="Quick look at the why and the how">
     <meta itemprop="image" content="http://localhost:3006/assets/img/blog-image.png"/>
 
     <!-- Favicon -->
@@ -48,7 +48,7 @@
     <meta name="theme-color" content="#0562DC">
 
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="http://localhost:3006/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/">
+    <link rel="canonical" href="http://localhost:3006/automating-git-commits/">
     <link rel="alternate" type="application/rss+xml" title="" href="http://localhost:3006/feed.xml" />
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
@@ -70,10 +70,10 @@
         <header class="header-post" role="banner">
     <div class="content">
         
-            <time itemprop="datePublished" datetime="2016-01-31 04:39:37 +0800" class="date">31 Jan 2016</time>
+            <time itemprop="datePublished" datetime="2016-03-12 04:39:37 +0800" class="date">12 Mar 2016</time>
         
-        <h1 class="post-title" itemprop="name">Ride-sharing on the Blockchain - Part 1</h1>
-        <p itemprop="description" class="subtitle">Exploring the Concept of implementing ride-sharing on the Ethereum Blockchain</p>
+        <h1 class="post-title" itemprop="name">Automating Git Commits</h1>
+        <p itemprop="description" class="subtitle">Quick look at the why and the how</p>
     </div>
      <a class="down" data-scroll href="#scroll"><svg class="icon icon-angle-down"><use xlink:href="#icon-angle-down"></use></svg></a>
      <div class="search-wrapper">
@@ -114,69 +114,67 @@
         <section class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
             <article role="article" id="scroll" class="post-content" itemprop="articleBody">
-                <p>I’ve recently become quite interested in <a href="https://www.ethereum.org/">Ethereum</a>, the decentralised software platform that uses the underlying concept of the Bitcoin blockchain to run code while maintaing trust. I’ve been playing around with Smart Contracts, which are modules executed by the blockchain. I’m not going to describe in detail how the system works, but there is a <a href="https://www.reddit.com/r/ethereum/comments/3vxvlx/starter_guide_almost_all_the_links_youll_need_to/">starter guide</a> on the Ethereum subreddit that you can look at for more information.</p>
+                <h3 id="why">Why?</h3>
 
-<p>During <a href="http://hacknroll.nushackers.org/">HacknRoll 2016</a>, the idea we came up with was to make use of Ethereum to implement a ride sharing service, much like Uber. Originally, the idea was to implement service-sharing, but we felt that Uber was a prime test case for decentralization. The company has been steadily <a href="http://therideshareguy.com/should-you-still-drive-for-uber-after-the-latest-rate-cuts/">cutting</a> its fee for drivers, and the incident during <a href="http://fortune.com/2012/11/02/uber-nyc-and-the-sandy-surge/">hurricane Sandy</a> served to demonstrate the perils of centralisation in a peer-to-peer system.</p>
+<p>There are any number of tools available for the developer that wishes to check up on his project while he’s away. I’ve made use of a number of these tools on occasion, but recently I found myself wanting something more.</p>
 
-<p>Here’s the first part, where I will attempt to illustrate the theory behind the system.</p>
+<p>The project I wanted to monitor and keep track of was on a <a href="https://beagleboard.org/black">Beaglebone Black</a>, and from experience I knew that the particular device I was using wasn’t the most reliable for data fidelity. I needed a way to store the current state of the project on the cloud. 
+It’s worth noting that Git wasn’t my first thought, as Dropbox or any other cloud hosting tool can easily provide this service. But what if you needed version control as well? Even on a binary blob that’s being constantly updated, it was useful for me to have rollback - especially when it’s time based rollback. What if I could move back four commits and be forty minutes into the past? Now that’s something. (Also I was running out of space on my Dropbox)</p>
 
-<h2 id="the-concept">The Concept</h2>
+<h3 id="how">How</h3>
 
-<p>We wanted to build a system that was as close to a closed system as possible. The central management system would only take as much as it needed to operate, and the rest would be distributed among users. This would achieve the lowest prices that the market can bear, with a middleman not beholden to corporate motivations. The rider would pay the driver, and that was it. We immediately sketched out the basics, and you can see the overall structure below.</p>
+<p>To start, we need to get rid of authentication when making git commits. In order to do so, we need to first generate an ssh-key. On the host-machine, type:</p>
 
-<p><img src="http://localhost:3006/assets/img/Ethereum/whiteboard.jpg" alt="Whiteboarding" /></p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">ssh-keygen -t rsa -b 4096 -C <span class="s2">"your_email@example.com"</span></code></pre></figure>
 
-<p>The most important segment is of the two contracts that exist on the blockchain. The first, called <strong>the Central Exchange</strong>, is the central system that decides the current market price per mile, and keep track of the stock (I’ll explain later) and other metadata related to each consumer account. The second, called <strong>the Rideshare</strong>, connects to the exchange when needed in order to retrieve prices. This is factored into the calculation of reputation points. There are two primary systems at work here, which will be explained below.</p>
+<p>(It is worth nothing that the recommended procedure is slightly different for Github and BitBucket. The one we’re following is for Github, bit it should work for Bitbucket without any problems)</p>
 
-<h3 id="stock">Stock</h3>
+<p>The key generation process will ask you for a passphrase. Make sure to leave the field blank (entering a passphrase is more secure, but will make our attempts at circumventing any user input moot) and the key will generated in <code class="highlighter-rouge">~/.ssh/id_rsa.pub</code>.</p>
 
-<p>The first problem we attempted to tackle is that of immutability. Any algorithm residing on the blockchain cannot be changed externally. It must decide to destroy itself (via an operation called a <code class="highlighter-rouge">suicide</code>) after telling any contracts that need it to call someone else. This needs to be done by collective consensus, and for this purpose we came up with a stakeholder system whereby each user - either driver or rider - is given points of stock that correspond to how many kilometers they’ve ridden using the system. Stocks are issued using hashes, and are re-weighted when more stocks are issued. These stocks will decide the amount given back when the system receives a profit above a fixed amount. They will also determine your voting power in making a decision about changing the central system. The voting system is fairly complex and wasn’t implemented for the purpose of the hackathon, but we are considering implementing it in the future.</p>
+<p>Once this is done, you can add the key to your <a href="https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/">Github</a> or <a href="https://confluence.atlassian.com/bitbucket/add-an-ssh-key-to-an-account-302811853.html">BitBucket</a> account.</p>
 
-<p>In a full-fledged implementation, there will be a third algorithm on the blockchain that opens and closes possible issues for voting. Each user is given a small amount as incentive for voting, and a multiple of that when the issue is resolved if he or she is on the winning side. This incentivizes voting and disincentivizes random voting in order to collect fees.</p>
+<p>Try committing and pushing at this point. If there is a problem, it is likely that you are using <code class="highlighter-rouge">https</code> instead of <code class="highlighter-rouge">ssh</code>. Replace your remote url with the following command:</p>
 
-<p>A rewrite of the system - as we foresee it - would involve one or more users posting rewritten source code online, which will be reviewed and voted on. When accepted, the system will then draw the code and bytecode, instantiate a new version and destroy itself while updating client algorithms to point to the new version.</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git remote <span class="nb">set</span>-url git@github.com:USERNAME/REPOSITORY.git</code></pre></figure>
 
-<h3 id="money-and-reputation-points">Money and Reputation Points</h3>
+<p>(Again, the url for Bitbucket is different. You can click on SSH on the web dashboards of either repo manager to find this URL.)</p>
 
-<p>The rideshare system works by allocating reputation points and in-system currency to the user. For now we have made use of a custom currency, but it seems possible to implement trusted payment gateways to remove the barrier of cryptocurrency should the user so wish. Both are stored in the rideshare system, and the blockchain ensures trust and takes care of double-spending issues.</p>
+<p>Try pushing again. If all goes well, after you accept the keys from the server on your system, it should now be able to commit and push headlessly.</p>
 
-<h2 id="example">Example</h2>
+<p>At this point, our work is simple. While there is a python package to interface with git, I decided this was overkill and just wrote a timed loop:</p>
 
-<p>An example ride would be comprised of the following steps:</p>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">calendar</span><span class="o">,</span> <span class="nn">time</span>
 
-<ol>
-  <li>A driver joins the system using a secure authentication hash (implemented by a trusted third party) of his Driver’s license.</li>
-  <li>The driver posts a contract on the rideshare system, specifying his current location, price per mile and limit (in miles) of how far he is willing to go. It holds his reputation points in escrow and posts the contract.</li>
-  <li>A client-side interface (can be implemented by anyone) pulls this informaton by analyzing the transactions to the blockchain.</li>
-  <li>A user selects from available contracts in his region, and relays this information to the rideshare system.</li>
-  <li>The system checks to see if the contract is still valid (uncancelled) and that the accounts are valid, i.e. they exist and that the user has enough money in the account to cover calculated costs and transaction fees.</li>
-  <li>The contract is successfully accepted by the system, at which point the user’s reputation points and the total cost of the ride are held in escrow.</li>
-  <li>The driver and the user successfully complete the ride.</li>
-  <li>The system receives confirmation from both the driver and the user that the ride has been completed, at which point the reputation points are released, recomputed as per the current market price (there is a dynamic penalty for exceeding the current rate) and the rating from each other, and the driver is paid.</li>
-  <li>A request is sent to the central exchange to issue stock to the driver and rider, along with the remaining transaction fees that weren’t spent during computation.</li>
-  <li>The central exchange stores the fees received in an account, and checks to see if it exceeds a dynamically calculated maximum based on the current gas (the metric for computation on the Ethereum blockchain) price.</li>
-</ol>
+<span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">"Adding..."</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"git add ."</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">"Committing..."</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"git commit -m 'Timely commit </span><span class="si">%</span><span class="s">d'"</span> <span class="o">%</span> <span class="p">(</span><span class="n">calendar</span><span class="o">.</span><span class="n">timegm</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">())))</span>
+    <span class="k">print</span> <span class="s">"Pushing..."</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">"git push --all"</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">"Sleeping..."</span>
 
-<p>Both the driver and the user are obligated to complete the ride, as the reputation points are required to register or accept a contract on the system. They can cancel the ride at any point and receive some of these points back, but the computation will assume that they have been given a rating of zero by the other party.</p>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">600</span><span class="p">)</span></code></pre></figure>
 
-<p>In such a system, the only money being used is the amount spent on transactions. The nodes executing the contract are paid for their time and energy, but the rest of the capital in this economy resides with either the driver or the rider.</p>
+<p>And that’s all. The script will commit every ten minutes, and you now have free cloud hosting with time-based version control.</p>
 
-<p>In the next part, I’ll cover development and implementation of the system (as far as it was done at the Hackathon in 24 hours).</p>
+<p><img src="http://localhost:3006/assets/img/gitauto/commits.png" alt="commits" /></p>
 
+<p>Enjoy.</p>
 
             </article>
 
             <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:3006/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/%20via%20&#64;&hashtags=Ethereum,Blockchain,Uber,HacknRoll,"
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:3006/automating-git-commits/%20via%20&#64;&hashtags=Git,Python,"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
-    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:3006/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/"
+    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:3006/automating-git-commits/"
     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
         <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
     </a>
-    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://localhost:3006/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/"
+    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://localhost:3006/automating-git-commits/"
     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
         <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg>
     </a>
@@ -204,8 +202,8 @@
     {
         disqus_loaded = true;
         var disqus_shortname = 'hrishioa';
-        var disqus_title = 'Ride-sharing on the Blockchain - Part 1';
-        var disqus_url = '/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/';
+        var disqus_title = 'Automating Git Commits';
+        var disqus_url = '/automating-git-commits/';
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);

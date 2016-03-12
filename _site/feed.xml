@@ -3,18 +3,32 @@
   <channel>
     <title></title>
     <description>Personal Blog and Data Repository</description>
-    <link>http://localhost:3000/</link>
-    <atom:link href="http://localhost:3000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 12 Mar 2016 20:42:59 +0800</pubDate>
-    <lastBuildDate>Sat, 12 Mar 2016 20:42:59 +0800</lastBuildDate>
+    <link>http://localhost:3006/</link>
+    <atom:link href="http://localhost:3006/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 12 Mar 2016 21:11:20 +0800</pubDate>
+    <lastBuildDate>Sat, 12 Mar 2016 21:11:20 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
+        <title>Automating Git Commits</title>
+        <description>&lt;h3 id=&quot;why&quot;&gt;Why?&lt;/h3&gt; &lt;p&gt;There are any number of tools available for the developer that wishes to check up on his project while he’s away. I’ve made use of a number of these tools on occasion, but recently I found myself wanting something more.&lt;/p&gt; &lt;p&gt;The project I wanted to monitor and keep track of was on a &lt;a href=&quot;https://beagleboard.org/black&quot;&gt;Beaglebone Black&lt;/a&gt;, and from experience I knew that the particular device I was using wasn’t the most reliable for data fidelity. I needed a way to store the current state of the project on the cloud. It’s worth noting that Git wasn’t my first...</description>
+        <pubDate>Sat, 12 Mar 2016 04:39:37 +0800</pubDate>
+        <link>http://localhost:3006/automating-git-commits/</link>
+        <guid isPermaLink="true">http://localhost:3006/automating-git-commits/</guid>
+        
+        <category>Git</category>
+        
+        <category>Python</category>
+        
+        
+      </item>
+    
+      <item>
         <title>Decapitating Raspberry Pis with nomohead</title>
-        <description>&lt;p&gt;The Raspberry Pi is one of my favorite SoCs out there. It’s cheap, it’s everywhere and it practically runs anything. With the new update, it’s faster than ever and possibly everything I could want in most of my projects.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;http://localhost:3000/assets/img/nomohead/piimg.jpeg&quot; alt=&quot;raspi-img&quot; /&gt;&lt;/p&gt; &lt;p&gt;The only problem is set-up. I rarely ever need to run a pi other than in headless mode, and once the IP addresses are set up I mostly work through ssh. Occasionally I use VNC if I need to look inside the pi, but I rarely need to connect the Pi to a monitor and mouse/keyboard. Except...</description>
+        <description>&lt;p&gt;The Raspberry Pi is one of my favorite SoCs out there. It’s cheap, it’s everywhere and it practically runs anything. With the new update, it’s faster than ever and possibly everything I could want in most of my projects.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;http://localhost:3006/assets/img/nomohead/piimg.jpeg&quot; alt=&quot;raspi-img&quot; /&gt;&lt;/p&gt; &lt;p&gt;The only problem is set-up. I rarely ever need to run a pi other than in headless mode, and once the IP addresses are set up I mostly work through ssh. Occasionally I use VNC if I need to look inside the pi, but I rarely need to connect the Pi to a monitor and mouse/keyboard. Except...</description>
         <pubDate>Thu, 11 Feb 2016 13:24:08 +0800</pubDate>
-        <link>http://localhost:3000/decapitating-raspberry-pis-with-nomohead/</link>
-        <guid isPermaLink="true">http://localhost:3000/decapitating-raspberry-pis-with-nomohead/</guid>
+        <link>http://localhost:3006/decapitating-raspberry-pis-with-nomohead/</link>
+        <guid isPermaLink="true">http://localhost:3006/decapitating-raspberry-pis-with-nomohead/</guid>
         
         <category>Raspberry Pi</category>
         
@@ -29,8 +43,8 @@
         <title>Ride-sharing on the Blockchain - Part 1</title>
         <description>&lt;p&gt;I’ve recently become quite interested in &lt;a href=&quot;https://www.ethereum.org/&quot;&gt;Ethereum&lt;/a&gt;, the decentralised software platform that uses the underlying concept of the Bitcoin blockchain to run code while maintaing trust. I’ve been playing around with Smart Contracts, which are modules executed by the blockchain. I’m not going to describe in detail how the system works, but there is a &lt;a href=&quot;https://www.reddit.com/r/ethereum/comments/3vxvlx/starter_guide_almost_all_the_links_youll_need_to/&quot;&gt;starter guide&lt;/a&gt; on the Ethereum subreddit that you can look at for more information.&lt;/p&gt; &lt;p&gt;During &lt;a href=&quot;http://hacknroll.nushackers.org/&quot;&gt;HacknRoll 2016&lt;/a&gt;, the idea we came up with was to make use of Ethereum to implement a ride sharing service, much like Uber. Originally, the idea was...</description>
         <pubDate>Sun, 31 Jan 2016 04:39:37 +0800</pubDate>
-        <link>http://localhost:3000/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/</link>
-        <guid isPermaLink="true">http://localhost:3000/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/</guid>
+        <link>http://localhost:3006/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/</link>
+        <guid isPermaLink="true">http://localhost:3006/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/</guid>
         
         <category>Ethereum</category>
         
@@ -49,8 +63,8 @@
         <title>Winter &#39;15 Trip Logs</title>
         <description>&lt;p&gt;It is winter vacation, and my friend Parag and I have decided to take a little 6-day trip across my state, Kerala. He’s from Calcutta, and he has taken a two-day train ride to get to where I am. I’ve arranged for the coolest of bikes, a Royal Enfield Bullet, to take us on a trip that I hope will not be shorter than a thousand kilometres. He arrives, and we visit a nearby field to take some pictures and relax before we start bright and early the next day. I’ll try and jot things down in my notebook as...</description>
         <pubDate>Sat, 26 Dec 2015 03:27:44 +0800</pubDate>
-        <link>http://localhost:3000/winter-'15-trip-logs/</link>
-        <guid isPermaLink="true">http://localhost:3000/winter-'15-trip-logs/</guid>
+        <link>http://localhost:3006/winter-'15-trip-logs/</link>
+        <guid isPermaLink="true">http://localhost:3006/winter-'15-trip-logs/</guid>
         
         
       </item>
@@ -59,8 +73,8 @@
         <title>Tracking Word Documents with Git</title>
         <description>&lt;p&gt;For some time now, I have been using Git to keep track of my work - both source code and otherwise. Even when you’re not using it for code, Git is perfect - easy backups to a Git server in the cloud along with the possibility of maintaining multiple working versions of my papers and writing projects is just great.&lt;/p&gt; &lt;p&gt;Except - Git treats my Word files as binaries. Different versions can be accessed just fine, but I have no access to diff functionality because Git doesn’t understand what has changed between two versions. Not to mention, most programmers will...</description>
         <pubDate>Sun, 25 Oct 2015 13:03:02 +0800</pubDate>
-        <link>http://localhost:3000/tracking-word-documents-with-git/</link>
-        <guid isPermaLink="true">http://localhost:3000/tracking-word-documents-with-git/</guid>
+        <link>http://localhost:3006/tracking-word-documents-with-git/</link>
+        <guid isPermaLink="true">http://localhost:3006/tracking-word-documents-with-git/</guid>
         
         <category>Git</category>
         
@@ -79,8 +93,8 @@
         <title>Using the Internet of Things for measuring Worker Safety</title>
         <description>&lt;p&gt;I hate using the phrase “Internet of Things”, but I must admit that it has gotten a lot easier to do so, having used it so many times during, *sigh* &lt;a href=&quot;http://iothackathon.sg/&quot;&gt;The Internet of Things hackathon&lt;/a&gt;. During the hackathon, we were given different pieces of hardware, a collection of sensors and asked to build sometthing related to one of three themes: &lt;strong&gt;Transport, Health and Construction&lt;/strong&gt;. We arrived at the hackathon, and realised that due to the preliminary selection process, there were a total of 10 teams. &lt;em&gt;For six prizes&lt;/em&gt;. One for each category, and a 1st, 2nd and 3rd prize...</description>
         <pubDate>Sun, 11 Oct 2015 10:24:55 +0800</pubDate>
-        <link>http://localhost:3000/using-the-internet-of-things-for-measuring-worker-safety/</link>
-        <guid isPermaLink="true">http://localhost:3000/using-the-internet-of-things-for-measuring-worker-safety/</guid>
+        <link>http://localhost:3006/using-the-internet-of-things-for-measuring-worker-safety/</link>
+        <guid isPermaLink="true">http://localhost:3006/using-the-internet-of-things-for-measuring-worker-safety/</guid>
         
         <category>IOT</category>
         
@@ -101,8 +115,8 @@
         <title>Implementing a Lucas-Kanade tracker from Scratch</title>
         <description>&lt;h1 id=&quot;theory&quot;&gt;Theory&lt;/h1&gt; &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt; &lt;p&gt;In Computer Vision, &lt;a href=&quot;https://en.wikipedia.org/wiki/Optical_flow&quot;&gt;Optical Flow&lt;/a&gt; deals with the detection of apparent movement between the frames of a video, or between images. The simplest of these is called a &lt;a href=&quot;https://en.wikipedia.org/wiki/Lucas%E2%80%93Kanade_method&quot;&gt;Lucas-Kanade Tracker&lt;/a&gt;, which attempts to solve the Optical Flow equation using the least-squares method.&lt;/p&gt; &lt;h2 id=&quot;method&quot;&gt;Method&lt;/h2&gt; &lt;p&gt;The Optical-flow equation for Lucas-Kanade assumes that the change - or displacement - of moving objects between sucessive frames is small. This can be extended to fast-moving objects using other methods, and we will cover that in a separate post. Assuming small movement between frames, we end up with the...</description>
         <pubDate>Tue, 06 Oct 2015 06:11:19 +0800</pubDate>
-        <link>http://localhost:3000/implementing-a-lucas-kanade-tracker-from-scratch/</link>
-        <guid isPermaLink="true">http://localhost:3000/implementing-a-lucas-kanade-tracker-from-scratch/</guid>
+        <link>http://localhost:3006/implementing-a-lucas-kanade-tracker-from-scratch/</link>
+        <guid isPermaLink="true">http://localhost:3006/implementing-a-lucas-kanade-tracker-from-scratch/</guid>
         
         <category>Lucas-Kanade</category>
         
@@ -121,8 +135,8 @@
         <title>Welcome to Jekyll</title>
         <description>&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory - edit this post and re-build (or run with the &lt;code class=&quot;highlighter-rouge&quot;&gt;-w&lt;/code&gt; switch) to see your changes! To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention: YYYY-MM-DD-name-of-post.ext.&lt;/p&gt; &lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt; &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Tom&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &#39;Hi, Tom&#39; along with stuff to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt; &lt;p&gt;Here is a sample in python&lt;/p&gt; &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span...</description>
         <pubDate>Tue, 04 Aug 2015 11:21:35 +0800</pubDate>
-        <link>http://localhost:3000/welcome-to-jekyll/</link>
-        <guid isPermaLink="true">http://localhost:3000/welcome-to-jekyll/</guid>
+        <link>http://localhost:3006/welcome-to-jekyll/</link>
+        <guid isPermaLink="true">http://localhost:3006/welcome-to-jekyll/</guid>
         
         <category>jekyll</category>
         
@@ -137,8 +151,8 @@
         <title>How to use</title>
         <description>&lt;p&gt;This is a simple and minimalist template for Jekyll designed for developers that want to write blog posts but don’t want to care about frontend stuff.&lt;/p&gt; &lt;p&gt;The Theme features:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;Gulp&lt;/li&gt; &lt;li&gt;Stylus (Jeet, Rupture, Kouto Swiss)&lt;/li&gt; &lt;li&gt;Smoothscroll&lt;/li&gt; &lt;li&gt;Live Search&lt;/li&gt; &lt;li&gt;Offcanvas Menu&lt;/li&gt; &lt;li&gt;SVG icons&lt;/li&gt; &lt;li&gt;Shell Script to create posts&lt;/li&gt; &lt;li&gt;Tags page&lt;/li&gt; &lt;li&gt;Series page&lt;/li&gt; &lt;li&gt;About Me page&lt;/li&gt; &lt;li&gt;Feed RSS&lt;/li&gt; &lt;li&gt;Sitemap.xml&lt;/li&gt; &lt;li&gt;Color Customization&lt;/li&gt; &lt;li&gt;Info Customization&lt;/li&gt; &lt;/ul&gt; &lt;h2 id=&quot;basic-setup&quot;&gt;Basic Setup&lt;/h2&gt; &lt;ol&gt; &lt;li&gt;&lt;a href=&quot;http://jekyllrb.com&quot;&gt;Install Jekyll&lt;/a&gt;&lt;/li&gt; &lt;li&gt;Fork the &lt;a href=&quot;https://github.com/willianjusten/will-jekyll-template/fork&quot;&gt;Will Jekyll Template&lt;/a&gt;&lt;/li&gt; &lt;li&gt;Clone the repo you just forked.&lt;/li&gt; &lt;li&gt;Edit &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; to personalize your site.&lt;/li&gt; &lt;li&gt;Check out the sample posts in &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; to see examples...</description>
         <pubDate>Mon, 03 Aug 2015 11:32:44 +0800</pubDate>
-        <link>http://localhost:3000/how-to-use/</link>
-        <guid isPermaLink="true">http://localhost:3000/how-to-use/</guid>
+        <link>http://localhost:3006/how-to-use/</link>
+        <guid isPermaLink="true">http://localhost:3006/how-to-use/</guid>
         
         <category>jekyll</category>
         
