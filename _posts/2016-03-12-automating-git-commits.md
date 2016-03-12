@@ -59,7 +59,7 @@ while(True):
     time.sleep(600)
 {% endhighlight %}
 
-And that's all. The script will commit every ten minutes, and you now have free cloud hosting with time-based version control. 
+And that's all. The script will commit every ten minutes, and you now have free cloud hosting with timely version control. 
 
 ![commits]({{site.url}}/assets/img/gitauto/commits.png)
 
