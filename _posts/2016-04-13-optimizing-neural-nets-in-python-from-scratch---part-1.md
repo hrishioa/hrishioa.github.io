@@ -3,8 +3,14 @@ layout: post
 title: "Optimizing Neural Nets in Python from Scratch - Part 1"
 date: 2016-04-13 22:26:17
 image: '/assets/img/'
-description:
+description: Looking at CPU Speedup
 tags:
+- Neural Nets
+- ATLAS
+- BLAS
+- LAPACK
+- Numpy
+- Python
 categories:
 twitter_text:
 ---

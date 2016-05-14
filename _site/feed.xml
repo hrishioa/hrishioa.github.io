@@ -5,8 +5,8 @@
     <description>Personal Blog and Data Repository</description>
     <link>http://hrishioa.github.io/</link>
     <atom:link href="http://hrishioa.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 14 May 2016 18:20:26 +0800</pubDate>
-    <lastBuildDate>Sat, 14 May 2016 18:20:26 +0800</lastBuildDate>
+    <pubDate>Sat, 14 May 2016 18:22:05 +0800</pubDate>
+    <lastBuildDate>Sat, 14 May 2016 18:22:05 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -15,6 +15,18 @@
         <pubDate>Thu, 14 Apr 2016 06:26:17 +0800</pubDate>
         <link>http://hrishioa.github.io/optimizing-neural-nets-in-python-from-scratch-part-1/</link>
         <guid isPermaLink="true">http://hrishioa.github.io/optimizing-neural-nets-in-python-from-scratch-part-1/</guid>
+        
+        <category>Neural Nets</category>
+        
+        <category>ATLAS</category>
+        
+        <category>BLAS</category>
+        
+        <category>LAPACK</category>
+        
+        <category>Numpy</category>
+        
+        <category>Python</category>
         
         
       </item>
