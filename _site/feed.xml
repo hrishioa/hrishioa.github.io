@@ -5,9 +5,9 @@
     <description>Personal Blog and Data Repository</description>
     <link>http://hrishioa.github.io/</link>
     <atom:link href="http://hrishioa.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 14 May 2016 18:22:05 +0800</pubDate>
-    <lastBuildDate>Sat, 14 May 2016 18:22:05 +0800</lastBuildDate>
-    <generator>Jekyll v3.1.2</generator>
+    <pubDate>Mon, 01 Aug 2016 16:47:28 +0800</pubDate>
+    <lastBuildDate>Mon, 01 Aug 2016 16:47:28 +0800</lastBuildDate>
+    <generator>Jekyll v3.2.0</generator>
     
       <item>
         <title>Optimizing Neural Nets in Python from Scratch - Part 1</title>
@@ -82,7 +82,7 @@
       </item>
     
       <item>
-        <title>Winter &#39;15 Trip Logs</title>
+        <title>Winter '15 Trip Logs</title>
         <description>&lt;p&gt;It is winter vacation, and my friend Parag and I have decided to take a little 6-day trip across my state, Kerala. He’s from Calcutta, and he has taken a two-day train ride to get to where I am. I’ve arranged for the coolest of bikes, a Royal Enfield Bullet, to take us on a trip that I hope will not be shorter than a thousand kilometres. He arrives, and we visit a nearby field to take some pictures and relax before we start bright and early the next day. I’ll try and jot things down in my notebook as...</description>
         <pubDate>Sat, 26 Dec 2015 03:27:44 +0800</pubDate>
         <link>http://hrishioa.github.io/winter-'15-trip-logs/</link>

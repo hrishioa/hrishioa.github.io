@@ -122,21 +122,21 @@
 
 <p>Speeding up Numpy on a CPU level requires understand how this speedup is obtained. In my particular case, the slowest operations I were doing were matrix operations, which lend themselves well to parallel implementations. They have become so commonplace that most modern CPUs (forget GPUs for now) have dedicated hardware components that speed up matrix operations. Part of this power comes from the <a href="https://en.wikipedia.org/wiki/SIMD">SIMD</a> module, which can perform parallel operations on data sets while using the same instruction. Another part of this is the floating point unit found on most general-purpose CPUs, which optimizes floating point operations to the point of insanity. Here’s an example:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">)]</span>
 <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">)]</span>
 <span class="o">%</span><span class="n">time</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">):</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>CPU <span class="nb">times</span>: user 97.5 ms, sys: 2.01 ms, total: 99.5 ms
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>CPU <span class="nb">times</span>: user 97.5 ms, sys: 2.01 ms, total: 99.5 ms
 Wall <span class="nb">time</span>: 101 ms
 </code></pre>
 </div>
 
 <p>Keep in mind that this is still unoptimized. However, guess how long the following piece of code takes:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">)]</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">)]</span>
 <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">)]</span>
 <span class="o">%</span><span class="n">time</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">):</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </code></pre>
@@ -144,20 +144,20 @@ Wall <span class="nb">time</span>: 101 ms
 
 <p>It’s integers, within a much smaller range than that of real numbers, and yet:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>CPU <span class="nb">times</span>: user 924 ms, sys: 7.74 ms, total: 931 ms
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>CPU <span class="nb">times</span>: user 924 ms, sys: 7.74 ms, total: 931 ms
 Wall <span class="nb">time</span>: 948 ms
 </code></pre>
 </div>
 
 <p>Almost ten times the cost. Already it’s worth noting that any operations you do would be better served on floating point, even without other optimizations. Even a band-aid fix works in a pinch:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">)]</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">)]</span>
 <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">)]</span>
 <span class="o">%</span><span class="n">time</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">):</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>CPU <span class="nb">times</span>: user 107 ms, sys: 1.28 ms, total: 109 ms
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>CPU <span class="nb">times</span>: user 107 ms, sys: 1.28 ms, total: 109 ms
 Wall <span class="nb">time</span>: 109 ms
 </code></pre>
 </div>
@@ -166,10 +166,10 @@ Wall <span class="nb">time</span>: 109 ms
 
 <p>Now, that we understand how it works, let’s look under the hood, for how numpy works:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code>atlas_threads_info:
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>atlas_threads_info:
   NOT AVAILABLE
 blas_opt_info:
     extra_link_args <span class="o">=</span> <span class="o">[</span><span class="s1">'-Wl,-framework'</span>, <span class="s1">'-Wl,Accelerate'</span><span class="o">]</span>
@@ -212,10 +212,10 @@ mkl_info:
 
 <p>Now before we go further, let’s look at how things change in terms of config:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">__config__</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">__config__</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code>lapack_opt_info:
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>lapack_opt_info:
     libraries <span class="o">=</span> <span class="o">[</span><span class="s1">'mkl_lapack95_lp64'</span>, <span class="s1">'mkl_intel_lp64'</span>, <span class="s1">'mkl_intel_thread'</span>, <span class="s1">'mkl_core'</span>, <span class="s1">'mkl_mc'</span>, <span class="s1">'mkl_mc3'</span>, <span class="s1">'pthread'</span><span class="o">]</span>
     library_dirs <span class="o">=</span> <span class="o">[</span><span class="s1">'/Users/vagrant/src/buildsystem-git/build/master-env/Resources/Python.app/Contents/MacOS/../../../../lib'</span><span class="o">]</span>
     define_macros <span class="o">=</span> <span class="o">[(</span><span class="s1">'SCIPY_MKL_H'</span>, None<span class="o">)]</span>
@@ -247,7 +247,7 @@ mkl_info:
 
 <p>All right! Everything except OpenBLAS is installed and compiled against numpy, and if you’re astute you’ll notice that the 64-bit versions have been correctly identified and used. Now let’s look at speeds:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">)]</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">)]</span>
 <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">)]</span>
 <span class="o">%</span><span class="n">time</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">):</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </code></pre>
@@ -255,7 +255,7 @@ mkl_info:
 
 <p>This time, you can see the speedup happen:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>CPU <span class="nb">times</span>: user 201 ms, sys: 1.09 ms, total: 208 ms
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>CPU <span class="nb">times</span>: user 201 ms, sys: 1.09 ms, total: 208 ms
 Wall <span class="nb">time</span>: 65 ms
 </code></pre>
 </div>
