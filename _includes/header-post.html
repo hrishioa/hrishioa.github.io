@@ -1,4 +1,8 @@
+{% if page.image %}
+<header class="header-post" role="banner" style="background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('{{ site.url }}/assets/img/{{ page.image }}'); background-attachment: fixed; background-size: cover; background-repeat: no-repeat">
+{% else %}
 <header class="header-post" role="banner">
+{% endif %}
     <div class="content">
         {% if page.date %}
             <time itemprop="datePublished" datetime="{{ page.date }}" class="date">{{ page.date | date_to_string }}</time>
