@@ -2,8 +2,8 @@
 layout: post
 title: "Ride-sharing on the Blockchain - Part 1"
 date: 2016-01-30 20:39:37
-image: '/assets/img/'
-description: "Exploring the Concept of implementing ride-sharing on the Ethereum Blockchain" 
+image: 'Ethereum/banner.jpeg'
+description: "Exploring the Concept of ride-sharing on the Ethereum Blockchain" 
 tags: 
 - Ethereum
 - Blockchain

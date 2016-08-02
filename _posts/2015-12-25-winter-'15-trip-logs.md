@@ -2,7 +2,7 @@
 layout: post
 title: "Winter '15 Trip Logs"
 date: 2015-12-25 19:27:44
-image: '/assets/img/'
+image: 'TripLogs/IMG_9256.jpg'
 description: Winter Trip Logs
 tags:
 categories:

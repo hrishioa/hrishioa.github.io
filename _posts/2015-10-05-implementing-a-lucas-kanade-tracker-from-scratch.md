@@ -2,7 +2,7 @@
 layout: post
 title: "Implementing a Lucas-Kanade tracker from Scratch"
 date: 2015-10-05 22:11:19
-image: '/assets/img/blog-image.png'
+image: 'LucasKanade/banner.jpeg'
 description: 'Understanding the basics of Optical Flow and XCode'
 tags: 
 - Lucas-Kanade

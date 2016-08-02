@@ -5,8 +5,8 @@
     <description>Personal Blog and Data Repository</description>
     <link>http://localhost:3000/</link>
     <atom:link href="http://localhost:3000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 02 Aug 2016 15:04:16 +0800</pubDate>
-    <lastBuildDate>Tue, 02 Aug 2016 15:04:16 +0800</lastBuildDate>
+    <pubDate>Tue, 02 Aug 2016 15:30:35 +0800</pubDate>
+    <lastBuildDate>Tue, 02 Aug 2016 15:30:35 +0800</lastBuildDate>
     <generator>Jekyll v3.2.0</generator>
     
       <item>
@@ -58,7 +58,7 @@
     
       <item>
         <title>Decapitating Raspberry Pis with nomohead</title>
-        <description>&lt;p&gt;The Raspberry Pi is one of my favorite SoCs out there. It’s cheap, it’s everywhere and it practically runs anything. With the new update, it’s faster than ever and possibly everything I could want in most of my projects.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;http://localhost:3000/assets/img/nomohead/piimg.jpeg&quot; alt=&quot;raspi-img&quot; /&gt;&lt;/p&gt; &lt;p&gt;The only problem is set-up. I rarely ever need to run a pi other than in headless mode, and once the IP addresses are set up I mostly work through ssh. Occasionally I use VNC if I need to look inside the pi, but I rarely need to connect the Pi to a monitor and mouse/keyboard. Except...</description>
+        <description>&lt;p&gt;The Raspberry Pi is one of my favorite SoCs out there. It’s cheap, it’s everywhere and it practically runs anything. With the new update, it’s faster than ever and possibly everything I could want in most of my projects.&lt;/p&gt; &lt;p&gt;The only problem is set-up. I rarely ever need to run a pi other than in headless mode, and once the IP addresses are set up I mostly work through ssh. Occasionally I use VNC if I need to look inside the pi, but I rarely need to connect the Pi to a monitor and mouse/keyboard. Except for set-up.&lt;/p&gt; &lt;p&gt;I live...</description>
         <pubDate>Thu, 11 Feb 2016 13:24:08 +0800</pubDate>
         <link>http://localhost:3000/decapitating-raspberry-pis-with-nomohead/</link>
         <guid isPermaLink="true">http://localhost:3000/decapitating-raspberry-pis-with-nomohead/</guid>

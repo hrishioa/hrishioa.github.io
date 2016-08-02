@@ -2,7 +2,7 @@
 layout: post
 title: "Tracking Word Documents with Git"
 date: 2015-10-25 05:03:02
-image: '/assets/img/'
+image: 'TextUtilGit/banner.png'
 description:
 tags:
 - Git

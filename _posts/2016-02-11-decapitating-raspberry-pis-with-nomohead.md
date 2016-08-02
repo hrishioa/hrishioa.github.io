@@ -2,7 +2,7 @@
 layout: post
 title: "Decapitating Raspberry Pis with nomohead"
 date: 2016-02-11 05:24:08
-image: '/assets/img/'
+image: 'nomohead/piimg.jpeg'
 description:
 tags:
 - Raspberry Pi
@@ -13,8 +13,6 @@ twitter_text:
 ---
 
 The Raspberry Pi is one of my favorite SoCs out there. It's cheap, it's everywhere and it practically runs anything. With the new update, it's faster than ever and possibly everything I could want in most of my projects. 
-
-![raspi-img]({{site.url}}/assets/img/nomohead/piimg.jpeg)
 
 The only problem is set-up. I rarely ever need to run a pi other than in headless mode, and once the IP addresses are set up I mostly work through ssh. Occasionally I use VNC if I need to look inside the pi, but I rarely need to connect the Pi to a monitor and mouse/keyboard. Except for set-up.
 

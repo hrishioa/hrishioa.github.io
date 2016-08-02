@@ -2,7 +2,7 @@
 layout: post
 title: "Using the Internet of Things for measuring Worker Safety"
 date: 2015-10-11 02:24:55
-image: '/assets/img/'
+image: 'IOTHacks/pitch-dashboard.png'
 description:
 tags:
 - IOT
