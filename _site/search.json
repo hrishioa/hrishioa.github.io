@@ -1,7 +1,15 @@
 [
   
     {
-      "title"    : "Optimizing Neural Nets in Python from Scratch - Part 1",
+      "title"    : "Moving Camera Object Tracking with OpenCV and Python",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/moving-camera-object-tracking-with-opencv-and-python/",
+      "date"     : "01 Aug 2016"
+    } ,
+  
+    {
+      "title"    : "Optimizing Neural Nets in Python from Scratch",
       "category" : "",
       "tags"     : "Neural Nets, ATLAS, BLAS, LAPACK, Numpy, and Python",
       "url"      : "/optimizing-neural-nets-in-python-from-scratch-part-1/",

@@ -5,12 +5,23 @@
     <description>Personal Blog and Data Repository</description>
     <link>http://hrishioa.github.io/</link>
     <atom:link href="http://hrishioa.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 02 Aug 2016 02:13:04 +0800</pubDate>
-    <lastBuildDate>Tue, 02 Aug 2016 02:13:04 +0800</lastBuildDate>
+    <pubDate>Tue, 02 Aug 2016 14:38:11 +0800</pubDate>
+    <lastBuildDate>Tue, 02 Aug 2016 14:38:11 +0800</lastBuildDate>
     <generator>Jekyll v3.2.0</generator>
     
       <item>
-        <title>Optimizing Neural Nets in Python from Scratch - Part 1</title>
+        <title>Moving Camera Object Tracking with OpenCV and Python</title>
+        <description>
+</description>
+        <pubDate>Mon, 01 Aug 2016 22:22:24 +0800</pubDate>
+        <link>http://hrishioa.github.io/moving-camera-object-tracking-with-opencv-and-python/</link>
+        <guid isPermaLink="true">http://hrishioa.github.io/moving-camera-object-tracking-with-opencv-and-python/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Optimizing Neural Nets in Python from Scratch</title>
         <description>&lt;h3 id=&quot;background&quot;&gt;Background&lt;/h3&gt; &lt;p&gt;When running basic matrix operations in Python, numpy is the most versatile and easily accessible library out there. For this reason, my first &lt;a href=&quot;https://github.com/hrishioa/NN_Scratch/blob/master/NeuralNet_Perceptron.ipynb&quot;&gt;implementation&lt;/a&gt; of a perceptron was done in Numpy. It wasn’t until I started working on the &lt;a href=&quot;http://yann.lecun.com/exdb/mnist/&quot;&gt;MNIST Database&lt;/a&gt; that I realised it was painfully slow. The very first run, using batch gradient descent on a thousand runs took &lt;strong&gt;1 day and 18 hours&lt;/strong&gt;. Yeah. It was here that I started looking for ways to improve performance. There are a wealth of articles and guides online about how to do this, but working from...</description>
         <pubDate>Thu, 14 Apr 2016 06:26:17 +0800</pubDate>
         <link>http://hrishioa.github.io/optimizing-neural-nets-in-python-from-scratch-part-1/</link>

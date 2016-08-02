@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	
 	  <url>
+		<loc>http://hrishioa.github.io/moving-camera-object-tracking-with-opencv-and-python/</loc>
+	  </url>
+	
+	  <url>
 		<loc>http://hrishioa.github.io/optimizing-neural-nets-in-python-from-scratch-part-1/</loc>
 	  </url>
 	

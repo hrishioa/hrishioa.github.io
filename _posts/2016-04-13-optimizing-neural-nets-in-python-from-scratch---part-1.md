@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Optimizing Neural Nets in Python from Scratch - Part 1"
+title: "Optimizing Neural Nets in Python from Scratch"
 date: 2016-04-13 22:26:17
 image: '/assets/img/'
-description: Looking at CPU Speedup
+description: Part 1 - Looking at CPU Speedup
 tags:
 - Neural Nets
 - ATLAS
