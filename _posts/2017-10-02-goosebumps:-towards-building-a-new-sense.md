@@ -55,4 +55,6 @@ For another, the PWM signal from the Pi - regardless of whether it was hardware 
 
 Finally, the results were quite interesting. The paper has more details regarding what we changed, but when moving between methods of processing the input and relaying it to the user there was two primary clusters that performed differently. The first was when the users reported that they had to memorise the combinations of input for certain actions and what they meant, and the second was when the user began to 'feel' the input and simply adjusted accordingly. As predicted, the second group performed much better than the first, leading us to suspect that there was some neural reconfiguration at play. It was possible that - much like the paper originally discussed - the changes enables the brain to recognise the new and unfamiliar input as something that could be made sense of outside of the conscious mind. 
 
+![aaron]({{site.url}}/assets/img/SensX/armwrestle.jpg)
+
 Overall, quite a fun experiment. The project was a hit at the hackathon, and I'm hoping to present it in Brighton this month, will post any updates here.
