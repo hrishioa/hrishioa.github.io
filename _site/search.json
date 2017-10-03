@@ -1,11 +1,27 @@
 [
   
     {
-      "title"    : "Moving Camera Object Tracking with OpenCV and Python",
+      "title"    : "Goosebumps: Realizing Extrasensory Perception",
       "category" : "",
       "tags"     : "",
-      "url"      : "/moving-camera-object-tracking-with-opencv-and-python/",
-      "date"     : "01 Aug 2016"
+      "url"      : "/goosebumps-towards-building-a-new-sense/",
+      "date"     : "01 Oct 2017"
+    } ,
+  
+    {
+      "title"    : "Talk: Singularity and The Blockchain",
+      "category" : "",
+      "tags"     : "Singularity, Blockchain, Bitcoin, Ethereum, Talk, FAYA, and Singularity University",
+      "url"      : "/talk-singularity-and-the-blockchain/",
+      "date"     : "20 Sep 2017"
+    } ,
+  
+    {
+      "title"    : "Update on Oyente",
+      "category" : "",
+      "tags"     : "Oyente, Projects, and Ethereum",
+      "url"      : "/video-test/",
+      "date"     : "02 Sep 2017"
     } ,
   
     {

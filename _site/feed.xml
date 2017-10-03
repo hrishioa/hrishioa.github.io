@@ -3,19 +3,58 @@
   <channel>
     <title></title>
     <description>Personal Blog and Data Repository</description>
-    <link>http://localhost:3000/</link>
-    <atom:link href="http://localhost:3000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 02 Aug 2016 15:30:35 +0800</pubDate>
-    <lastBuildDate>Tue, 02 Aug 2016 15:30:35 +0800</lastBuildDate>
-    <generator>Jekyll v3.2.0</generator>
+    <link>http://hrishioa.github.io/</link>
+    <atom:link href="http://hrishioa.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 03 Oct 2017 08:13:42 +0800</pubDate>
+    <lastBuildDate>Tue, 03 Oct 2017 08:13:42 +0800</lastBuildDate>
+    <generator>Jekyll v3.6.0</generator>
     
       <item>
-        <title>Moving Camera Object Tracking with OpenCV and Python</title>
-        <description>
-</description>
-        <pubDate>Mon, 01 Aug 2016 22:22:24 +0800</pubDate>
-        <link>http://localhost:3000/moving-camera-object-tracking-with-opencv-and-python/</link>
-        <guid isPermaLink="true">http://localhost:3000/moving-camera-object-tracking-with-opencv-and-python/</guid>
+        <title>Goosebumps: Realizing Extrasensory Perception</title>
+        <description>&lt;p&gt;For the quicker readers, the paper (prepub) is &lt;a href=&quot;http://hrishioa.github.io/assets/docs/SensX/Goosebumps.pdf&quot;&gt;here&lt;/a&gt;. Below is a quick demo of the project - including pretty girl and cool music - for the ACM ISS 2017 conference:&lt;/p&gt; &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/zZqA_gm-vTQ&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt; &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt; &lt;p&gt;In 2003, a ground-breaking &lt;a href=&quot;http://discovermagazine.com/2003/jun/feattongue&quot;&gt;paper&lt;/a&gt; by a neuroscientist named Paul Bach-y-Rita claimed to have developed a device by which the blind could regain their sight. His solution: the tongue. A series of electrodes attached to the tongue displayed a low resolution image captured by a camera sitting atop the subject’s forehead. Through this rudimentary but ground-breaking procedure, subjects both...</description>
+        <pubDate>Sun, 01 Oct 2017 17:50:57 +0800</pubDate>
+        <link>http://hrishioa.github.io/goosebumps-towards-building-a-new-sense/</link>
+        <guid isPermaLink="true">http://hrishioa.github.io/goosebumps-towards-building-a-new-sense/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Talk: Singularity and The Blockchain</title>
+        <description>&lt;p&gt;This is a talk I had been meaning to do for a long time. Having collected enough material over collected rants with friends (seriously - there have been hundreds of pages of scribbled notepads and conversation material still taking up space on my desk), when the good folks at FAYA and &lt;a href=&quot;https://su.org/&quot;&gt;Singularity University&lt;/a&gt; asked for some time on Blockchain, I thought it might be a good chance to explore some of these ideas further.&lt;/p&gt; &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/muQFOuEiAFo?t=42m43s&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt; &lt;p&gt;I had originally hoped to leave the video here as a point of discussion, but the audio is spotty...</description>
+        <pubDate>Wed, 20 Sep 2017 13:37:05 +0800</pubDate>
+        <link>http://hrishioa.github.io/talk-singularity-and-the-blockchain/</link>
+        <guid isPermaLink="true">http://hrishioa.github.io/talk-singularity-and-the-blockchain/</guid>
+        
+        <category>Singularity</category>
+        
+        <category>Blockchain</category>
+        
+        <category>Bitcoin</category>
+        
+        <category>Ethereum</category>
+        
+        <category>Talk</category>
+        
+        <category>FAYA</category>
+        
+        <category>Singularity University</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Update on Oyente</title>
+        <description>&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt; &lt;p&gt;Some time ago, I was fortunate to be part of the team working on &lt;a href=&quot;https://oyente.github.io/benchmarks/&quot;&gt;Oyente&lt;/a&gt;, a Smart Contract analysis tool for Ethereum. The tool was part of a paper presented at CCS 2016 (Video of my presentation on the paper is below), and was then inducted into the Ethereum codebase.&lt;/p&gt; &lt;hr /&gt; &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/EIEB_FKZLEE&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt; &lt;hr /&gt; &lt;p&gt;Oyente was quite successful for its time, flagging over 80% of all deployed contracts as having some form of bug. Some of these have since been patched up through EIPs in the Ethereum codebase, or inducted as...</description>
+        <pubDate>Sat, 02 Sep 2017 04:23:52 +0800</pubDate>
+        <link>http://hrishioa.github.io/video-test/</link>
+        <guid isPermaLink="true">http://hrishioa.github.io/video-test/</guid>
+        
+        <category>Oyente</category>
+        
+        <category>Projects</category>
+        
+        <category>Ethereum</category>
         
         
       </item>
@@ -24,8 +63,8 @@
         <title>Optimizing Neural Nets in Python from Scratch</title>
         <description>&lt;h3 id=&quot;background&quot;&gt;Background&lt;/h3&gt; &lt;p&gt;When running basic matrix operations in Python, numpy is the most versatile and easily accessible library out there. For this reason, my first &lt;a href=&quot;https://github.com/hrishioa/NN_Scratch/blob/master/NeuralNet_Perceptron.ipynb&quot;&gt;implementation&lt;/a&gt; of a perceptron was done in Numpy. It wasn’t until I started working on the &lt;a href=&quot;http://yann.lecun.com/exdb/mnist/&quot;&gt;MNIST Database&lt;/a&gt; that I realised it was painfully slow. The very first run, using batch gradient descent on a thousand runs took &lt;strong&gt;1 day and 18 hours&lt;/strong&gt;. Yeah. It was here that I started looking for ways to improve performance. There are a wealth of articles and guides online about how to do this, but working from...</description>
         <pubDate>Thu, 14 Apr 2016 06:26:17 +0800</pubDate>
-        <link>http://localhost:3000/optimizing-neural-nets-in-python-from-scratch-part-1/</link>
-        <guid isPermaLink="true">http://localhost:3000/optimizing-neural-nets-in-python-from-scratch-part-1/</guid>
+        <link>http://hrishioa.github.io/optimizing-neural-nets-in-python-from-scratch-part-1/</link>
+        <guid isPermaLink="true">http://hrishioa.github.io/optimizing-neural-nets-in-python-from-scratch-part-1/</guid>
         
         <category>Neural Nets</category>
         
@@ -46,8 +85,8 @@
         <title>Automating Git Commits</title>
         <description>&lt;h3 id=&quot;why&quot;&gt;Why?&lt;/h3&gt; &lt;p&gt;There are any number of tools available for the developer that wishes to check up on his project while he’s away. I’ve made use of a number of these tools on occasion, but recently I found myself wanting something more.&lt;/p&gt; &lt;p&gt;The project I wanted to monitor and keep track of was on a &lt;a href=&quot;https://beagleboard.org/black&quot;&gt;Beaglebone Black&lt;/a&gt;, and from experience I knew that the particular device I was using wasn’t the most reliable for data fidelity. I needed a way to store the current state of the project on the cloud. It’s worth noting that Git wasn’t my first...</description>
         <pubDate>Sat, 12 Mar 2016 04:39:37 +0800</pubDate>
-        <link>http://localhost:3000/automating-git-commits/</link>
-        <guid isPermaLink="true">http://localhost:3000/automating-git-commits/</guid>
+        <link>http://hrishioa.github.io/automating-git-commits/</link>
+        <guid isPermaLink="true">http://hrishioa.github.io/automating-git-commits/</guid>
         
         <category>Git</category>
         
@@ -60,8 +99,8 @@
         <title>Decapitating Raspberry Pis with nomohead</title>
         <description>&lt;p&gt;The Raspberry Pi is one of my favorite SoCs out there. It’s cheap, it’s everywhere and it practically runs anything. With the new update, it’s faster than ever and possibly everything I could want in most of my projects.&lt;/p&gt; &lt;p&gt;The only problem is set-up. I rarely ever need to run a pi other than in headless mode, and once the IP addresses are set up I mostly work through ssh. Occasionally I use VNC if I need to look inside the pi, but I rarely need to connect the Pi to a monitor and mouse/keyboard. Except for set-up.&lt;/p&gt; &lt;p&gt;I live...</description>
         <pubDate>Thu, 11 Feb 2016 13:24:08 +0800</pubDate>
-        <link>http://localhost:3000/decapitating-raspberry-pis-with-nomohead/</link>
-        <guid isPermaLink="true">http://localhost:3000/decapitating-raspberry-pis-with-nomohead/</guid>
+        <link>http://hrishioa.github.io/decapitating-raspberry-pis-with-nomohead/</link>
+        <guid isPermaLink="true">http://hrishioa.github.io/decapitating-raspberry-pis-with-nomohead/</guid>
         
         <category>Raspberry Pi</category>
         
@@ -76,8 +115,8 @@
         <title>Ride-sharing on the Blockchain - Part 1</title>
         <description>&lt;p&gt;I’ve recently become quite interested in &lt;a href=&quot;https://www.ethereum.org/&quot;&gt;Ethereum&lt;/a&gt;, the decentralised software platform that uses the underlying concept of the Bitcoin blockchain to run code while maintaing trust. I’ve been playing around with Smart Contracts, which are modules executed by the blockchain. I’m not going to describe in detail how the system works, but there is a &lt;a href=&quot;https://www.reddit.com/r/ethereum/comments/3vxvlx/starter_guide_almost_all_the_links_youll_need_to/&quot;&gt;starter guide&lt;/a&gt; on the Ethereum subreddit that you can look at for more information.&lt;/p&gt; &lt;p&gt;During &lt;a href=&quot;http://hacknroll.nushackers.org/&quot;&gt;HacknRoll 2016&lt;/a&gt;, the idea we came up with was to make use of Ethereum to implement a ride sharing service, much like Uber. Originally, the idea was...</description>
         <pubDate>Sun, 31 Jan 2016 04:39:37 +0800</pubDate>
-        <link>http://localhost:3000/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/</link>
-        <guid isPermaLink="true">http://localhost:3000/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/</guid>
+        <link>http://hrishioa.github.io/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/</link>
+        <guid isPermaLink="true">http://hrishioa.github.io/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/</guid>
         
         <category>Ethereum</category>
         
@@ -96,8 +135,8 @@
         <title>Winter '15 Trip Logs</title>
         <description>&lt;p&gt;It is winter vacation, and my friend Parag and I have decided to take a little 6-day trip across my state, Kerala. He’s from Calcutta, and he has taken a two-day train ride to get to where I am. I’ve arranged for the coolest of bikes, a Royal Enfield Bullet, to take us on a trip that I hope will not be shorter than a thousand kilometres. He arrives, and we visit a nearby field to take some pictures and relax before we start bright and early the next day. I’ll try and jot things down in my notebook as...</description>
         <pubDate>Sat, 26 Dec 2015 03:27:44 +0800</pubDate>
-        <link>http://localhost:3000/winter-'15-trip-logs/</link>
-        <guid isPermaLink="true">http://localhost:3000/winter-'15-trip-logs/</guid>
+        <link>http://hrishioa.github.io/winter-'15-trip-logs/</link>
+        <guid isPermaLink="true">http://hrishioa.github.io/winter-'15-trip-logs/</guid>
         
         
       </item>
@@ -106,8 +145,8 @@
         <title>Tracking Word Documents with Git</title>
         <description>&lt;p&gt;For some time now, I have been using Git to keep track of my work - both source code and otherwise. Even when you’re not using it for code, Git is perfect - easy backups to a Git server in the cloud along with the possibility of maintaining multiple working versions of my papers and writing projects is just great.&lt;/p&gt; &lt;p&gt;Except - Git treats my Word files as binaries. Different versions can be accessed just fine, but I have no access to diff functionality because Git doesn’t understand what has changed between two versions. Not to mention, most programmers will...</description>
         <pubDate>Sun, 25 Oct 2015 13:03:02 +0800</pubDate>
-        <link>http://localhost:3000/tracking-word-documents-with-git/</link>
-        <guid isPermaLink="true">http://localhost:3000/tracking-word-documents-with-git/</guid>
+        <link>http://hrishioa.github.io/tracking-word-documents-with-git/</link>
+        <guid isPermaLink="true">http://hrishioa.github.io/tracking-word-documents-with-git/</guid>
         
         <category>Git</category>
         
@@ -126,8 +165,8 @@
         <title>Using the Internet of Things for measuring Worker Safety</title>
         <description>&lt;p&gt;I hate using the phrase “Internet of Things”, but I must admit that it has gotten a lot easier to do so, having used it so many times during, *sigh* &lt;a href=&quot;http://iothackathon.sg/&quot;&gt;The Internet of Things hackathon&lt;/a&gt;. During the hackathon, we were given different pieces of hardware, a collection of sensors and asked to build sometthing related to one of three themes: &lt;strong&gt;Transport, Health and Construction&lt;/strong&gt;. We arrived at the hackathon, and realised that due to the preliminary selection process, there were a total of 10 teams. &lt;em&gt;For six prizes&lt;/em&gt;. One for each category, and a 1st, 2nd and 3rd prize...</description>
         <pubDate>Sun, 11 Oct 2015 10:24:55 +0800</pubDate>
-        <link>http://localhost:3000/using-the-internet-of-things-for-measuring-worker-safety/</link>
-        <guid isPermaLink="true">http://localhost:3000/using-the-internet-of-things-for-measuring-worker-safety/</guid>
+        <link>http://hrishioa.github.io/using-the-internet-of-things-for-measuring-worker-safety/</link>
+        <guid isPermaLink="true">http://hrishioa.github.io/using-the-internet-of-things-for-measuring-worker-safety/</guid>
         
         <category>IOT</category>
         
@@ -141,26 +180,6 @@
         
         
         <category>Hackathon Stories</category>
-        
-      </item>
-    
-      <item>
-        <title>Implementing a Lucas-Kanade tracker from Scratch</title>
-        <description>&lt;h1 id=&quot;theory&quot;&gt;Theory&lt;/h1&gt; &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt; &lt;p&gt;In Computer Vision, &lt;a href=&quot;https://en.wikipedia.org/wiki/Optical_flow&quot;&gt;Optical Flow&lt;/a&gt; deals with the detection of apparent movement between the frames of a video, or between images. The simplest of these is called a &lt;a href=&quot;https://en.wikipedia.org/wiki/Lucas%E2%80%93Kanade_method&quot;&gt;Lucas-Kanade Tracker&lt;/a&gt;, which attempts to solve the Optical Flow equation using the least-squares method.&lt;/p&gt; &lt;h2 id=&quot;method&quot;&gt;Method&lt;/h2&gt; &lt;p&gt;The Optical-flow equation for Lucas-Kanade assumes that the change - or displacement - of moving objects between sucessive frames is small. This can be extended to fast-moving objects using other methods, and we will cover that in a separate post. Assuming small movement between frames, we end up with the...</description>
-        <pubDate>Tue, 06 Oct 2015 06:11:19 +0800</pubDate>
-        <link>http://localhost:3000/implementing-a-lucas-kanade-tracker-from-scratch/</link>
-        <guid isPermaLink="true">http://localhost:3000/implementing-a-lucas-kanade-tracker-from-scratch/</guid>
-        
-        <category>Lucas-Kanade</category>
-        
-        <category>Optical Flow</category>
-        
-        <category>C++</category>
-        
-        <category>XCode</category>
-        
-        
-        <category>Implementing Optical Flow</category>
         
       </item>
     

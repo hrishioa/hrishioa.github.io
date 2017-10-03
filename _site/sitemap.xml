@@ -2,39 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	
 	  <url>
-		<loc>http://localhost:3000/moving-camera-object-tracking-with-opencv-and-python/</loc>
+		<loc>http://hrishioa.github.io/goosebumps-towards-building-a-new-sense/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://localhost:3000/optimizing-neural-nets-in-python-from-scratch-part-1/</loc>
+		<loc>http://hrishioa.github.io/talk-singularity-and-the-blockchain/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://localhost:3000/automating-git-commits/</loc>
+		<loc>http://hrishioa.github.io/video-test/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://localhost:3000/decapitating-raspberry-pis-with-nomohead/</loc>
+		<loc>http://hrishioa.github.io/optimizing-neural-nets-in-python-from-scratch-part-1/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://localhost:3000/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/</loc>
+		<loc>http://hrishioa.github.io/automating-git-commits/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://localhost:3000/winter-'15-trip-logs/</loc>
+		<loc>http://hrishioa.github.io/decapitating-raspberry-pis-with-nomohead/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://localhost:3000/tracking-word-documents-with-git/</loc>
+		<loc>http://hrishioa.github.io/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://localhost:3000/using-the-internet-of-things-for-measuring-worker-safety/</loc>
+		<loc>http://hrishioa.github.io/winter-'15-trip-logs/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://localhost:3000/implementing-a-lucas-kanade-tracker-from-scratch/</loc>
+		<loc>http://hrishioa.github.io/tracking-word-documents-with-git/</loc>
+	  </url>
+	
+	  <url>
+		<loc>http://hrishioa.github.io/using-the-internet-of-things-for-measuring-worker-safety/</loc>
+	  </url>
+	
+	  <url>
+		<loc>http://hrishioa.github.io/implementing-a-lucas-kanade-tracker-from-scratch/</loc>
 	  </url>
 	
 </urlset>
