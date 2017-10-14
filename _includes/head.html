@@ -13,7 +13,7 @@
     <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
     <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
     {% if page.share_image %}
-    <meta property="og:image" content="{{ site.url }}/{{page.share_image }}">
+    <meta property="og:image" content="{{ site.url }}/assets/img/{{page.share_image }}">
     {% else %}
     <meta property="og:image" content="{{ site.url }}/{{page.image }}">
     {% endif %}
