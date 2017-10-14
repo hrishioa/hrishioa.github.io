@@ -3,6 +3,7 @@ layout: post
 title: "Goosebumps: Realizing Extrasensory Perception"
 date: 2017-10-01 09:50:57
 image: 'SensX/spidey3.jpg'
+share_image: 'SensX/play.png'
 description: Working towards improving the limits of human perception
 tags:
 categories:
