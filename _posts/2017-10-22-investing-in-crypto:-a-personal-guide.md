@@ -4,6 +4,7 @@ title: "Investing in Crypto: A Personal Guide"
 date: 2017-10-21 16:43:00
 image: 'Investing/header2.jpg'
 description: "A few resources and comments"
+share_image: 'Investing/header2.jpg'
 tags: 
 - Cryptocurrencies
 - Investment
