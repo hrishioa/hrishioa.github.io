@@ -91,8 +91,6 @@ Keeping track of your portfolio is important, especially when managing a large n
 
 Once you have some tracking set up, set up a schedule for [DCA](http://www.investopedia.com/terms/d/dollarcostaveraging.asp) or rebalancing.
 
-
-
 ## Notes
 
 As a final note, these are a collection of my personal recommendations for crypto investing. I may be wrong. Also, do not put anything into these markets you can't afford to lose. The markets are good, but there is also potentially a bubble in sight and we will all probably eventually die from climate change or old age so probably wouldn't matter. Have fun investing!
