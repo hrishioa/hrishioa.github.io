@@ -2,8 +2,8 @@
 layout: post
 title: "Building an Arc Reactor"
 date: 2017-10-22 03:32:40
-image: 'ArcReactor/IMG_8589.jpg'
-share_image: 'ArcReactor/IMG_8589.jpg'
+image: 'ArcReactor/IMG_8589.JPG'
+share_image: 'ArcReactor/IMG_8589.JPG'
 description: Not really, just a list of mistakes
 tags: 
 - Movies are cool
