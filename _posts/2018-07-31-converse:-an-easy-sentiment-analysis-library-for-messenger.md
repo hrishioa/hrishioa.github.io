@@ -10,8 +10,6 @@ categories:
 twitter_text:
 ---
 
-## Background
-
 [Sentiment Analysis](https://en.wikipedia.org/wiki/Sentiment_analysis) has been around for a while. The basic idea revolves around measuring and classifying emotions (often boiled down to a single positive/negative measurement from -1.0 to 1.0) based on lexical analysis. Back a good few years ago, when Facebook and Whatsapp (don't exactly remember if this was before the merge) made it possible for you to download your text conversations en-masse, I immediately did so and was amazed at the amount of data I had accumulated and the possibilities of extracting insights about my life and the patterns therein. Unfortunately, it ended up as a post-it that was never really picked up.
 
 Two weeks ago, I found myself with a free weekend. Downloading my data again, I had found almost exponential growth in the conversations I had been having online - for someone who prefers face-to-face communication over text, I now had almost 100,000 messages exchanged on Messenger alone, spanning over half a decade. The right kind of analysis could reveal how I had changed as a person, how my conversational partners have changed, whether I'm prone to cyclic behavior and emotional states, and so much more.
