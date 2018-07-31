@@ -40,7 +40,7 @@ If you're using the library directly from python, you'll also need to download t
 python -m textblob.download_corpora lite
 ```
 
-Once you've got the library installed, you need to download your data from facebook. 
+Once you've got the library, you need to download your data from facebook. 
 
 Disclaimer: Now before you do so, let me confirm that converse is an offline library (the extremely paranoid can disable network connectivity on the docker container), and I retain (nor do I have any interest in) none of your information. The code is quite short and on [github](https://github.com/hrishioa/converse), where you can also find the dockerfile and sample conversations. That being said, it makes use of several large libraries for sentiment analysis, plotting and data management (primarily plotly, pandas and Textblob), and I take no responsibility for your data.
 
