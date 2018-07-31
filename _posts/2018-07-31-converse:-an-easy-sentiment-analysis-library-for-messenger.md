@@ -29,7 +29,7 @@ pip install converse
 That's it. Or, if you're the kind to prefer an isolated, fully configured system with a demo application and sample conversations,
 
 ```sh
-docker pull hrishioaConverse
+docker pull hrishioa/converse
 ```
 
 should do the trick.
@@ -42,7 +42,7 @@ python -m textblob.download_corpora lite
 
 Once you've got the library installed, you need to download your data from facebook. 
 
-Disclaimer: Now before you do so, let me confirm that converse is an offline library (the extremely paranoid can disable network connectivity on the docker container), and I retain (nor do I have any interest in) none of your information. The code is quite short and on [github](https://github.com/hrishioa/converse), where you can also find the dockerfile and sample conversations. That being said, it makes use of several large libraries for sentiment analysis, plotting and data management (primarily plotly, pandas and Textblob), and I take no responsibility in how your data is used.
+Disclaimer: Now before you do so, let me confirm that converse is an offline library (the extremely paranoid can disable network connectivity on the docker container), and I retain (nor do I have any interest in) none of your information. The code is quite short and on [github](https://github.com/hrishioa/converse), where you can also find the dockerfile and sample conversations. That being said, it makes use of several large libraries for sentiment analysis, plotting and data management (primarily plotly, pandas and Textblob), and I take no responsibility for your data.
 
 [Here](https://www.imore.com/how-download-copy-your-facebook-data) [are](https://sea.pcmag.com/software/20441/feature/how-to-download-your-facebook-data-and-6-surprising-things-i) a few guides on how to download your data, but here's a quick overview:
 
@@ -74,7 +74,7 @@ And you should have a basic plot! Below is a sample plot of one of my conversati
 
 {% include plot1.html %}
 
-The default settings plot a single day moving average of the sentiment values of the conversation.
+The plot shows a single day moving average of the sentiment values of the conversation.
 
 ## Features
 
