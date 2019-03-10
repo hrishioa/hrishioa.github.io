@@ -286,7 +286,7 @@ function init(cb) {
 ...
 ```
 
--and, we get this.
+and finally, we get this:
 
 ```bash
 [[15:07:03.524]] [LOG]    Frotz - Initing...
