@@ -24,7 +24,7 @@ Having been a fan of the game, it seemed like a good fit for a messenger bot. Th
 
 # Build
 
-I'll give a quick overview of the build and the tech stack here, with some of the challenges therein. I initially expected this to be easy. With a game as popular as Zork and as old I expected to find source code I could port overand run. But it turns out the best I could find for source was [the original source code](https://github.com/devshane/zork) written for the [PDP-10](https://en.wikipedia.org/wiki/PDP-10), which if you've never heard of it is a wire-wrapped tape-run beast of a machine, with a 36-bit word length and 1 microsecond cycle time (1 microsecond really) that looked like this:
+I'll give a quick overview of the build and the tech stack here, with some of the challenges therein. I initially expected this to be easy. With a game as popular as Zork and as old I expected to find source code I could port over and run. But it turns out the best I could find for source was [the original source code](https://github.com/devshane/zork) written for the [PDP-10](https://en.wikipedia.org/wiki/PDP-10), which if you've never heard of it is a wire-wrapped tape-run beast of a machine, with a 36-bit word length and 1 microsecond cycle time (1 microsecond really) that looked like this:
 
 ![zork messenger screenshot]({{site.url}}/assets/img/DebugNode/PDP10.jpg)
 
@@ -50,7 +50,7 @@ L6000:
     return ret_val;
 ```
 
-Moving on, I found two ports, the [first](https://github.com/bburns/Lantern/blob/master/src/lantern.py) from [Muddle](https://en.wikipedia.org/wiki/MDL_(programming_language)), which I had to look up. Turned out to be a LISP dialect (oh one of those, let me just get my trust LISP interpreter out - wait which one), and the other was a half-completed python port that barely said hi. ZORK is available on emulators online, so I tried accessing those, but it turns out most of them run full emulator binaries with the image loaded into your browser (what a time to be alive, really)! Finally, just as I was about to declare defeat, it turned out that Infocom has open-sourced [Frotz](https://davidgriffith.gitlab.io/frotz/), a [Z-Machine](https://en.wikipedia.org/wiki/Z-machine) interpreter - also from the 70s, made for and partly named after Zork. Z-Machine is a virtual machine for text-based games, with its own instruction set - I guess before DSLs we had Domain Specific Machines. Frotz has some support available, and to my delight - two lightly (and that's being generous) maintained interface packages for Node, which look suspiciously like [each](https://www.npmjs.com/package/frotz-interfacer) [other](https://www.npmjs.com/package/node-frotz). What's more, they seem to be from different developers but the quick start code for one uses the other package instead of itself. Never a dull day in Nodeland.
+Moving on, I found two ports, the [first](https://github.com/bburns/Lantern/blob/master/src/lantern.py) from [Muddle](https://en.wikipedia.org/wiki/MDL_(programming_language)), which I had to look up. Turned out to be a LISP dialect (oh one of those, let me just get my trusty LISP interpreter out - wait which one), and the other was a half-completed python port that barely said hi. ZORK is available on emulators online, so I tried accessing those, but it turns out most of them run full emulator binaries with the image loaded into your browser (what a time to be alive, really)! Finally, just as I was about to declare defeat, it turned out that Infocom has open-sourced [Frotz](https://davidgriffith.gitlab.io/frotz/), a [Z-Machine](https://en.wikipedia.org/wiki/Z-machine) interpreter - also from the 70s, made for and partly named after Zork. Z-Machine is a virtual machine for text-based games, with its own instruction set - I guess before DSLs we had Domain Specific Machines. Frotz has some support available, and to my delight two lightly (and that's being generous) maintained interface packages for Node, which look suspiciously like [each](https://www.npmjs.com/package/frotz-interfacer) [other](https://www.npmjs.com/package/node-frotz). What's more, they seem to be from different developers but the quick start code for one uses the other package instead of itself. Never a dull day in Nodeland.
 
 The system was not without its benefits though. Each time a call to Zork is made, the package spins up a new instance of frotz through a child process, loads a save, runs the input, returns the output, saves the game and exits. Ordinarily this would be extremely wasteful for a continuous game - and it is, but in this case it was a rather large feature and not a bug for me. This meant that the calls could be truly stateless with local persistence built in, and if I managed saves per user, I wouldn't really have to worry about scaling or intermediate termination and concurrency issues.
 
@@ -78,9 +78,9 @@ Error: read ECONNRESET
 e
 ```
 
-That e at the end isn't a typo - sometimes the process would die in the middle of printing the error message. It never really got past the e, leaving me wondering in suspense as to what my dying process was trying to tell me before it had its throat slit by (presumably) the OS. BTW the little comments from the source code made things worse. Yes, I know it's an unhandled error event, but what on earth does 'alternatively it s a write' mean? There's absolutely no information here as to who is failing, why or when. Googling the problem produced mostly other confused conders, but none of them used any of the packages I was using - I only really had two dependencies, and even their dependencies didn't match the other people this error frustrated.
+That e at the end isn't a typo - sometimes the process would die in the middle of printing the error message. It never really got past the e, leaving me in suspense as to what my dying process was trying to tell me before it had its throat slit by (presumably) the OS. The little comments from the source code made things worse. Yes, I know it's an unhandled error event. There's absolutely no information here as to who is failing, why or when. Googling the problem produced mostly other confused coders, but none of them used any of the packages I was using - I only really had two dependencies, and even their dependencies didn't turn up any matches.
 
-I was still pretty lazy, so I tried improving exception handling in my code (which through years of coding I'm glad to say was the only thing not terrible about this codebase at the time) to catch any errors that were falling through. Most everything was wrapped in promise code that caught errors, but I added catch-alls just in case and waited. Nothing. Nada. The same error message, and none of my handlers had triggered.
+I was still pretty lazy, so I tried improving exception handling in my code (which through years of coding I'm glad to say was the only thing not terrible about this codebase at the time) to catch any errors that were falling through. Most everything was wrapped in Promise code that caught errors, but I added catch-alls just in case and waited. Nothing. Nada. The same error message, and none of my handlers had triggered.
 
 ```bash
 events.js:72
@@ -106,7 +106,7 @@ Error: read ECONNRESET
 e
 ```
 
-All of my console messages were now neatly stamped and color coded, but any crashes still had the exact same message. I triple-checked that was running the code I was editing, because nothing I did seemed to have any effect. My new guess was that this must have something to do with the web part of things, due to that net.js result. Quickly turning off frotz-interfacer and replacing it with a dummy echo line seemed to fix the problem though, so that must be where it is. This turned out to be a blessing in disguise, because Bootbot while way more supported had a lot more known bugs and a lot more code to dig through.
+All of my console messages were now neatly stamped and color coded, but any crashes still had the exact same message. I triple-checked that was running the code I was editing, because nothing I did seemed to have any effect. My new guess was that this must have something to do with the web part of things, due to that net.js result. Quickly turning off frotz-interfacer and replacing it with a dummy echo line seemed to fix the problem though, so that must be where it is. This turned out to be a blessing in disguise because Bootbot, while way more supported, had a lot more known bugs and a lot more code to dig through. I'd much rather worry about frotz-interfacer.
 
 `frotz-interfacer` on the other hand, had one [file](https://github.com/jwoos/javascript_frotz/blob/master/lib/index.js). Well, two files but the other was really just an error file that looked like this - 
 
@@ -135,7 +135,7 @@ module.exports = {
 };
 ```
 
-- so we're looking at `index.js`. This was honestly the first time I was looking at the source repo for the package, so it didn't really inspire any more confidence in my success when I noticed that the last commit was 3 years ago with a lot more open issues than I expected and no pull requests. Still, the code wasn't al that bad. Quite simply, the package takes an input and performs the steps I outlined above - start game with save, run input, get output, save new game, exit - using node's own [child_process]. This really seemed far too simple to be problematic.
+ -so we're looking at `index.js`. This was honestly the first time I was looking at the source repo for the package, so it didn't really inspire any more confidence in my success when I noticed that the last commit was 3 years ago with a lot more open issues than I expected and no pull requests. Still, the code wasn't all that bad. Quite simply, the package takes an input and performs the steps I outlined above - start game with save, run input, get output, save new game, exit - using node's own [child_process]. This really seemed far too simple to be problematic.
 
 # Diagnosis
 
@@ -218,7 +218,7 @@ Error: read ECONNRESET
 [[15:03:26.407]] [LOG]    Frotz - Wrote save.
 ```
 
-I was honestly too happy at this point to care why. Somehow my logging extensions had kicked in - maybe a precompiled cache had refreshed, maybe the node gods wanted me to finish watching my movie I'd paused (quick bugfix, why not). I was on the right track, and I had some more info on the error as long as I didn't run it again and get something else. 
+I was honestly too happy at this point to care why. Somehow my logging extensions had kicked in - maybe a precompiled cache had refreshed, maybe the node gods wanted me to finish watching my movie I'd paused (let me pause this movie for a quick bugfix, why not I thought). I was on the right track, and I had some more info on the error as long as I didn't run it again and get something else. 
 
 Zooming in further, the error seemed to be coming from the childprocess part of the code (as suspected), which was the command function. So I added some error handlers there, see if we can trap this apparition once and for all.
 
@@ -286,7 +286,7 @@ function init(cb) {
 ...
 ```
 
-- and, we get this.
+-and, we get this.
 
 ```bash
 [[15:07:03.524]] [LOG]    Frotz - Initing...
