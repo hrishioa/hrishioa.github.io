@@ -2,7 +2,7 @@
 layout: post
 title: "Juventus: Glucose worries in Chiang Mai and the beginning of the biggest brownie point scheme ever"
 date: 2019-03-03 18:45:15
-image: '/assets/img/Glucose/back1.png'
+image: 'Glucose/back1.png'
 description:
 tags:
 categories:
