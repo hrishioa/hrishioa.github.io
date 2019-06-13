@@ -9,7 +9,7 @@ categories:
 twitter_text:
 ---
 
-This post was inspired by a conversation I had a few days ago, where a friend of mine told me about the recent rewrite their systems were undergoing so they could move from a node backend to Go. I didn't finish that conversation. I'm going to, but I wanted to think and talk about it first. I didn't want to really ask what was going on, because plausible deniability that his case didn't belong in here. For another, the structure of the conversation led me down the PTSD-laden rabbit hole of new languages and processes.
+This post was inspired by a conversation I had a few days ago, where a friend of mine told me about the recent rewrite their systems were undergoing so they could move from a node backend to Go. I didn't finish that conversation. I'm going to, but I wanted to think and talk about it first. I didn't want to really ask what was going on, because plausible deniability that his case didn't belong in here. For another, the structure of the conversation led me down the PTSD-laden rabbit hole of new languages and processes. 
 
 ## Don't get me wrong, Go is awesome
 
