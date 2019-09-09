@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "We're moving to Go"
+title: "We are moving to Go"
 date: 2019-06-12 18:31:06
 image: 'MovingToGo/cover.jpg'
 share_image: 'MovingToGo/cover.jpg'
