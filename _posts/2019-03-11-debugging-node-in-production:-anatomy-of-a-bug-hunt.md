@@ -3,9 +3,18 @@ layout: post
 title: "Debugging Node.js in Production: Anatomy of a bug hunt"
 date: 2019-02-02 02:51:03
 image: 'DebugNode/cover.jpeg'
-description:
+share_image: 'DebugNode/cover.jpeg'
+description: "A glorious experience in desperation"
 tags:
+- NodeJS
+- Debugging
+- Zork
+- Trainify
+- Power Uncle
+- Bootbot
 categories:
+- Rants
+- Tales of Work and Woe
 twitter_text:
 ---
 

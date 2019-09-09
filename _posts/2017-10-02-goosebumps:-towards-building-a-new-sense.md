@@ -6,11 +6,15 @@ image: 'SensX/spidey3.jpg'
 share_image: 'SensX/play.png'
 description: Working towards improving the limits of human perception
 tags:
+- Human Computer Interaction
+- SensX
+- Paperwork
 categories:
+- Hardware Builds
 twitter_text:
 ---
 
-For the quicker readers, the paper (prepub) is [here](http://hrishioa.github.io/assets/docs/SensX/Goosebumps.pdf). Below is a quick demo of the project -  including pretty girl and cool music - for the ACM ISS 2017 conference:
+For the quicker readers, the paper (published at the ACM ISS 2017 conference) is [here](https://dl.acm.org/citation.cfm?doid=3132272.3132293). Below is a quick demo of the project -  including pretty girl and cool music - for the ACM ISS 2017 conference:
 
 {% include youtubePlayer.html id="zZqA_gm-vTQ" %}
 
@@ -58,4 +62,4 @@ Finally, the results were quite interesting. The paper has more details regardin
 
 ![aaron]({{site.url}}/assets/img/SensX/armwrestle.jpg)
 
-Overall, quite a fun experiment. The project was a hit at the hackathon, and I'm hoping to present it in [Brighton](https://iss2017.acm.org/) this month, will post any updates here.
+Overall, quite a fun experiment. The project was a [hit](https://devpost.com/software/sensex) at the hackathon, and I'm hoping to present it in [Brighton](https://iss2017.acm.org/) this month, will post any updates here.

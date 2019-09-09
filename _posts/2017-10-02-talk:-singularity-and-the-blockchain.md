@@ -3,7 +3,8 @@ layout: post
 title: "Talk: Singularity and The Blockchain"
 date: 2017-09-20 05:37:05
 image: 'FAYATalk/watchmen.jpeg'
-description: A shallow dive into blockchain technology and what it means for the singularity of tomorrow
+share_image: 'FAYATalk/watchmen.jpeg'
+description: "A shallow dive into blockchain technology and what it means for the singularity of tomorrow"
 tags:
 - Singularity
 - Blockchain
@@ -13,6 +14,7 @@ tags:
 - FAYA
 - Singularity University
 categories:
+- Voice Builds
 twitter_text:
 ---
 

@@ -1,5 +1,5 @@
 # Site settings
-description: Personal Blog and Data Repository
+description: Personal Blog and Data Repository - Hrishi Olickel
 #baseurl: "" # the subpath of your site, e.g. /blog/
 
 url: "http://hrishioa.github.io" # the base hostname & protocol for your site 
@@ -7,7 +7,7 @@ url: "http://hrishioa.github.io" # the base hostname & protocol for your site
 
 # User settings
 username: hrishioa
-user_description: Yale-NUS '18.
+user_description: Building marketplaces for physical security at Greywing.
 user_title: Hrishi Olickel
 email: hrishioa@gmail.com
 github_username:  hrishioa

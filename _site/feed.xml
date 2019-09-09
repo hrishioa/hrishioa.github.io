@@ -3,183 +3,215 @@
   <channel>
     <title></title>
     <description>Personal Blog and Data Repository</description>
-    <link>http://hrishioa.github.io/</link>
-    <atom:link href="http://hrishioa.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 03 Oct 2017 08:13:42 +0800</pubDate>
-    <lastBuildDate>Tue, 03 Oct 2017 08:13:42 +0800</lastBuildDate>
+    <link>http://localhost:3000/</link>
+    <atom:link href="http://localhost:3000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 09 Sep 2019 10:12:58 +0530</pubDate>
+    <lastBuildDate>Mon, 09 Sep 2019 10:12:58 +0530</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
-        <title>Goosebumps: Realizing Extrasensory Perception</title>
-        <description>&lt;p&gt;For the quicker readers, the paper (prepub) is &lt;a href=&quot;http://hrishioa.github.io/assets/docs/SensX/Goosebumps.pdf&quot;&gt;here&lt;/a&gt;. Below is a quick demo of the project - including pretty girl and cool music - for the ACM ISS 2017 conference:&lt;/p&gt; &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/zZqA_gm-vTQ&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt; &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt; &lt;p&gt;In 2003, a ground-breaking &lt;a href=&quot;http://discovermagazine.com/2003/jun/feattongue&quot;&gt;paper&lt;/a&gt; by a neuroscientist named Paul Bach-y-Rita claimed to have developed a device by which the blind could regain their sight. His solution: the tongue. A series of electrodes attached to the tongue displayed a low resolution image captured by a camera sitting atop the subject’s forehead. Through this rudimentary but ground-breaking procedure, subjects both...</description>
-        <pubDate>Sun, 01 Oct 2017 17:50:57 +0800</pubDate>
-        <link>http://hrishioa.github.io/goosebumps-towards-building-a-new-sense/</link>
-        <guid isPermaLink="true">http://hrishioa.github.io/goosebumps-towards-building-a-new-sense/</guid>
+        <title>Intentions and Program Mind-Meld Frustrations</title>
+        <description>&lt;p&gt;I learned something today that my brain already knew. Triple-clicking on a text view - on an editor, terminal emulator or random display - selects the line. A double click does whatever, but a triple click always selects a line. I found that out courtesy of Rachel at &lt;a href=&quot;http://rachelbythebay.com/w/&quot;&gt;Rachel By The Bay&lt;/a&gt;, but my first response was - triple clicks! Isn’t that a relic of the past from when Windows XP had that weird setting? Or some holdover from Xerox Parc? Do we triple click anymore? Must be hard!&lt;/p&gt; &lt;p&gt;Turns out we do - or at least I do....</description>
+        <pubDate>Sun, 08 Sep 2019 06:15:31 +0530</pubDate>
+        <link>http://localhost:3000/intentions-and-program-mind-meld-frustrations/</link>
+        <guid isPermaLink="true">http://localhost:3000/intentions-and-program-mind-meld-frustrations/</guid>
         
+        <category>Python</category>
+        
+        <category>NodeJS</category>
+        
+        <category>Nano</category>
+        
+        <category>EMACS</category>
+        
+        <category>VIM</category>
+        
+        
+        <category>Rants</category>
         
       </item>
     
       <item>
-        <title>Talk: Singularity and The Blockchain</title>
-        <description>&lt;p&gt;This is a talk I had been meaning to do for a long time. Having collected enough material over collected rants with friends (seriously - there have been hundreds of pages of scribbled notepads and conversation material still taking up space on my desk), when the good folks at FAYA and &lt;a href=&quot;https://su.org/&quot;&gt;Singularity University&lt;/a&gt; asked for some time on Blockchain, I thought it might be a good chance to explore some of these ideas further.&lt;/p&gt; &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/muQFOuEiAFo?t=42m43s&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt; &lt;p&gt;I had originally hoped to leave the video here as a point of discussion, but the audio is spotty...</description>
-        <pubDate>Wed, 20 Sep 2017 13:37:05 +0800</pubDate>
-        <link>http://hrishioa.github.io/talk-singularity-and-the-blockchain/</link>
-        <guid isPermaLink="true">http://hrishioa.github.io/talk-singularity-and-the-blockchain/</guid>
+        <title>We're moving to Go</title>
+        <description>&lt;p&gt;This post was inspired by a conversation I had a few days ago, where a friend of mine told me about the recent rewrite their systems were undergoing so they could move from a node backend to Go. I didn’t finish that conversation. I’m going to, but I wanted to think and talk about it first. I didn’t want to really ask what was going on, because I wanted plausible deniability that his case didn’t belong in here (What? No! There’s spousal abuse in other countries, its a real problem, but no one I know does it or I’d have...</description>
+        <pubDate>Thu, 13 Jun 2019 00:01:06 +0530</pubDate>
+        <link>http://localhost:3000/were-moving-to-go/</link>
+        <guid isPermaLink="true">http://localhost:3000/were-moving-to-go/</guid>
+        
+        <category>Go</category>
+        
+        
+        <category>Rants</category>
+        
+      </item>
+    
+      <item>
+        <title>Juventus: Glucose worries in Chiang Mai and the beginning of the biggest brownie point scheme ever</title>
+        <description>&lt;p&gt;Okay so this one’s been coming for a while. A LONG while. &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.juventus.app&quot;&gt;Juventus&lt;/a&gt; (finally released, yay! - well sort of) was a project that started over two years ago in college. Like anything, it started with a lot of huge hurdles and big ambition, and as a product built for only one person. Story of everything, I guess - except in this case, the hurdles were overcome but the ambition never fully worked out. Unlike most tech products that start with one customer, it wasn’t me I was building it for - but she’s been a happy user for...</description>
+        <pubDate>Mon, 04 Mar 2019 00:15:15 +0530</pubDate>
+        <link>http://localhost:3000/glucose-monitoring-a-story-of-papers,-reverse-engineering-and-the-last-10/</link>
+        <guid isPermaLink="true">http://localhost:3000/glucose-monitoring-a-story-of-papers,-reverse-engineering-and-the-last-10/</guid>
+        
+        <category>Freestyle Libre</category>
+        
+        <category>Diabetes</category>
+        
+        <category>Continuous Glucose Monitoring</category>
+        
+        <category>Juventus</category>
+        
+        <category>Ionic</category>
+        
+        
+        <category>Software Builds</category>
+        
+        <category>Hacks of Life</category>
+        
+      </item>
+    
+      <item>
+        <title>Debugging Node.js in Production: Anatomy of a bug hunt</title>
+        <description>&lt;h1 id=&quot;background&quot;&gt;Background&lt;/h1&gt; &lt;p&gt;One of last weekend’s projects was building a messenger bot. I’d tried to build one before, but never really started coding as none of the projects I had in mind really worked well with the format of a chatbot. As with blockchain or any emerging technology, trying to shove a new piece of tech into something when it doesn’t fit isn’t a pleasent experience. So I’d left it for a while, and I had built the backend of some bots recently - &lt;a href=&quot;https://m.me/608739242899742&quot;&gt;Trainify&lt;/a&gt; and &lt;a href=&quot;https://m.me/powerunclesg&quot;&gt;Power Uncle&lt;/a&gt; (both of which I might write about at some point...</description>
+        <pubDate>Sat, 02 Feb 2019 08:21:03 +0530</pubDate>
+        <link>http://localhost:3000/debugging-node-in-production-anatomy-of-a-bug-hunt/</link>
+        <guid isPermaLink="true">http://localhost:3000/debugging-node-in-production-anatomy-of-a-bug-hunt/</guid>
+        
+        <category>NodeJS</category>
+        
+        <category>Debugging</category>
+        
+        <category>Zork</category>
+        
+        <category>Trainify</category>
+        
+        <category>Power Uncle</category>
+        
+        <category>Bootbot</category>
+        
+        
+        <category>Rants</category>
+        
+        <category>Tales of Work and Woe</category>
+        
+      </item>
+    
+      <item>
+        <title>Beauty to an Artificial Intelligence</title>
+        <description>&lt;p&gt;This is something that’s been on my mind for a while, and it’s been hard to shake - even in beautiful New Zealand. Thought I’d use some of the New Year’s energy to write it up. It’s a bit long - despite my efforts to get it down to a manageable size, but let’s start somewhere.&lt;/p&gt; &lt;h2 id=&quot;what-do-we-think-an-ai-is&quot;&gt;What do we think an AI is?&lt;/h2&gt; &lt;p&gt;There’s a scene in the movie “I, Robot”, inspired by Asimov’s series of the same name, where the titular robot tells the main character that he cannot create a work of art. He does this while...</description>
+        <pubDate>Tue, 01 Jan 2019 05:30:00 +0530</pubDate>
+        <link>http://localhost:3000/quality-to-an-artificial-intelligence/</link>
+        <guid isPermaLink="true">http://localhost:3000/quality-to-an-artificial-intelligence/</guid>
+        
+        <category>Artificial Intelligence</category>
+        
+        <category>AI</category>
         
         <category>Singularity</category>
         
-        <category>Blockchain</category>
+        <category>Zen and The Art of Motorcycle Maintenance</category>
         
-        <category>Bitcoin</category>
         
-        <category>Ethereum</category>
-        
-        <category>Talk</category>
-        
-        <category>FAYA</category>
-        
-        <category>Singularity University</category>
-        
+        <category>Rants</category>
         
       </item>
     
       <item>
-        <title>Update on Oyente</title>
-        <description>&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt; &lt;p&gt;Some time ago, I was fortunate to be part of the team working on &lt;a href=&quot;https://oyente.github.io/benchmarks/&quot;&gt;Oyente&lt;/a&gt;, a Smart Contract analysis tool for Ethereum. The tool was part of a paper presented at CCS 2016 (Video of my presentation on the paper is below), and was then inducted into the Ethereum codebase.&lt;/p&gt; &lt;hr /&gt; &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/EIEB_FKZLEE&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt; &lt;hr /&gt; &lt;p&gt;Oyente was quite successful for its time, flagging over 80% of all deployed contracts as having some form of bug. Some of these have since been patched up through EIPs in the Ethereum codebase, or inducted as...</description>
-        <pubDate>Sat, 02 Sep 2017 04:23:52 +0800</pubDate>
-        <link>http://hrishioa.github.io/video-test/</link>
-        <guid isPermaLink="true">http://hrishioa.github.io/video-test/</guid>
+        <title>Dead Money: The problem at the heart of crypto</title>
+        <description>&lt;p&gt;There is a problem that has been troubling me for a number of years now. The rise of crypto around the world has led to it being hailed as the replacement for centralized banking systems, a new international coin, and monikers far too numerous to mention. And while the community is well aware of and hard at work to solve the scaling, privacy and hype issues surrounding crypto, there is perhaps a separate economic problem that lies at the heart of most currencies. This is the problem of dead money.&lt;/p&gt; &lt;h2 id=&quot;how-it-exists&quot;&gt;How it exists&lt;/h2&gt; &lt;p&gt;Before we begin, let’s consider the...</description>
+        <pubDate>Wed, 05 Sep 2018 05:37:54 +0530</pubDate>
+        <link>http://localhost:3000/dead-money-the-problem-at-the-heart-of-crypto/</link>
+        <guid isPermaLink="true">http://localhost:3000/dead-money-the-problem-at-the-heart-of-crypto/</guid>
+        
+        <category>Cryptocurrencies</category>
+        
+        <category>Ethereum</category>
+        
+        <category>Fractional Reserve Banking</category>
+        
+        
+        <category>Rants</category>
+        
+      </item>
+    
+      <item>
+        <title>Converse: An easy sentiment analysis library for Messenger</title>
+        <description>&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Sentiment_analysis&quot;&gt;Sentiment Analysis&lt;/a&gt; has been around for a while. The basic idea revolves around measuring and classifying emotions (often boiled down to a single positive/negative measurement from -1.0 to 1.0) based on lexical analysis. Back a good few years ago, when Facebook and Whatsapp (don’t exactly remember if this was before the merge) made it possible for you to download your text conversations en-masse, I immediately did so and was amazed at the amount of data I had accumulated and the possibilities of extracting insights about my life and the patterns therein. Unfortunately, it ended up as a post-it that...</description>
+        <pubDate>Sat, 21 Jul 2018 01:39:03 +0530</pubDate>
+        <link>http://localhost:3000/converse-an-easy-sentiment-analysis-library-for-messenger/</link>
+        <guid isPermaLink="true">http://localhost:3000/converse-an-easy-sentiment-analysis-library-for-messenger/</guid>
+        
+        <category>Pypi</category>
+        
+        <category>Releases</category>
+        
+        <category>Converse</category>
+        
+        <category>Sentiment Analysis</category>
+        
+        <category>Messenger</category>
+        
+        <category>Entity Extraction</category>
+        
+        
+        <category>Software Builds</category>
+        
+      </item>
+    
+      <item>
+        <title>Development across platforms with Docker</title>
+        <description>&lt;p&gt;Containerization has only recently become easy and cheap (in terms of memory, cost and development time) through tools like &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt;. This has made orchestrating large microservice and distributed architectures far easier, as well as cutting down development time for building and releasing tools. As we saw in the case of &lt;a href=&quot;https://oyente.github.io/benchmarks/&quot;&gt;Oyente&lt;/a&gt; as well as a few other projects I’ve listed here, releasing complex pieces of software - especially for development and research purposes - has become much easier. Complicated and ever-updating lists of dependencies and kernels and distros can be effectively frozen in place and easily shared as...</description>
+        <pubDate>Fri, 05 Jan 2018 07:55:28 +0530</pubDate>
+        <link>http://localhost:3000/making-cross-platform-development-easy-and-hard-with-docker/</link>
+        <guid isPermaLink="true">http://localhost:3000/making-cross-platform-development-easy-and-hard-with-docker/</guid>
+        
+        <category>Docker</category>
+        
+        <category>Virtualization</category>
         
         <category>Oyente</category>
         
-        <category>Projects</category>
+        <category>Jekyll</category>
         
-        <category>Ethereum</category>
+        <category>Containers</category>
         
         
-      </item>
-    
-      <item>
-        <title>Optimizing Neural Nets in Python from Scratch</title>
-        <description>&lt;h3 id=&quot;background&quot;&gt;Background&lt;/h3&gt; &lt;p&gt;When running basic matrix operations in Python, numpy is the most versatile and easily accessible library out there. For this reason, my first &lt;a href=&quot;https://github.com/hrishioa/NN_Scratch/blob/master/NeuralNet_Perceptron.ipynb&quot;&gt;implementation&lt;/a&gt; of a perceptron was done in Numpy. It wasn’t until I started working on the &lt;a href=&quot;http://yann.lecun.com/exdb/mnist/&quot;&gt;MNIST Database&lt;/a&gt; that I realised it was painfully slow. The very first run, using batch gradient descent on a thousand runs took &lt;strong&gt;1 day and 18 hours&lt;/strong&gt;. Yeah. It was here that I started looking for ways to improve performance. There are a wealth of articles and guides online about how to do this, but working from...</description>
-        <pubDate>Thu, 14 Apr 2016 06:26:17 +0800</pubDate>
-        <link>http://hrishioa.github.io/optimizing-neural-nets-in-python-from-scratch-part-1/</link>
-        <guid isPermaLink="true">http://hrishioa.github.io/optimizing-neural-nets-in-python-from-scratch-part-1/</guid>
-        
-        <category>Neural Nets</category>
-        
-        <category>ATLAS</category>
-        
-        <category>BLAS</category>
-        
-        <category>LAPACK</category>
-        
-        <category>Numpy</category>
-        
-        <category>Python</category>
-        
+        <category>Hacks of Life</category>
         
       </item>
     
       <item>
-        <title>Automating Git Commits</title>
-        <description>&lt;h3 id=&quot;why&quot;&gt;Why?&lt;/h3&gt; &lt;p&gt;There are any number of tools available for the developer that wishes to check up on his project while he’s away. I’ve made use of a number of these tools on occasion, but recently I found myself wanting something more.&lt;/p&gt; &lt;p&gt;The project I wanted to monitor and keep track of was on a &lt;a href=&quot;https://beagleboard.org/black&quot;&gt;Beaglebone Black&lt;/a&gt;, and from experience I knew that the particular device I was using wasn’t the most reliable for data fidelity. I needed a way to store the current state of the project on the cloud. It’s worth noting that Git wasn’t my first...</description>
-        <pubDate>Sat, 12 Mar 2016 04:39:37 +0800</pubDate>
-        <link>http://hrishioa.github.io/automating-git-commits/</link>
-        <guid isPermaLink="true">http://hrishioa.github.io/automating-git-commits/</guid>
+        <title>Building an Arc Reactor</title>
+        <description>&lt;h2 id=&quot;why&quot;&gt;Why?&lt;/h2&gt; &lt;p&gt;Because I thought it’d be cool. I’d been working on building a functional version of &lt;a href=&quot;https://en.wikipedia.org/wiki/Chua%27s_circuit&quot;&gt;Chua’s Circuit&lt;/a&gt; as an experiment into generating &lt;a href=&quot;https://www.academia.edu/19947852/Random_Number_Generation_using_Chaotic_Circuits&quot;&gt;randomness from chaotic systems&lt;/a&gt; (hope to write that up sometime), and had some time left over (okay not really) to build a case. Iron Man being one of my all-time comfort movie, it seemed like a good fit.&lt;/p&gt; &lt;h2 id=&quot;step-1-the-model&quot;&gt;Step 1: The Model&lt;/h2&gt; &lt;p&gt;&lt;img src=&quot;http://localhost:3000/assets/img/ArcReactor/IMG_8566.JPG&quot; alt=&quot;coil1&quot; /&gt;&lt;/p&gt; &lt;p&gt;First part involved getting a good model of an arc reactor. I usually prefer &lt;a href=&quot;youmagine.com&quot;&gt;YouMagine&lt;/a&gt; as an Ultimaker user and fan - and the models are...</description>
+        <pubDate>Sun, 22 Oct 2017 09:02:40 +0530</pubDate>
+        <link>http://localhost:3000/building-an-arc-reactor/</link>
+        <guid isPermaLink="true">http://localhost:3000/building-an-arc-reactor/</guid>
         
-        <category>Git</category>
+        <category>Iron Man</category>
         
-        <category>Python</category>
+        <category>Movies</category>
+        
+        <category>Randomness</category>
+        
+        <category>Arc Reactor</category>
         
         
-      </item>
-    
-      <item>
-        <title>Decapitating Raspberry Pis with nomohead</title>
-        <description>&lt;p&gt;The Raspberry Pi is one of my favorite SoCs out there. It’s cheap, it’s everywhere and it practically runs anything. With the new update, it’s faster than ever and possibly everything I could want in most of my projects.&lt;/p&gt; &lt;p&gt;The only problem is set-up. I rarely ever need to run a pi other than in headless mode, and once the IP addresses are set up I mostly work through ssh. Occasionally I use VNC if I need to look inside the pi, but I rarely need to connect the Pi to a monitor and mouse/keyboard. Except for set-up.&lt;/p&gt; &lt;p&gt;I live...</description>
-        <pubDate>Thu, 11 Feb 2016 13:24:08 +0800</pubDate>
-        <link>http://hrishioa.github.io/decapitating-raspberry-pis-with-nomohead/</link>
-        <guid isPermaLink="true">http://hrishioa.github.io/decapitating-raspberry-pis-with-nomohead/</guid>
-        
-        <category>Raspberry Pi</category>
-        
-        <category>ngrok</category>
-        
-        <category>IoT</category>
-        
+        <category>Hardware Builds</category>
         
       </item>
     
       <item>
-        <title>Ride-sharing on the Blockchain - Part 1</title>
-        <description>&lt;p&gt;I’ve recently become quite interested in &lt;a href=&quot;https://www.ethereum.org/&quot;&gt;Ethereum&lt;/a&gt;, the decentralised software platform that uses the underlying concept of the Bitcoin blockchain to run code while maintaing trust. I’ve been playing around with Smart Contracts, which are modules executed by the blockchain. I’m not going to describe in detail how the system works, but there is a &lt;a href=&quot;https://www.reddit.com/r/ethereum/comments/3vxvlx/starter_guide_almost_all_the_links_youll_need_to/&quot;&gt;starter guide&lt;/a&gt; on the Ethereum subreddit that you can look at for more information.&lt;/p&gt; &lt;p&gt;During &lt;a href=&quot;http://hacknroll.nushackers.org/&quot;&gt;HacknRoll 2016&lt;/a&gt;, the idea we came up with was to make use of Ethereum to implement a ride sharing service, much like Uber. Originally, the idea was...</description>
-        <pubDate>Sun, 31 Jan 2016 04:39:37 +0800</pubDate>
-        <link>http://hrishioa.github.io/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/</link>
-        <guid isPermaLink="true">http://hrishioa.github.io/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/</guid>
+        <title>Investing in Crypto: A Personal Guide</title>
+        <description>&lt;p&gt;Getting started with an investment into cryptocurrencies is often fraught with difficulty. There are a number of options, and the ever-growing list of currency &lt;a href=&quot;http://www.investopedia.com/terms/c/currencypair.asp&quot;&gt;pairs&lt;/a&gt; and arbitrage opportunities make it complicated for the new user. Here’s a (personal) breakdown on some of the options from beginner to intermediate.&lt;/p&gt; &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt; &lt;p&gt;Some information: A pair is essentially the smallest market you could find - two assets/currencies listed against each other, where the price provides information about the value of one relative to another. For the purposes of the this article, we will be using pairs and markets as interchangeable. A...</description>
+        <pubDate>Sat, 21 Oct 2017 22:13:00 +0530</pubDate>
+        <link>http://localhost:3000/investing-in-crypto-a-personal-guide/</link>
+        <guid isPermaLink="true">http://localhost:3000/investing-in-crypto-a-personal-guide/</guid>
         
-        <category>Ethereum</category>
+        <category>Cryptocurrencies</category>
         
-        <category>Blockchain</category>
-        
-        <category>Uber</category>
-        
-        <category>HacknRoll</category>
+        <category>Investment</category>
         
         
-        <category>Gruber</category>
-        
-      </item>
-    
-      <item>
-        <title>Winter '15 Trip Logs</title>
-        <description>&lt;p&gt;It is winter vacation, and my friend Parag and I have decided to take a little 6-day trip across my state, Kerala. He’s from Calcutta, and he has taken a two-day train ride to get to where I am. I’ve arranged for the coolest of bikes, a Royal Enfield Bullet, to take us on a trip that I hope will not be shorter than a thousand kilometres. He arrives, and we visit a nearby field to take some pictures and relax before we start bright and early the next day. I’ll try and jot things down in my notebook as...</description>
-        <pubDate>Sat, 26 Dec 2015 03:27:44 +0800</pubDate>
-        <link>http://hrishioa.github.io/winter-'15-trip-logs/</link>
-        <guid isPermaLink="true">http://hrishioa.github.io/winter-'15-trip-logs/</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>Tracking Word Documents with Git</title>
-        <description>&lt;p&gt;For some time now, I have been using Git to keep track of my work - both source code and otherwise. Even when you’re not using it for code, Git is perfect - easy backups to a Git server in the cloud along with the possibility of maintaining multiple working versions of my papers and writing projects is just great.&lt;/p&gt; &lt;p&gt;Except - Git treats my Word files as binaries. Different versions can be accessed just fine, but I have no access to diff functionality because Git doesn’t understand what has changed between two versions. Not to mention, most programmers will...</description>
-        <pubDate>Sun, 25 Oct 2015 13:03:02 +0800</pubDate>
-        <link>http://hrishioa.github.io/tracking-word-documents-with-git/</link>
-        <guid isPermaLink="true">http://hrishioa.github.io/tracking-word-documents-with-git/</guid>
-        
-        <category>Git</category>
-        
-        <category>TextUtil</category>
-        
-        <category>Word</category>
-        
-        <category>Pandoc</category>
-        
-        
-        <category>Quick Hacks</category>
-        
-      </item>
-    
-      <item>
-        <title>Using the Internet of Things for measuring Worker Safety</title>
-        <description>&lt;p&gt;I hate using the phrase “Internet of Things”, but I must admit that it has gotten a lot easier to do so, having used it so many times during, *sigh* &lt;a href=&quot;http://iothackathon.sg/&quot;&gt;The Internet of Things hackathon&lt;/a&gt;. During the hackathon, we were given different pieces of hardware, a collection of sensors and asked to build sometthing related to one of three themes: &lt;strong&gt;Transport, Health and Construction&lt;/strong&gt;. We arrived at the hackathon, and realised that due to the preliminary selection process, there were a total of 10 teams. &lt;em&gt;For six prizes&lt;/em&gt;. One for each category, and a 1st, 2nd and 3rd prize...</description>
-        <pubDate>Sun, 11 Oct 2015 10:24:55 +0800</pubDate>
-        <link>http://hrishioa.github.io/using-the-internet-of-things-for-measuring-worker-safety/</link>
-        <guid isPermaLink="true">http://hrishioa.github.io/using-the-internet-of-things-for-measuring-worker-safety/</guid>
-        
-        <category>IOT</category>
-        
-        <category>Hackathon</category>
-        
-        <category>LinkIT One</category>
-        
-        <category>Dweet</category>
-        
-        <category>Hardware</category>
-        
-        
-        <category>Hackathon Stories</category>
+        <category>Guides</category>
         
       </item>
     

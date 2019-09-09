@@ -3,11 +3,13 @@ layout: post
 title: "Automating Git Commits"
 date: 2016-03-11 20:39:37
 image: 'gitauto/banner.png'
+share_image: 'gitauto/banner.png'
 description: "Quick look at the why and the how" 
 tags: 
 - Git
 - Python
 categories:
+- Hacks of Life
 twitter_text:
 ---
 

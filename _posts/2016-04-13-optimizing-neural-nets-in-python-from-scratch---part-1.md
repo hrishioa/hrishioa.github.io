@@ -3,7 +3,8 @@ layout: post
 title: "Optimizing Neural Nets in Python from Scratch"
 date: 2016-04-13 22:26:17
 image: 'neural-banner.jpeg'
-description: Part 1 - Looking at CPU Speedup
+share_image: 'neural-banner.jpeg'
+description: "Part 1 - Looking at CPU Speedup"
 tags:
 - Neural Nets
 - ATLAS
@@ -12,6 +13,7 @@ tags:
 - Numpy
 - Python
 categories:
+- Software Builds
 twitter_text:
 ---
 

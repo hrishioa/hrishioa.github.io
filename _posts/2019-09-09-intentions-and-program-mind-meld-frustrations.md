@@ -4,9 +4,15 @@ title: "Intentions and Program Mind-Meld Frustrations"
 date: 2019-09-08 00:45:31
 image: 'MindMeld/nano.png'
 share_image: 'MindMeld/nano.png'
-description:
+description: "Why some ecosystems stick and others don't"
 tags:
+- Python
+- NodeJS
+- Nano
+- EMACS
+- VIM
 categories:
+- Rants
 twitter_text:
 ---
 

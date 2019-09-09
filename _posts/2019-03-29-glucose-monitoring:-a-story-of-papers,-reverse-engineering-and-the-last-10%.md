@@ -3,9 +3,17 @@ layout: post
 title: "Juventus: Glucose worries in Chiang Mai and the beginning of the biggest brownie point scheme ever"
 date: 2019-03-03 18:45:15
 image: 'Glucose/back1.png'
-description:
+share_image: 'Glucose/back1.png'
+description: 
 tags:
+- Freestyle Libre
+- Diabetes
+- Continuous Glucose Monitoring
+- Juventus
+- Ionic
 categories:
+- Software Builds
+- Hacks of Life
 twitter_text:
 ---
 

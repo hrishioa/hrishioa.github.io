@@ -4,14 +4,14 @@ title: "Building an Arc Reactor"
 date: 2017-10-22 03:32:40
 image: 'ArcReactor/IMG_8589.JPG'
 share_image: 'ArcReactor/IMG_8589.JPG'
-description: Not really, just a list of mistakes
+description: "Not really, just a list of mistakes"
 tags: 
-- Movies are cool
 - Iron Man
 - Movies
 - Randomness
 - Arc Reactor
 categories:
+- Hardware Builds
 twitter_text:
 ---
 

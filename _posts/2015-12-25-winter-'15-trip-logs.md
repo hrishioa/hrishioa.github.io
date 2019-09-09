@@ -3,9 +3,12 @@ layout: post
 title: "Winter '15 Trip Logs"
 date: 2015-12-25 19:27:44
 image: 'TripLogs/IMG_9256.jpg'
-description: Winter Trip Logs
+description: "Across India on a motorbike"
 tags:
+- Motorcycle Trips
+- Travelogues
 categories:
+- On a Bike
 twitter_text:
 ---
 

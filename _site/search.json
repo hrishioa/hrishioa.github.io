@@ -1,16 +1,96 @@
 [
   
     {
+      "title"    : "Intentions and Program Mind-Meld Frustrations",
+      "category" : "Rants",
+      "tags"     : "Python, NodeJS, Nano, EMACS, and VIM",
+      "url"      : "/intentions-and-program-mind-meld-frustrations/",
+      "date"     : "08 Sep 2019"
+    } ,
+  
+    {
+      "title"    : "We&#39;re moving to Go",
+      "category" : "Rants",
+      "tags"     : "Go",
+      "url"      : "/were-moving-to-go/",
+      "date"     : "13 Jun 2019"
+    } ,
+  
+    {
+      "title"    : "Juventus: Glucose worries in Chiang Mai and the beginning of the biggest brownie point scheme ever",
+      "category" : "Software BuildsHacks of Life",
+      "tags"     : "Freestyle Libre, Diabetes, Continuous Glucose Monitoring, Juventus, and Ionic",
+      "url"      : "/glucose-monitoring-a-story-of-papers,-reverse-engineering-and-the-last-10/",
+      "date"     : "04 Mar 2019"
+    } ,
+  
+    {
+      "title"    : "Debugging Node.js in Production: Anatomy of a bug hunt",
+      "category" : "RantsTales of Work and Woe",
+      "tags"     : "NodeJS, Debugging, Zork, Trainify, Power Uncle, and Bootbot",
+      "url"      : "/debugging-node-in-production-anatomy-of-a-bug-hunt/",
+      "date"     : "02 Feb 2019"
+    } ,
+  
+    {
+      "title"    : "Beauty to an Artificial Intelligence",
+      "category" : "Rants",
+      "tags"     : "Artificial Intelligence, AI, Singularity, and Zen and The Art of Motorcycle Maintenance",
+      "url"      : "/quality-to-an-artificial-intelligence/",
+      "date"     : "01 Jan 2019"
+    } ,
+  
+    {
+      "title"    : "Dead Money: The problem at the heart of crypto",
+      "category" : "Rants",
+      "tags"     : "Cryptocurrencies, Ethereum, and Fractional Reserve Banking",
+      "url"      : "/dead-money-the-problem-at-the-heart-of-crypto/",
+      "date"     : "05 Sep 2018"
+    } ,
+  
+    {
+      "title"    : "Converse: An easy sentiment analysis library for Messenger",
+      "category" : "Software Builds",
+      "tags"     : "Pypi, Releases, Converse, Sentiment Analysis, Messenger, and Entity Extraction",
+      "url"      : "/converse-an-easy-sentiment-analysis-library-for-messenger/",
+      "date"     : "21 Jul 2018"
+    } ,
+  
+    {
+      "title"    : "Development across platforms with Docker",
+      "category" : "Hacks of Life",
+      "tags"     : "Docker, Virtualization, Oyente, Jekyll, and Containers",
+      "url"      : "/making-cross-platform-development-easy-and-hard-with-docker/",
+      "date"     : "05 Jan 2018"
+    } ,
+  
+    {
+      "title"    : "Building an Arc Reactor",
+      "category" : "Hardware Builds",
+      "tags"     : "Iron Man, Movies, Randomness, and Arc Reactor",
+      "url"      : "/building-an-arc-reactor/",
+      "date"     : "22 Oct 2017"
+    } ,
+  
+    {
+      "title"    : "Investing in Crypto: A Personal Guide",
+      "category" : "Guides",
+      "tags"     : "Cryptocurrencies and Investment",
+      "url"      : "/investing-in-crypto-a-personal-guide/",
+      "date"     : "21 Oct 2017"
+    } ,
+  
+    {
       "title"    : "Goosebumps: Realizing Extrasensory Perception",
-      "category" : "",
-      "tags"     : "",
+      "category" : "Hardware Builds",
+      "tags"     : "Human Computer Interaction, SensX, and Paperwork",
       "url"      : "/goosebumps-towards-building-a-new-sense/",
       "date"     : "01 Oct 2017"
     } ,
   
     {
       "title"    : "Talk: Singularity and The Blockchain",
-      "category" : "",
+      "category" : "Voice Builds",
       "tags"     : "Singularity, Blockchain, Bitcoin, Ethereum, Talk, FAYA, and Singularity University",
       "url"      : "/talk-singularity-and-the-blockchain/",
       "date"     : "20 Sep 2017"
@@ -18,15 +98,15 @@
   
     {
       "title"    : "Update on Oyente",
-      "category" : "",
-      "tags"     : "Oyente, Projects, and Ethereum",
-      "url"      : "/video-test/",
+      "category" : "Voice BuildsSoftware Builds",
+      "tags"     : "Oyente, Projects, Ethereum, Cryptocurrency, and Paperwork",
+      "url"      : "/oyente-update/",
       "date"     : "02 Sep 2017"
     } ,
   
     {
       "title"    : "Optimizing Neural Nets in Python from Scratch",
-      "category" : "",
+      "category" : "Software Builds",
       "tags"     : "Neural Nets, ATLAS, BLAS, LAPACK, Numpy, and Python",
       "url"      : "/optimizing-neural-nets-in-python-from-scratch-part-1/",
       "date"     : "14 Apr 2016"
@@ -34,7 +114,7 @@
   
     {
       "title"    : "Automating Git Commits",
-      "category" : "",
+      "category" : "Hacks of Life",
       "tags"     : "Git and Python",
       "url"      : "/automating-git-commits/",
       "date"     : "12 Mar 2016"
@@ -42,48 +122,48 @@
   
     {
       "title"    : "Decapitating Raspberry Pis with nomohead",
-      "category" : "",
+      "category" : "Hacks of Life",
       "tags"     : "Raspberry Pi, ngrok, and IoT",
       "url"      : "/decapitating-raspberry-pis-with-nomohead/",
       "date"     : "11 Feb 2016"
     } ,
   
     {
-      "title"    : "Ride-sharing on the Blockchain - Part 1",
-      "category" : "Gruber",
-      "tags"     : "Ethereum, Blockchain, Uber, and HacknRoll",
+      "title"    : "Ride-sharing on the Blockchain",
+      "category" : "Hackathon Stories",
+      "tags"     : "Cryptocurrency, Ethereum, Blockchain, Uber, and HacknRoll",
       "url"      : "/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/",
       "date"     : "31 Jan 2016"
     } ,
   
     {
       "title"    : "Winter &#39;15 Trip Logs",
-      "category" : "",
-      "tags"     : "",
+      "category" : "On a Bike",
+      "tags"     : "Motorcycle Trips and Travelogues",
       "url"      : "/winter-'15-trip-logs/",
       "date"     : "26 Dec 2015"
     } ,
   
     {
       "title"    : "Tracking Word Documents with Git",
-      "category" : "Quick Hacks",
+      "category" : "Hacks of LifeBuilding Stuff",
       "tags"     : "Git, TextUtil, Word, and Pandoc",
       "url"      : "/tracking-word-documents-with-git/",
       "date"     : "25 Oct 2015"
     } ,
   
     {
-      "title"    : "Using the Internet of Things for measuring Worker Safety",
-      "category" : "Hackathon Stories",
+      "title"    : "An IoT system for construction worker safety",
+      "category" : "Hackathon StoriesHardware Builds",
       "tags"     : "IOT, Hackathon, LinkIT One, Dweet, and Hardware",
       "url"      : "/using-the-internet-of-things-for-measuring-worker-safety/",
       "date"     : "11 Oct 2015"
     } ,
   
     {
-      "title"    : "Implementing a Lucas-Kanade tracker from Scratch",
-      "category" : "Implementing Optical Flow",
-      "tags"     : "Lucas-Kanade, Optical Flow, C++, and XCode",
+      "title"    : "Implementing a Lucas-Kanade tracker from scratch",
+      "category" : "Software Builds",
+      "tags"     : "Lucas-Kanade, Optical Flow, Computer Vision, C++, and XCode",
       "url"      : "/implementing-a-lucas-kanade-tracker-from-scratch/",
       "date"     : "06 Oct 2015"
     } 

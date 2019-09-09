@@ -3,14 +3,16 @@ layout: post
 title: "Tracking Word Documents with Git"
 date: 2015-10-25 05:03:02
 image: 'TextUtilGit/banner.png'
-description:
+share_image: 'TextUtilGit/banner.png'
+description: "Version controlling meaningful blobs"
 tags:
 - Git
 - TextUtil
 - Word
 - Pandoc
 categories:
-- Quick Hacks
+- Hacks of Life
+- Building Stuff
 twitter_text:
 ---
  

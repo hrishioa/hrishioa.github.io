@@ -1,16 +1,18 @@
 ---
 layout: post
-title: "Implementing a Lucas-Kanade tracker from Scratch"
+title: "Implementing a Lucas-Kanade tracker from scratch"
 date: 2015-10-05 22:11:19
 image: 'LucasKanade/banner.jpeg'
+share_image: 'LucasKanade/banner.jpeg'
 description: 'Understanding the basics of Optical Flow and XCode'
 tags: 
 - Lucas-Kanade
 - Optical Flow
+- Computer Vision
 - C++
 - XCode
 categories:
-- Implementing Optical Flow
+- Software Builds
 twitter_text:
 ---
 # Theory
@@ -63,7 +65,7 @@ Now, we have more equations than we have unknowns. Once again, the assumption of
 
 We need to identify points where motion can be detected in successive frames. It stands to reason that motion can be detected easily in corners, as there may not be enough detection in uniform areas within the tracked object. 
 
-The science of corner detection is almost as deep as that of opical flow, and the two often go hand in hand. For this implementation, as we're focusing on Optical Flow (and because of my inexperience), we're going to pick the simplest. [Moravec Corner-Detection][morawiki] makes the assumption that a corner is a point of low self-similarity. There are many complex mathematical implementations of this, but we're simply looking for a few corners so we can see our algorithm in action. But before we do that, we need to set up.
+The science of corner detection is almost as deep as that of optical flow, and the two often go hand in hand. For this implementation, as we're focusing on Optical Flow (and because of my inexperience), we're going to pick the simplest. [Moravec Corner-Detection][morawiki] makes the assumption that a corner is a point of low self-similarity. There are many complex mathematical implementations of this, but we're simply looking for a few corners so we can see our algorithm in action. But before we do that, we need to set up.
 
 # Implementation
 
@@ -90,7 +92,7 @@ Implementation here is quite easy. Here's a simplified version of the full syste
 {% highlight C++ %}
 deque<Point> findCorners(Mat img, int xarea, int yarea, int thres, bool verbose=true) {
         deque<Point> corners;
-        
+
         ofstream log; //This will be used for dumping raw data for corner analysis
         log.open("log.csv");
         log << "x,y,score1,score2\n";
@@ -135,10 +137,10 @@ deque<Point> findCorners(Mat img, int xarea, int yarea, int thres, bool verbose=
                             break;
                     }
                     Mat newarea = img(Range(newsy,min(newsy+yarea,dimy)),Range(newsx,min(newsx+xarea,dimx)));
-
+    
                     if(newarea.cols!=curarea.cols || newarea.rows!=curarea.rows)
                         continue;
-
+    
                     Mat diff = abs(curarea-newarea);
                     results[dir%2] = mean(mean(diff))(0);
                 }

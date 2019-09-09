@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "Using the Internet of Things for measuring Worker Safety"
+title: "An IoT system for construction worker safety"
 date: 2015-10-11 02:24:55
 image: 'IOTHacks/pitch-dashboard.png'
-description:
+share_image: 'IOTHacks/pitch-dashboard.png'
+description: "Anatomy of a hackathon"
 tags:
 - IOT
 - Hackathon
@@ -12,6 +13,7 @@ tags:
 - Hardware
 categories:
 - Hackathon Stories
+- Hardware Builds
 twitter_text:
 ---
 
@@ -94,16 +96,16 @@ Our JSON Builder was mostly our editor, but we didn't want to incur the memory p
 
 Before we could test it, we needed to collect data from our sensors. This proved to be quite straightforward, and (after an hour of looking for valid libraries) we wrote some I2C code ourselves that managed this task. The complete code is at the link at the end of this post, and it's fairly long.
 
-We then ran a few tests and found that the POST requests held up the system for as much as two seconds, and we implemented interrupt routines that simply averaged the data over this period of time. We reduced our resolution a great deal in doing this, but none of the data would be lost. Given time, we wanted to implement transient detection and noise reduction, but we decided to leave it for another day.
+We then ran a few tests and found that the POST requests held up the system for as much as two seconds, and we implemented interrupt routines that simply averaged the data over this period of time. We reduced our resolution a great deal in doing this, but none of the data would be lost. Given time, we wanted to implement transient and noise reduction, but we decided to leave it for another day.
 
-Now that we were successfully accessing sensor data and uploading it to our front-end, we needed to perform analytics that would hide raw data from the consumer and prevent exploitation. For this end we implemented two singular scores on each side. The first we called the `Safety Score`. In a number, it would provide an analysis of worker safety conditions. The closer to zero you are, the safer you are.
+Now that we were successfully accessing sensor data and uploading it to our front-end, we needed to perform analytics that would hide raw data from the consumer and prevent exploitation. For this end we implemented two singular scores on each side. The first we called the `Safety Score`. In a number, it would provide an analysis of worker safety conditions. The closer you are to zero, the safer your conditions.
 
 {% highlight C++ %}
 temp_var = ((temp_var*datapoints)+abs(temp-ideal_temp))/(datapoints+1);
 humid_var += ((temp_var*datapoints)+abs(humid-ideal_humid))/(datapoints+1);
 if(avg_accel > accel_thres)
   accel_var++;
-  
+
 safety_score = ((temp_var*0.001)+(humid_var*0.001)+(accel_var*0.1));
 {% endhighlight %}
 
@@ -118,7 +120,7 @@ if(avg_accel>max_accel)
   max_accel=avg_accel;
 if(avg_accel<min_accel)
   min_accel=avg_accel;
-  
+
 if(avg_accel>((max_accel+min_accel)/2))
   points_above++;
 else

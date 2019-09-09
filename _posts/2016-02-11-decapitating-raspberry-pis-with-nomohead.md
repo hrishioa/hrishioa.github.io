@@ -3,12 +3,14 @@ layout: post
 title: "Decapitating Raspberry Pis with nomohead"
 date: 2016-02-11 05:24:08
 image: 'nomohead/piimg.jpeg'
-description:
+share_image: 'nomohead/piimg.jpeg'
+description: "Or why it shouldn't be so hard to do this"
 tags:
 - Raspberry Pi
 - ngrok
 - IoT
 categories:
+- Hacks of Life
 twitter_text:
 ---
 

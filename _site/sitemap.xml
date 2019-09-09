@@ -2,47 +2,87 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	
 	  <url>
-		<loc>http://hrishioa.github.io/goosebumps-towards-building-a-new-sense/</loc>
+		<loc>http://localhost:3000/intentions-and-program-mind-meld-frustrations/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://hrishioa.github.io/talk-singularity-and-the-blockchain/</loc>
+		<loc>http://localhost:3000/were-moving-to-go/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://hrishioa.github.io/video-test/</loc>
+		<loc>http://localhost:3000/glucose-monitoring-a-story-of-papers,-reverse-engineering-and-the-last-10/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://hrishioa.github.io/optimizing-neural-nets-in-python-from-scratch-part-1/</loc>
+		<loc>http://localhost:3000/debugging-node-in-production-anatomy-of-a-bug-hunt/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://hrishioa.github.io/automating-git-commits/</loc>
+		<loc>http://localhost:3000/quality-to-an-artificial-intelligence/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://hrishioa.github.io/decapitating-raspberry-pis-with-nomohead/</loc>
+		<loc>http://localhost:3000/dead-money-the-problem-at-the-heart-of-crypto/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://hrishioa.github.io/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/</loc>
+		<loc>http://localhost:3000/converse-an-easy-sentiment-analysis-library-for-messenger/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://hrishioa.github.io/winter-'15-trip-logs/</loc>
+		<loc>http://localhost:3000/making-cross-platform-development-easy-and-hard-with-docker/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://hrishioa.github.io/tracking-word-documents-with-git/</loc>
+		<loc>http://localhost:3000/building-an-arc-reactor/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://hrishioa.github.io/using-the-internet-of-things-for-measuring-worker-safety/</loc>
+		<loc>http://localhost:3000/investing-in-crypto-a-personal-guide/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://hrishioa.github.io/implementing-a-lucas-kanade-tracker-from-scratch/</loc>
+		<loc>http://localhost:3000/goosebumps-towards-building-a-new-sense/</loc>
+	  </url>
+	
+	  <url>
+		<loc>http://localhost:3000/talk-singularity-and-the-blockchain/</loc>
+	  </url>
+	
+	  <url>
+		<loc>http://localhost:3000/oyente-update/</loc>
+	  </url>
+	
+	  <url>
+		<loc>http://localhost:3000/optimizing-neural-nets-in-python-from-scratch-part-1/</loc>
+	  </url>
+	
+	  <url>
+		<loc>http://localhost:3000/automating-git-commits/</loc>
+	  </url>
+	
+	  <url>
+		<loc>http://localhost:3000/decapitating-raspberry-pis-with-nomohead/</loc>
+	  </url>
+	
+	  <url>
+		<loc>http://localhost:3000/ethereum-and-uber-building-a-decentralized-ride-sharing-platform-on-the-blockchain/</loc>
+	  </url>
+	
+	  <url>
+		<loc>http://localhost:3000/winter-'15-trip-logs/</loc>
+	  </url>
+	
+	  <url>
+		<loc>http://localhost:3000/tracking-word-documents-with-git/</loc>
+	  </url>
+	
+	  <url>
+		<loc>http://localhost:3000/using-the-internet-of-things-for-measuring-worker-safety/</loc>
+	  </url>
+	
+	  <url>
+		<loc>http://localhost:3000/implementing-a-lucas-kanade-tracker-from-scratch/</loc>
 	  </url>
 	
 </urlset>

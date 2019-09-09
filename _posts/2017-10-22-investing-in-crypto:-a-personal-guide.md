@@ -9,6 +9,7 @@ tags:
 - Cryptocurrencies
 - Investment
 categories:
+- Guides
 twitter_text:
 ---
 

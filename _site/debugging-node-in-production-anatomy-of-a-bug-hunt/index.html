@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Debugging Node.js in Production: Anatomy of a bug hunt</title>
+    <meta name="description" content="A glorious experience in desperation">
+
+    <!-- Google Authorship Markup -->
+    <link rel="author" href="https://plus.google.com/+?rel=author">
+
+    <!-- Social: Facebook / Open Graph -->
+    <meta property="og:url" content="http://localhost:3000/debugging-node-in-production-anatomy-of-a-bug-hunt/">
+    <meta property="og:title" content="Debugging Node.js in Production: Anatomy of a bug hunt">
+    
+    <meta property="og:image" content="http://localhost:3000/assets/img/DebugNode/cover.jpeg">
+    
+    <meta property="og:image:height" content="200">
+    <meta property="og:image:width" content="200">    
+    <meta property="og:description" content="A glorious experience in desperation">
+    <meta property="og:site_name" content="">
+
+    <!-- Social: Google+ / Schema.org  -->
+    <meta itemprop="name" content="Debugging Node.js in Production: Anatomy of a bug hunt"/>
+    <meta itemprop="description" content="A glorious experience in desperation">
+    <meta itemprop="image" content="http://localhost:3000/assets/img/blog-image.png"/>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/img/icons/favicon.ico" type="image/x-icon" />
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/img/icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/icons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/icons/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/icons/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/icons/apple-touch-icon-152x152.png" />
+    <!-- Windows 8 Tile Icons -->
+    <meta name="application-name" content="hrishioa Blog">
+    <meta name="msapplication-TileColor" content="#0562DC">
+    <meta name="msapplication-square70x70logo" content="smalltile.png" />
+    <meta name="msapplication-square150x150logo" content="mediumtile.png" />
+    <meta name="msapplication-wide310x150logo" content="widetile.png" />
+    <meta name="msapplication-square310x310logo" content="largetile.png" />
+    <!-- Android Lolipop Theme Color -->
+    <meta name="theme-color" content="#0562DC">
+
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="canonical" href="http://localhost:3000/debugging-node-in-production-anatomy-of-a-bug-hunt/">
+    <link rel="alternate" type="application/rss+xml" title="" href="http://localhost:3000/feed.xml" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+    <body>
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69264120-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" display="none" version="1.1"><defs><symbol id="icon-menu" viewBox="0 0 1024 1024"><path class="path1" d="M128 213.333h768q17.667 0 30.167 12.5t12.5 30.167-12.5 30.167-30.167 12.5h-768q-17.667 0-30.167-12.5t-12.5-30.167 12.5-30.167 30.167-12.5zM128 725.333h768q17.667 0 30.167 12.5t12.5 30.167-12.5 30.167-30.167 12.5h-768q-17.667 0-30.167-12.5t-12.5-30.167 12.5-30.167 30.167-12.5zM128 469.333h768q17.667 0 30.167 12.5t12.5 30.167-12.5 30.167-30.167 12.5h-768q-17.667 0-30.167-12.5t-12.5-30.167 12.5-30.167 30.167-12.5z"/></symbol><symbol id="icon-search" viewBox="0 0 951 1024"><path class="path1" d="M658.286 475.429q0-105.714-75.143-180.857t-180.857-75.143-180.857 75.143-75.143 180.857 75.143 180.857 180.857 75.143 180.857-75.143 75.143-180.857zM950.857 950.857q0 29.714-21.714 51.429t-51.429 21.714q-30.857 0-51.429-21.714l-196-195.429q-102.286 70.857-228 70.857-81.714 0-156.286-31.714t-128.571-85.714-85.714-128.571-31.714-156.286 31.714-156.286 85.714-128.571 128.571-85.714 156.286-31.714 156.286 31.714 128.571 85.714 85.714 128.571 31.714 156.286q0 125.714-70.857 228l196 196q21.143 21.143 21.143 51.429z"/></symbol><symbol id="icon-email" viewBox="0 0 1024 1024"><path class="path1" d="M950.857 859.429v-438.857q-18.286 20.571-39.429 37.714-153.143 117.714-243.429 193.143-29.143 24.571-47.429 38.286t-49.429 27.714-58.571 14h-1.143q-27.429 0-58.571-14t-49.429-27.714-47.429-38.286q-90.286-75.429-243.429-193.143-21.143-17.143-39.429-37.714v438.857q0 7.429 5.429 12.857t12.857 5.429h841.143q7.429 0 12.857-5.429t5.429-12.857zM950.857 258.857v-14t-0.286-7.429-1.714-7.143-3.143-5.143-5.143-4.286-8-1.429h-841.143q-7.429 0-12.857 5.429t-5.429 12.857q0 96 84 162.286 110.286 86.857 229.143 181.143 3.429 2.857 20 16.857t26.286 21.429 25.429 18 28.857 15.714 24.571 5.143h1.143q11.429 0 24.571-5.143t28.857-15.714 25.429-18 26.286-21.429 20-16.857q118.857-94.286 229.143-181.143 30.857-24.571 57.429-66t26.571-75.143zM1024 237.714v621.714q0 37.714-26.857 64.571t-64.571 26.857h-841.143q-37.714 0-64.571-26.857t-26.857-64.571v-621.714q0-37.714 26.857-64.571t64.571-26.857h841.143q37.714 0 64.571 26.857t26.857 64.571z"/></symbol><symbol id="icon-close" viewBox="0 0 805 1024"><path class="path1" d="M741.714 755.429q0 22.857-16 38.857l-77.714 77.714q-16 16-38.857 16t-38.857-16l-168-168-168 168q-16 16-38.857 16t-38.857-16l-77.714-77.714q-16-16-16-38.857t16-38.857l168-168-168-168q-16-16-16-38.857t16-38.857l77.714-77.714q16-16 38.857-16t38.857 16l168 168 168-168q16-16 38.857-16t38.857 16l77.714 77.714q16 16 16 38.857t-16 38.857l-168 168 168 168q16 16 16 38.857z"/></symbol><symbol id="icon-twitter" viewBox="0 0 951 1024"><path class="path1" d="M925.714 233.143q-38.286 56-92.571 95.429 0.571 8 0.571 24 0 74.286-21.714 148.286t-66 142-105.429 120.286-147.429 83.429-184.571 31.143q-154.857 0-283.429-82.857 20 2.286 44.571 2.286 128.571 0 229.143-78.857-60-1.143-107.429-36.857t-65.143-91.143q18.857 2.857 34.857 2.857 24.571 0 48.571-6.286-64-13.143-106-63.714t-42-117.429v-2.286q38.857 21.714 83.429 23.429-37.714-25.143-60-65.714t-22.286-88q0-50.286 25.143-93.143 69.143 85.143 168.286 136.286t212.286 56.857q-4.571-21.714-4.571-42.286 0-76.571 54-130.571t130.571-54q80 0 134.857 58.286 62.286-12 117.143-44.571-21.143 65.714-81.143 101.714 53.143-5.714 106.286-28.571z"/></symbol><symbol id="icon-facebook" viewBox="0 0 585 1024"><path class="path1" d="M548 6.857v150.857h-89.714q-49.143 0-66.286 20.571t-17.143 61.714v108h167.429l-22.286 169.143h-145.143v433.714h-174.857v-433.714h-145.714v-169.143h145.714v-124.571q0-106.286 59.429-164.857t158.286-58.571q84 0 130.286 6.857z"/></symbol><symbol id="icon-rss" viewBox="0 0 805 1024"><path class="path1" d="M219.429 768q0 45.714-32 77.714t-77.714 32-77.714-32-32-77.714 32-77.714 77.714-32 77.714 32 32 77.714zM512 838.286q1.143 16-9.714 27.429-10.286 12-26.857 12h-77.143q-14.286 0-24.571-9.429t-11.429-23.714q-12.571-130.857-105.429-223.714t-223.714-105.429q-14.286-1.143-23.714-11.429t-9.429-24.571v-77.143q0-16.571 12-26.857 9.714-9.714 24.571-9.714h2.857q91.429 7.429 174.857 46t148 103.714q65.143 64.571 103.714 148t46 174.857zM804.571 839.429q1.143 15.429-10.286 26.857-10.286 11.429-26.286 11.429h-81.714q-14.857 0-25.429-10t-11.143-24.286q-6.857-122.857-57.714-233.429t-132.286-192-192-132.286-233.429-58.286q-14.286-0.571-24.286-11.143t-10-24.857v-81.714q0-16 11.429-26.286 10.286-10.286 25.143-10.286h1.714q149.714 7.429 286.571 68.571t243.143 168q106.857 106.286 168 243.143t68.571 286.571z"/></symbol><symbol id="icon-google-plus" viewBox="0 0 951 1024"><path class="path1" d="M420 454.857q0 20.571 18.286 40.286t44.286 38.857 51.714 42 44 59.429 18.286 81.143q0 51.429-27.429 98.857-41.143 69.714-120.571 102.571t-170.286 32.857q-75.429 0-140.857-23.714t-98-78.571q-21.143-34.286-21.143-74.857 0-46.286 25.429-85.714t67.714-65.714q74.857-46.857 230.857-57.143-18.286-24-27.143-42.286t-8.857-41.714q0-20.571 12-48.571-26.286 2.286-38.857 2.286-84.571 0-142.571-55.143t-58-139.714q0-46.857 20.571-90.857t56.571-74.857q44-37.714 104.286-56t124.286-18.286h238.857l-78.857 50.286h-74.857q42.286 36 64 76t21.714 91.429q0 41.143-14 74t-33.714 53.143-39.714 37.143-34 35.143-14 37.714zM336.571 400q21.714 0 44.571-9.429t37.714-24.857q30.286-32.571 30.286-90.857 0-33.143-9.714-71.429t-27.714-74-48.286-59.143-66.857-23.429q-24 0-47.143 11.143t-37.429 30q-26.857 33.714-26.857 91.429 0 26.286 5.714 55.714t18 58.857 29.714 52.857 42.857 38.286 55.143 14.857zM337.714 898.857q33.143 0 63.714-7.429t56.571-22.286 41.714-41.714 15.714-62.286q0-14.286-4-28t-8.286-24-15.429-23.714-16.857-20-22-19.714-20.857-16.571-23.714-17.143-20.857-14.857q-9.143-1.143-27.429-1.143-30.286 0-60 4t-61.429 14.286-55.429 26.286-39.143 42.571-15.429 60.286q0 40 20 70.571t52.286 47.429 68 25.143 72.857 8.286zM800.571 398.286h121.714v61.714h-121.714v125.143h-60v-125.143h-121.143v-61.714h121.143v-124h60v124z"/></symbol><symbol id="icon-angle-down" viewBox="0 0 658 1024"><path class="path1" d="M614.286 420.571q0 7.429-5.714 13.143l-266.286 266.286q-5.714 5.714-13.143 5.714t-13.143-5.714l-266.286-266.286q-5.714-5.714-5.714-13.143t5.714-13.143l28.571-28.571q5.714-5.714 13.143-5.714t13.143 5.714l224.571 224.571 224.571-224.571q5.714-5.714 13.143-5.714t13.143 5.714l28.571 28.571q5.714 5.714 5.714 13.143z"/></symbol><symbol id="icon-github-alt" viewBox="0 0 951 1024"><path class="path1" d="M365.714 694.857q0 22.857-7.143 46.857t-24.571 43.429-41.429 19.429-41.429-19.429-24.571-43.429-7.143-46.857 7.143-46.857 24.571-43.429 41.429-19.429 41.429 19.429 24.571 43.429 7.143 46.857zM731.429 694.857q0 22.857-7.143 46.857t-24.571 43.429-41.429 19.429-41.429-19.429-24.571-43.429-7.143-46.857 7.143-46.857 24.571-43.429 41.429-19.429 41.429 19.429 24.571 43.429 7.143 46.857zM822.857 694.857q0-68.571-39.429-116.571t-106.857-48q-23.429 0-111.429 12-40.571 6.286-89.714 6.286t-89.714-6.286q-86.857-12-111.429-12-67.429 0-106.857 48t-39.429 116.571q0 50.286 18.286 87.714t46.286 58.857 69.714 34.286 80 16.857 85.143 4h96q46.857 0 85.143-4t80-16.857 69.714-34.286 46.286-58.857 18.286-87.714zM950.857 594.286q0 118.286-34.857 189.143-21.714 44-60.286 76t-80.571 49.143-97.143 27.143-98 12.571-95.429 2.571q-44.571 0-81.143-1.714t-84.286-7.143-87.143-17.143-78.286-29.429-69.143-46.286-49.143-65.714q-35.429-70.286-35.429-189.143 0-135.429 77.714-226.286-15.429-46.857-15.429-97.143 0-66.286 29.143-124.571 61.714 0 108.571 22.571t108 70.571q84-20 176.571-20 84.571 0 160 18.286 60-46.857 106.857-69.143t108-22.286q29.143 58.286 29.143 124.571 0 49.714-15.429 96 77.714 91.429 77.714 227.429z"/></symbol></defs></svg>
+
+        
+<header class="header-post" role="banner" style="background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('http://localhost:3000/assets/img/DebugNode/cover.jpeg'); background-attachment: fixed; background-size: cover; background-repeat: no-repeat">
+
+    <div class="content">
+        
+            <time itemprop="datePublished" datetime="2019-02-02 02:51:03 +0000" class="date">02 Feb 2019</time>
+        
+        <h1 class="post-title" itemprop="name">Debugging Node.js in Production: Anatomy of a bug hunt</h1>
+        <p itemprop="description" class="subtitle">A glorious experience in desperation</p>
+    </div>
+     <a class="down" data-scroll href="#scroll"><svg class="icon icon-angle-down"><use xlink:href="#icon-angle-down"></use></svg></a>
+     <div class="search-wrapper">
+    <div class="search-form">
+        <input type="text" class="search-field" placeholder="Search...">
+        <svg class="icon-remove-sign"><use xlink:href="#icon-close"></use></svg>
+        <ul class="search-results search-list"></ul>
+    </div>
+</div>
+
+<div id="fade" class="overlay"></div>
+<a id="slide" class="slideButton fade">
+    <svg id="open" class="icon-menu"><use xlink:href="#icon-menu"></use></svg>
+    <svg id="close" class="icon-menu"><use xlink:href="#icon-close"></use></svg>
+</a>
+<aside id="sidebar">
+<nav id="navigation">
+  <h2>MENU</h2>
+  <ul>
+    
+      <li><a href="http://localhost:3000/">Home</a></li>
+    
+      <li><a href="http://localhost:3000/series">Series</a></li>
+    
+      <li><a href="http://localhost:3000/tags">Tags</a></li>
+    
+      <li><a href="http://localhost:3000/about">About Me</a></li>
+    
+    <li><a class="feed" href="http://localhost:3000/feed.xml" title="Atom/RSS feed">Feed</a></li>
+  </ul>
+</nav>
+</aside>
+<a id="search" class="dosearch">
+    <svg class="icon-menu icon-search"><use xlink:href="#icon-search"></use></svg>
+</a>
+</header>
+
+        <section class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <article role="article" id="scroll" class="post-content" itemprop="articleBody">
+                <h1 id="background">Background</h1>
+
+<p>One of last weekend’s projects was building a messenger bot. I’d tried to build one before, but never really started coding as none of the projects I had in mind really worked well with the format of a chatbot. As with blockchain or any emerging technology, trying to shove a new piece of tech into something when it doesn’t fit isn’t a pleasent experience. So I’d left it for a while, and I had built the backend of some bots recently - <a href="https://m.me/608739242899742">Trainify</a> and <a href="https://m.me/powerunclesg">Power Uncle</a> (both of which I might write about at some point - Trainify got 3000 users in two days but it raised more problems than it solved). I built something else called WifePoints (really really weird story there, but let’s just say it’s currently just internal use). I thought I’d give it another shot, and started on Zork.</p>
+
+<p><img src="http://localhost:3000/assets/img/DebugNode/zork-banner.jpg" alt="zork screenshot" /></p>
+
+<p><a href="https://en.wikipedia.org/wiki/Zork">Zork</a> - which might be familiar if you were gaming before TTYs went away as the default user interface - was a brainchild of the 70s, when non-learning NLP was starting to take off through projects like itself and <a href="https://en.wikipedia.org/wiki/ELIZA">ELIZA</a> before it. With incredibly light and decently good text processing for its time, Zork (and later Zork II and III) were interactive text worlds with monsters, dark rooms, complex puzzles and amazing adventures. If you’ve never played one, it was somewhat like playing Dungeons and Dragons over text with a smart but pedantic dungeon master. If you’ve never played one of those, it was exactly like Fortnite.</p>
+
+<p>Having been a fan of the game, it seemed like a good fit for a messenger bot. The interface was designed for text, small responses and immersive storytelling with light NLP. So while it didn’t turn out as easy I’d expected it to, I ended up building one for Messenger.</p>
+
+<p><img src="http://localhost:3000/assets/img/DebugNode/threed_mockup.png" alt="zork messenger screenshot" /></p>
+
+<h1 id="build">Build</h1>
+
+<p>I’ll give a quick overview of the build and the tech stack here, with some of the challenges therein. I initially expected this to be easy. With a game as popular as Zork and as old I expected to find source code I could port over and run. But it turns out the best I could find for source was <a href="https://github.com/devshane/zork">the original source code</a> written for the <a href="https://en.wikipedia.org/wiki/PDP-10">PDP-10</a>, which if you’ve never heard of it is a wire-wrapped tape-run beast of a machine, with a 36-bit word length and 1 microsecond cycle time (1 microsecond really) that looked like this:</p>
+
+<p><img src="http://localhost:3000/assets/img/DebugNode/PDP10.jpg" alt="zork messenger screenshot" /></p>
+
+<p>The source code I found was thankfully ported from its original FORTRAN to C, but it was quickly clear that getting this up and running was already a weekend project in itself. And did I say ported? I meant translated. This is GOTO style C code that is a lot closer to assembly than modern C - I’ll take it any day over Android disassembly, but not exactly a dream.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">L5000:</span>
+    <span class="n">more_output</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"V%1d.%1d%c</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">vers_1</span><span class="p">.</span><span class="n">vmaj</span><span class="p">,</span> <span class="n">vers_1</span><span class="p">.</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vers_1</span><span class="p">.</span><span class="n">vedit</span><span class="p">);</span>
+    <span class="n">play_1</span><span class="p">.</span><span class="n">telflg</span> <span class="o">=</span> <span class="n">TRUE_</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">ret_val</span><span class="p">;</span>
+
+<span class="cm">/* V75--	SWIM.  ALWAYS A JOKE. */</span>
+
+<span class="n">L6000</span><span class="o">:</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">330</span><span class="p">;</span>
+<span class="cm">/* 						!ASSUME WATER. */</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">rooms_1</span><span class="p">.</span><span class="n">rflag</span><span class="p">[</span><span class="n">play_1</span><span class="p">.</span><span class="n">here</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">RWATER</span> <span class="o">+</span> <span class="n">RFILL</span><span class="p">)</span> <span class="o">==</span> 
+	    <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">i</span> <span class="o">=</span> <span class="n">rnd_</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">331</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">rspeak_</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">ret_val</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Moving on, I found two ports, the <a href="https://github.com/bburns/Lantern/blob/master/src/lantern.py">first</a> from <a href="https://en.wikipedia.org/wiki/MDL_(programming_language)">Muddle</a>, which I had to look up. Turned out to be a LISP dialect (oh one of those, let me just get my trusty LISP interpreter out - wait which one), and the other was a half-completed python port that barely said hi. ZORK is available on emulators online, so I tried accessing those, but it turns out most of them run full emulator binaries with the image loaded into your browser (what a time to be alive, really)! Finally, just as I was about to declare defeat, it turned out that Infocom has open-sourced <a href="https://davidgriffith.gitlab.io/frotz/">Frotz</a>, a <a href="https://en.wikipedia.org/wiki/Z-machine">Z-Machine</a> interpreter - also from the 70s, made for and partly named after Zork. Z-Machine is a virtual machine for text-based games, with its own instruction set - I guess before DSLs we had Domain Specific Machines. Frotz has some support available, and to my delight two lightly (and that’s being generous) maintained interface packages for Node, which look suspiciously like <a href="https://www.npmjs.com/package/frotz-interfacer">each</a> <a href="https://www.npmjs.com/package/node-frotz">other</a>. What’s more, they seem to be from different developers but the quick start code for one uses the other package instead of itself. Never a dull day in Nodeland.</p>
+
+<p>The system was not without its benefits though. Each time a call to Zork is made, the package spins up a new instance of frotz through a child process, loads a save, runs the input, returns the output, saves the game and exits. Ordinarily this would be extremely wasteful for a continuous game - and it is, but in this case it was a rather large feature and not a bug for me. This meant that the calls could be truly stateless with local persistence built in, and if I managed saves per user, I wouldn’t really have to worry about scaling or intermediate termination and concurrency issues.</p>
+
+<p>So I implemented it into a simple Node program that basically connected a <a href="https://github.com/Charca/bootbot">Bootbot</a> instance (beautifully done package for creating bots, only problem is with multiple workers) with the package and some basic user management and analytics, and I was done. The real operating core of the program was less than 200 lines, and I was happy. The original code (all 178 lines of it) is <a href="https://github.com/hrishioa/zorkbot/blob/1e17c3abf2cdb9dc1a0fbd34106efc7b5c07adcc/app.js">here</a>, but I wouldn’t recommend you run it as is, for reasons that will be clearer soon.</p>
+
+<p>All was good. I had some friends test it out, and no problems really emerged. I decided I’d leave scaling for later (if ever), called it a night and moved on to polishing. Decent output for a few hours of work, I had support for all three versions of Zork, some save management and everything seemed good.</p>
+
+<h1 id="problems">Problems</h1>
+
+<p><img src="http://localhost:3000/assets/img/DebugNode/grue.jpg" alt="grue" /></p>
+
+<p>As I used it for a day or two, I noticed that the bot would stop responding when talking to Zork every now and then. Seemed like a standard dropped connection. I knew that Facebook would sometimes wait a while, then bundle responses and send them over all at once so I presumed it was the bootbot instance either <strong>a</strong>. trying to send multiple commands to Zork, or <strong>b</strong>. sending them individually and the frotz instances were having problems taking a lock (or a goddamn mutex for all I knew) for the same savefile at the same time. I thought it might be an easy fix with a delay or some checking, left it for later. Part of me wondered if it was a memory issue with the small cloud instance I was using for a server. All put, I kind of lied in the title - this was production in that the bot was released, but it was far from a production-grade stack. I was using pm2 to cluster manage instances of node that were sitting behind a free pipe to ngrok (so I could get over SSL restrictions from a naked IP), and running barely supported npm packages that weren’t even tested for my current version of Node. In fact, Bootbot liked one version and frotz-interfacer liked another. I ended up shafting the more pliable of the two - which turned out to be frotz-interfacer - and going with Bootbot’s preference. So yeah, largely a house of sticks built on a soap bubble. I deserve my life.</p>
+
+<p>Then came Friday, and I had somewhat of a surprise looking at the user retention. The bot had been passed around a fair bit, and users were actually interacting and coming back to talk to the bot. The average user had already exchanged over 700 messages, and my girlfriend seemed to be completing missions left and right (I still suspect she was looking up walkthroughs, but I can’t prove it - yet). I should probably fix that bug.</p>
+
+<p>I looked at the logs. This wasn’t a bug that was easy to reproduce to begin with, in that it occurred randomly while you were talking to the bot. Looking at the error logs, it seemed that whenever it occurred, the node process spit out the following message and promptly died. No crash report, nothing else. Just sudden death.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>events.js:72
+        throw er<span class="p">;</span> // Unhandled <span class="s1">'error'</span> event
+              ^
+Error: <span class="nb">read </span>ECONNRESET
+    at errnoException <span class="o">(</span>net.js:901:11<span class="o">)</span>
+    at Pipe.onread <span class="o">(</span>net.js:556:19<span class="o">)</span>
+e
+</code></pre></div></div>
+
+<p>That e at the end isn’t a typo - sometimes the process would die in the middle of printing the error message. It never really got past the e, leaving me in suspense as to what my dying process was trying to tell me before it had its throat slit by (presumably) the OS. The little comments from the source code made things worse. Yes, I know it’s an unhandled error event. There’s absolutely no information here as to who is failing, why or when. Googling the problem produced mostly other confused coders, but none of them used any of the packages I was using - I only really had two dependencies, and even their dependencies didn’t turn up any matches.</p>
+
+<p>I was still pretty lazy, so I tried improving exception handling in my code (which through years of coding I’m glad to say was the only thing not terrible about this codebase at the time) to catch any errors that were falling through. Most everything was wrapped in Promise code that caught errors, but I added catch-alls just in case and waited. Nothing. Nada. The same error message, and none of my handlers had triggered.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>events.js:72
+        throw er<span class="p">;</span> // Unhandled <span class="s1">'error'</span> event
+              ^
+Error: <span class="nb">read </span>ECONNRESET
+    at errnoException <span class="o">(</span>net.js:901:11<span class="o">)</span>
+    at Pipe.onread <span class="o">(</span>net.js:556:19<span class="o">)</span>
+e
+</code></pre></div></div>
+
+<p>I tried improving logging - I was getting less lazy and more intrigued so I figured I’d use <a href="https://www.npmjs.com/package/winston">Winston</a> like I should have from the beginning. Unfortunately Winston’s not very good at logging objects, and it doesn’t seem like it would solve the problem - my handlers weren’t really triggering in the first place. <a href="https://github.com/mattinsler/longjohn">Longjohn</a>, with the promise of async help didn’t really pan out either. I got desperate enough to mess with <code class="highlighter-rouge">console.log</code> (wait - isn’t that how we all debug?) using <a href="https://www.npmjs.com/package/console-stamp">console-stamp</a>. It’s definitely printing to console, maybe that’ll help.</p>
+
+<p>Nothing.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>events.js:72
+        throw er<span class="p">;</span> // Unhandled <span class="s1">'error'</span> event
+              ^
+Error: <span class="nb">read </span>ECONNRESET
+    at errnoException <span class="o">(</span>net.js:901:11<span class="o">)</span>
+    at Pipe.onread <span class="o">(</span>net.js:556:19<span class="o">)</span>
+e
+</code></pre></div></div>
+
+<p>All of my console messages were now neatly stamped and color coded, but any crashes still had the exact same message. I triple-checked that was running the code I was editing, because nothing I did seemed to have any effect. My new guess was that this must have something to do with the web part of things, due to that net.js result. Quickly turning off frotz-interfacer and replacing it with a dummy echo line seemed to fix the problem though, so that must be where it is. This turned out to be a blessing in disguise because Bootbot, while way more supported, had a lot more known bugs and a lot more code to dig through. I’d much rather worry about frotz-interfacer.</p>
+
+<p><code class="highlighter-rouge">frotz-interfacer</code> on the other hand, had one <a href="https://github.com/jwoos/javascript_frotz/blob/master/lib/index.js">file</a>. Well, two files but the other was really just an error file that looked like this -</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'use strict'</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nx">FileError</span> <span class="kd">extends</span> <span class="nb">Error</span> <span class="p">{</span>
+	<span class="kd">constructor</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">super</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+
+		<span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'FileError'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nx">DFrotzInterfaceError</span> <span class="kd">extends</span> <span class="nb">Error</span> <span class="p">{</span>
+	<span class="kd">constructor</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">super</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+
+		<span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'DFrotzInterfaceError'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="na">FileError</span><span class="p">:</span> <span class="nx">FileError</span><span class="p">,</span>
+	<span class="na">DFrotzInterfaceError</span><span class="p">:</span> <span class="nx">DFrotzInterfaceError</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>-so we’re looking at <code class="highlighter-rouge">index.js</code>. This was honestly the first time I was looking at the source repo for the package, so it didn’t really inspire any more confidence in my success when I noticed that the last commit was 3 years ago with a lot more open issues than I expected and no pull requests. Still, the code wasn’t all that bad. Quite simply, the package takes an input and performs the steps I outlined above - start game with save, run input, get output, save new game, exit - using node’s own [child_process]. This really seemed far too simple to be problematic.</p>
+
+<h1 id="diagnosis">Diagnosis</h1>
+
+<p>The most complicated function - and my entry point to the package - was <code class="highlighter-rouge">iteration</code>. So I did what any of us would do. I peppered it with <code class="highlighter-rouge">console.log</code> (I later did what none of us should, which was to commit it to a public repository - ruining any chance I ever had at working for a living).</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">iteration</span><span class="p">(</span><span class="nx">cmd</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">_this4</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+	<span class="kd">var</span> <span class="nx">save</span> <span class="o">=</span> <span class="k">void</span> <span class="mi">0</span><span class="p">;</span>
+
+	<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">checkForSaveFile</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">saveFileExists</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Frotz - savefile exists - "</span><span class="p">,</span><span class="nx">saveFileExists</span><span class="p">)</span>
+		<span class="nx">_this4</span><span class="p">.</span><span class="nx">dropAll</span> <span class="o">=</span> <span class="nx">saveFileExists</span><span class="p">;</span>
+		<span class="nx">save</span> <span class="o">=</span> <span class="nx">saveFileExists</span><span class="p">;</span>
+		<span class="nx">_this4</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">cb</span><span class="p">);</span>
+		<span class="k">return</span> <span class="nx">bluebird</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">_this4</span><span class="p">.</span><span class="nx">dfrotz</span><span class="p">);</span>
+	<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Frotz - Initing..."</span><span class="p">)</span>
+		<span class="k">return</span> <span class="nx">_this4</span><span class="p">.</span><span class="nx">restoreSave</span><span class="p">(</span><span class="nx">save</span><span class="p">);</span>
+	<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Frotz - delaying..."</span><span class="p">)</span>
+		<span class="k">return</span> <span class="nx">bluebird</span><span class="p">.</span><span class="nx">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+	<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Frotz - Starting run - command is "</span><span class="p">,</span><span class="nx">cmd</span><span class="p">)</span>
+		<span class="nx">_this4</span><span class="p">.</span><span class="nx">dropAll</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">cmd</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">_this4</span><span class="p">.</span><span class="nx">command</span><span class="p">(</span><span class="nx">cmd</span><span class="p">);</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			<span class="k">throw</span> <span class="k">new</span> <span class="nx">errors</span><span class="p">.</span><span class="nx">DFrotzInterfaceError</span><span class="p">(</span><span class="s1">'A command must be provided'</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Frotz - Delaying again..."</span><span class="p">)</span>
+		<span class="k">return</span> <span class="nx">bluebird</span><span class="p">.</span><span class="nx">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+	<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Frotz - Writing save..."</span><span class="p">)</span>
+		<span class="k">try</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">_this4</span><span class="p">.</span><span class="nx">writeSave</span><span class="p">();</span>
+		<span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"DFrotz error saving - "</span><span class="p">,</span><span class="nx">e</span><span class="p">)</span>
+			<span class="k">return</span> <span class="nx">bluebird</span><span class="p">.</span><span class="nx">resolve</span><span class="p">()</span>
+		<span class="p">}</span>
+	<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Frotz - Wrote save."</span><span class="p">)</span>
+	<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// do something</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"DFrotz Error - "</span><span class="p">,</span><span class="nx">e</span><span class="p">);</span>
+		<span class="k">throw</span> <span class="nx">e</span><span class="p">;</span>
+	<span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>I added some exception handlers of my own too, at least now I could see what was going on behind the scenes.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[[</span>14:50:29.007]] <span class="o">[</span>LOG]    Frotz - Initing...
+<span class="o">[[</span>14:50:29.018]] <span class="o">[</span>LOG]    Frotz - delaying...
+<span class="o">[[</span>14:50:29.121]] <span class="o">[</span>LOG]    Frotz - Delaying again...
+<span class="o">[[</span>14:50:29.222]] <span class="o">[</span>LOG]    Frotz - Writing save...
+Error: <span class="nb">read </span>ECONNRESET
+    at exports._errnoException <span class="o">(</span>util.js:1020:11<span class="o">)</span>
+    at Pipe.onread <span class="o">(</span>net.js:580:26<span class="o">)</span>
+<span class="o">[[</span>14:50:29.241]] <span class="o">[</span>LOG]    Frotz - Wrote save.
+</code></pre></div></div>
+
+<p>At this point I was more confused than ever. It seems to be an async operation that’s throwing the error - possibly the child process. However even though it looks like it, I couldn’t be sure that it was the save operation that was causing the error. Also, I’d forgive you if you were so tired of seeing the error so many times that you’d missed it this time. Look again.</p>
+
+<p>The goddamn line number for the error had changed! Despite me not changing anything in util.js or net.js (talk about generic repeated names), somehow I was throwing an error from somewhere else. Thankfully I didn’t need to investigate this too far, because this is where things started looking up. Some of my old training in Node kicked in and I restarted the process and errored it again. Nothing is certain in Nodeland until it’s the same about 70 times out of a hundred runs.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[[</span>15:03:26.164]] <span class="o">[</span>LOG]    Frotz - Initing...
+<span class="o">[[</span>15:03:26.179]] <span class="o">[</span>LOG]    Frotz - delaying...
+<span class="o">[[</span>15:03:26.382]] <span class="o">[</span>LOG]    Frotz - Writing save...
+Error: <span class="nb">read </span>ECONNRESET
+    at exports._errnoException <span class="o">(</span>util.js:1020:11<span class="o">)</span>
+    at Pipe.onread <span class="o">(</span>net.js:580:26<span class="o">)</span>
+<span class="nt">---------------------------------------------</span>
+    at Socket.Readable.on <span class="o">(</span>_stream_readable.js:691:35<span class="o">)</span>
+    at /root/zork/node_modules/frotz-interfacer/dist/index.js:168:12
+<span class="o">[[</span>15:03:26.407]] <span class="o">[</span>LOG]    Frotz - Wrote save.
+</code></pre></div></div>
+
+<p>I was honestly too happy at this point to care why. Somehow my logging extensions had kicked in - maybe a precompiled cache had refreshed, maybe the node gods wanted me to finish watching my movie I’d paused (let me pause this movie for a quick bugfix, why not I thought). I was on the right track, and I had some more info on the error as long as I didn’t run it again and get something else.</p>
+
+<p>Zooming in further, the error seemed to be coming from the childprocess part of the code (as suspected), which was the command function. So I added some error handlers there, see if we can trap this apparition once and for all.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">command</span><span class="p">(</span><span class="nx">cmd</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Frotz - running command "</span><span class="p">,</span><span class="nx">cmd</span><span class="p">)</span>
+	<span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+	<span class="kd">var</span> <span class="nx">timeout</span> <span class="o">=</span> <span class="kr">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="o">||</span> <span class="kr">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="p">?</span> <span class="mi">10</span> <span class="p">:</span> <span class="kr">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+	<span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">bluebird</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Frotz - actually running command "</span><span class="p">,</span><span class="nx">cmd</span><span class="p">)</span>
+		<span class="k">try</span> <span class="p">{</span>
+			<span class="nx">_this</span><span class="p">.</span><span class="nx">dfrotz</span><span class="p">.</span><span class="nx">stdin</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">cmd</span> <span class="o">+</span> <span class="s1">'</span><span class="err">\</span><span class="s1">n'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+				<span class="nx">resolve</span><span class="p">();</span>
+			<span class="p">});</span>
+		<span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Frotz - error running command - "</span><span class="p">,</span><span class="nx">e</span><span class="p">)</span>
+			<span class="nx">resolve</span><span class="p">()</span>
+		<span class="p">}</span>
+	<span class="p">});</span>
+
+	<span class="k">return</span> <span class="nx">timeout</span> <span class="p">?</span> <span class="nx">promise</span><span class="p">.</span><span class="nx">delay</span><span class="p">(</span><span class="nx">timeout</span><span class="p">)</span> <span class="p">:</span> <span class="nx">promise</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Nothing. Bupkus. Same message, none of them trigger. At this point I’m starting to give up and beginning to consider writing a fork process that repeats an action if a certain error message pops up on console for redundancy and thereby resigning myself to never be able to call myself a programmer ever again with any modicum of self-respect, when I try googling the error again, this time with childprocess.</p>
+
+<p><img src="http://localhost:3000/assets/img/DebugNode/childprocess.png" alt="childprocess error" /></p>
+
+<p>Ah! Turns out this is a known issue in Node’s childprocess (which despite being standard Node issue and rolled out as part of the standard environment hasn’t been fixed yet - the friggin issue is closed). If you don’t register an error handler for your child process WHEN YOU’RE CREATING IT the process will burp to console and crash everything, including the parent. Well why didn’t you say so?</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">init</span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">_this3</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+	<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">dfrotzArgs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'-w'</span><span class="p">,</span> <span class="s1">'500'</span><span class="p">,</span> <span class="s1">'-h'</span><span class="p">,</span> <span class="s1">'999'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">gameImage</span><span class="p">];</span>
+
+	<span class="k">this</span><span class="p">.</span><span class="nx">dfrotz</span> <span class="o">=</span> <span class="nx">childProcess</span><span class="p">.</span><span class="nx">execFile</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">executable</span><span class="p">,</span> <span class="nx">dfrotzArgs</span><span class="p">,</span> <span class="p">{</span> <span class="na">encoding</span><span class="p">:</span> <span class="s1">'utf8'</span> <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">stdout</span><span class="p">,</span> <span class="nx">stderr</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">stderr</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">output</span> <span class="o">=</span> <span class="nx">output</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">'</span><span class="err">\</span><span class="s1">r'</span><span class="p">,</span> <span class="s1">''</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">'</span><span class="err">\</span><span class="s1">n'</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">_this3</span><span class="p">.</span><span class="nx">outputFilter</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">output</span> <span class="o">=</span> <span class="nx">output</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">_this3</span><span class="p">.</span><span class="nx">outputFilter</span><span class="p">);</span>
+				<span class="nx">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nx">DFrotzInterface</span><span class="p">.</span><span class="nx">stripWhiteSpace</span><span class="p">(</span><span class="nx">output</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="kc">true</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+
+		<span class="nx">cb</span><span class="p">({</span>
+			<span class="na">stderr</span><span class="p">:</span> <span class="nx">stderr</span><span class="p">,</span>
+			<span class="na">error</span><span class="p">:</span> <span class="nx">error</span>
+		<span class="p">},</span> <span class="p">{</span>
+			<span class="na">pretty</span><span class="p">:</span> <span class="nx">output</span><span class="p">,</span>
+			<span class="na">full</span><span class="p">:</span> <span class="nx">stdout</span>
+		<span class="p">});</span>
+	<span class="p">});</span>
+
+	<span class="k">this</span><span class="p">.</span><span class="nx">dfrotz</span><span class="p">.</span><span class="nx">stdin</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"error"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span>
+	<span class="p">{</span>
+	    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"STDIN ON ERROR"</span><span class="p">);</span>
+	    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+	<span class="p">});</span>
+
+<span class="p">...</span>
+</code></pre></div></div>
+
+<p>and finally, we get this:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[[</span>15:07:03.524]] <span class="o">[</span>LOG]    Frotz - Initing...
+<span class="o">[[</span>15:07:03.525]] <span class="o">[</span>LOG]    Frotz - running <span class="nb">command  </span>restore
+<span class="o">[[</span>15:07:03.526]] <span class="o">[</span>LOG]    Frotz - actually running <span class="nb">command  </span>restore
+<span class="o">[[</span>15:07:03.527]] <span class="o">[</span>LOG]    Frotz - running <span class="nb">command</span>  ./saves/zork1/2295256887161761.dat
+<span class="o">[[</span>15:07:03.527]] <span class="o">[</span>LOG]    Frotz - actually running <span class="nb">command</span>  ./saves/zork1/2295256887161761.dat
+<span class="o">[[</span>15:07:03.540]] <span class="o">[</span>LOG]    Frotz - delaying...
+<span class="o">[[</span>15:07:03.641]] <span class="o">[</span>LOG]    Frotz - Starting run - <span class="nb">command </span>is  Go south
+<span class="o">[[</span>15:07:03.642]] <span class="o">[</span>LOG]    Frotz - running <span class="nb">command  </span>Go south
+<span class="o">[[</span>15:07:03.642]] <span class="o">[</span>LOG]    Frotz - actually running <span class="nb">command  </span>Go south
+<span class="o">[[</span>15:07:03.646]] <span class="o">[</span>LOG]    Frotz - Delaying again...
+<span class="o">[[</span>15:07:03.747]] <span class="o">[</span>LOG]    Frotz - Writing save...
+<span class="o">[[</span>15:07:03.748]] <span class="o">[</span>LOG]    Frotz - running <span class="nb">command  </span>save
+<span class="o">[[</span>15:07:03.748]] <span class="o">[</span>LOG]    Frotz - actually running <span class="nb">command  </span>save
+<span class="o">[[</span>15:07:03.750]] <span class="o">[</span>LOG]    Frotz - running <span class="nb">command</span>  ./saves/zork1/2295256887161761.dat
+<span class="o">[[</span>15:07:03.751]] <span class="o">[</span>LOG]    Frotz - actually running <span class="nb">command</span>  ./saves/zork1/2295256887161761.dat
+<span class="o">[[</span>15:07:03.752]] <span class="o">[</span>LOG]    Frotz - running <span class="nb">command  </span>Y
+<span class="o">[[</span>15:07:03.752]] <span class="o">[</span>LOG]    Frotz - actually running <span class="nb">command  </span>Y
+<span class="o">[[</span>15:07:03.755]] <span class="o">[</span>LOG]    Frotz - running <span class="nb">command  </span>quit
+<span class="o">[[</span>15:07:03.756]] <span class="o">[</span>LOG]    Frotz - actually running <span class="nb">command  </span>quit
+<span class="o">[[</span>15:07:03.760]] <span class="o">[</span>LOG]    Frotz - running <span class="nb">command  </span>Y
+<span class="o">[[</span>15:07:03.761]] <span class="o">[</span>LOG]    Frotz - actually running <span class="nb">command  </span>Y
+<span class="o">[[</span>15:07:03.761]] <span class="o">[</span>LOG]    Frotz - running <span class="nb">command  </span>SI
+<span class="o">[[</span>15:07:03.761]] <span class="o">[</span>LOG]    Frotz - actually running <span class="nb">command  </span>SI
+<span class="o">[[</span>15:07:03.769]] <span class="o">[</span>LOG]    STDIN ON ERROR
+<span class="o">[[</span>15:07:03.770]] <span class="o">[</span>LOG]    <span class="o">{</span> Error: <span class="nb">read </span>ECONNRESET
+    at exports._errnoException <span class="o">(</span>util.js:1020:11<span class="o">)</span>
+    at Pipe.onread <span class="o">(</span>net.js:580:26<span class="o">)</span>
+<span class="nt">---------------------------------------------</span>
+    at Socket.Readable.on <span class="o">(</span>_stream_readable.js:691:35<span class="o">)</span>
+    at DFrotzInterface.init <span class="o">(</span>/root/zork/node_modules/frotz-interfacer/dist/index.js:136:22<span class="o">)</span>
+    at /root/zork/node_modules/frotz-interfacer/dist/index.js:168:12
+    at tryCatcher <span class="o">(</span>/root/zork/node_modules/bluebird/js/release/util.js:16:23<span class="o">)</span>
+    at Promise._settlePromiseFromHandler <span class="o">(</span>/root/zork/node_modules/bluebird/js/release/promise.js:512:31<span class="o">)</span>
+    at Promise._settlePromise <span class="o">(</span>/root/zork/node_modules/bluebird/js/release/promise.js:569:18<span class="o">)</span>
+    at Promise._settlePromise0 <span class="o">(</span>/root/zork/node_modules/bluebird/js/release/promise.js:614:10<span class="o">)</span>
+    at Promise._settlePromises <span class="o">(</span>/root/zork/node_modules/bluebird/js/release/promise.js:694:18<span class="o">)</span>
+    at _drainQueueStep <span class="o">(</span>/root/zork/node_modules/bluebird/js/release/async.js:138:12<span class="o">)</span>
+    at _drainQueue <span class="o">(</span>/root/zork/node_modules/bluebird/js/release/async.js:131:9<span class="o">)</span>
+    at Async._drainQueues <span class="o">(</span>/root/zork/node_modules/bluebird/js/release/async.js:147:5<span class="o">)</span>
+    at Immediate.Async.drainQueues <span class="o">(</span>/root/zork/node_modules/bluebird/js/release/async.js:17:14<span class="o">)</span>
+    at runCallback <span class="o">(</span>timers.js:672:20<span class="o">)</span>
+    at tryOnImmediate <span class="o">(</span>timers.js:645:5<span class="o">)</span>
+    at processImmediate <span class="o">[</span>as _immediateCallback] <span class="o">(</span>timers.js:617:5<span class="o">)</span> code: <span class="s1">'ECONNRESET'</span>, errno: <span class="s1">'ECONNRESET'</span>, syscall: <span class="s1">'read'</span> <span class="o">}</span>
+<span class="o">[[</span>15:07:03.775]] <span class="o">[</span>LOG]    runGame - interfacer returned.
+<span class="o">[[</span>15:07:03.775]] <span class="o">[</span>LOG]    runGame returning  <span class="o">[</span> <span class="s1">'South of House | Score: 0 | Moves: 9'</span>,
+  <span class="s1">'South of House'</span>,
+  <span class="s1">'You are facing the south side of a white house. There is no door here, and all the windows are boarded.'</span> <span class="o">]</span>
+<span class="o">[[</span>15:07:03.775]] <span class="o">[</span>LOG]    Talk - runGame returned...
+<span class="o">[[</span>15:07:03.781]] <span class="o">[</span>LOG]    Frotz - Wrote save.
+</code></pre></div></div>
+
+<p>I shortened the story a fair bit. There was a lot more hair pulling and logging and digging into functions than that, but at this point the error is caught. Node behaves as though the error doesn’t exist, which is fine with me - in all my tests, the game runs and saves perfectly and would be working ideally if it wasn’t for Node throwing a hissy fit and crashing. Which it doesn’t anymore. All good.</p>
+
+<h1 id="what-did-we-learn">What did we learn?</h1>
+
+<p>Not much really. I remain the same doof as I was before, with one less bug in my life. None of this was really ripping on Node though - even though it was. All of the things that made me choose this stack - availability of somewhat decent code for even obscure things, easy and short code creation, installation and scaling - also make it a hotbed for badly written and maintained code both on my side and of the code I’m borrowing. And now that I’ve fixed the one bug I see, I’ll probably go on and add a README to the repo and move on with my life, and there it will lie. Until that day maybe years into the future when someone else will go ‘I should build a skynet bot using an old messenger bot!’ and you’ll see another one of these posts.</p>
+
+            </article>
+
+            <section class="share">
+    <h3>Share</h3>
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:3000/debugging-node-in-production-anatomy-of-a-bug-hunt/%20via%20&#64;&hashtags=NodeJS,Debugging,Zork,Trainify,Power Uncle,Bootbot,"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
+        <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
+    </a>
+    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:3000/debugging-node-in-production-anatomy-of-a-bug-hunt/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
+        <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
+    </a>
+    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://localhost:3000/debugging-node-in-production-anatomy-of-a-bug-hunt/"
+    onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
+        <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg>
+    </a>
+</section>
+            <section class="author" itemprop="author">
+    <div class="details" itemscope itemtype="http://schema.org/Person">
+        <img itemprop="image" class="img-rounded" src="/assets/img/blog-author.jpg" alt="">
+        <p class="def">Author</p>
+        <h3 class="name">
+            <a itemprop="name" href="https://github.com/hrishioa/">hrishioa</a>
+        </h3>
+        <p class="desc">Yale-NUS '18.</p>
+        <a itemprop="email" class="email" href="mailto:hrishioa@gmail.com">hrishioa@gmail.com</a>
+    </div>
+</section>
+
+            <section class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+</section>
+<script type="text/javascript">
+    var disqus_loaded = false;
+
+    function load_disqus()
+    {
+        disqus_loaded = true;
+        var disqus_shortname = 'hrishioa';
+        var disqus_title = 'Debugging Node.js in Production: Anatomy of a bug hunt';
+        var disqus_url = '/debugging-node-in-production-anatomy-of-a-bug-hunt/';
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        var ldr = document.getElementById('disqus_loader');
+    };
+    window.onscroll = function(e) {
+        if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 800)) {
+            //hit bottom of page
+            if (disqus_loaded==false)
+                load_disqus()
+        }
+    };
+</script>
+            <footer>
+    <p>Theme by <a href="http://willianjusten.com">Willian Justen</a></p>
+</footer>
+<script src="/assets/js/main.js"></script>
+        </section>
+    </body>
+</html>

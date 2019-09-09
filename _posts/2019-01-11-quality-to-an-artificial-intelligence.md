@@ -4,9 +4,14 @@ title: "Beauty to an Artificial Intelligence"
 date: 2019-01-01 00:00:00
 image: 'Quality/cover.jpg'
 share_image: 'Quality/cover.jpg'
-description:
-tags: artificial intelligence, AI, Singularity, Zen and The Art of Motorcycle Maintenance
+description: "This ended up being way too long as a post"
+tags: 
+- Artificial Intelligence
+- AI
+- Singularity
+- Zen and The Art of Motorcycle Maintenance
 categories:
+- Rants
 twitter_text:
 ---
 

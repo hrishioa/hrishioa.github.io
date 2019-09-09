@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Development across platforms with Docker</title>
+    <meta name="description" content="Making things easier and harder">
+
+    <!-- Google Authorship Markup -->
+    <link rel="author" href="https://plus.google.com/+?rel=author">
+
+    <!-- Social: Facebook / Open Graph -->
+    <meta property="og:url" content="http://localhost:3000/making-cross-platform-development-easy-and-hard-with-docker/">
+    <meta property="og:title" content="Development across platforms with Docker">
+    
+    <meta property="og:image" content="http://localhost:3000/assets/img/Docker/martin-reisch-272883-unsplash.jpg">
+    
+    <meta property="og:image:height" content="200">
+    <meta property="og:image:width" content="200">    
+    <meta property="og:description" content="Making things easier and harder">
+    <meta property="og:site_name" content="">
+
+    <!-- Social: Google+ / Schema.org  -->
+    <meta itemprop="name" content="Development across platforms with Docker"/>
+    <meta itemprop="description" content="Making things easier and harder">
+    <meta itemprop="image" content="http://localhost:3000/assets/img/blog-image.png"/>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/img/icons/favicon.ico" type="image/x-icon" />
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/img/icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/icons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/icons/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/icons/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/icons/apple-touch-icon-152x152.png" />
+    <!-- Windows 8 Tile Icons -->
+    <meta name="application-name" content="hrishioa Blog">
+    <meta name="msapplication-TileColor" content="#0562DC">
+    <meta name="msapplication-square70x70logo" content="smalltile.png" />
+    <meta name="msapplication-square150x150logo" content="mediumtile.png" />
+    <meta name="msapplication-wide310x150logo" content="widetile.png" />
+    <meta name="msapplication-square310x310logo" content="largetile.png" />
+    <!-- Android Lolipop Theme Color -->
+    <meta name="theme-color" content="#0562DC">
+
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="canonical" href="http://localhost:3000/making-cross-platform-development-easy-and-hard-with-docker/">
+    <link rel="alternate" type="application/rss+xml" title="" href="http://localhost:3000/feed.xml" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+    <body>
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69264120-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" display="none" version="1.1"><defs><symbol id="icon-menu" viewBox="0 0 1024 1024"><path class="path1" d="M128 213.333h768q17.667 0 30.167 12.5t12.5 30.167-12.5 30.167-30.167 12.5h-768q-17.667 0-30.167-12.5t-12.5-30.167 12.5-30.167 30.167-12.5zM128 725.333h768q17.667 0 30.167 12.5t12.5 30.167-12.5 30.167-30.167 12.5h-768q-17.667 0-30.167-12.5t-12.5-30.167 12.5-30.167 30.167-12.5zM128 469.333h768q17.667 0 30.167 12.5t12.5 30.167-12.5 30.167-30.167 12.5h-768q-17.667 0-30.167-12.5t-12.5-30.167 12.5-30.167 30.167-12.5z"/></symbol><symbol id="icon-search" viewBox="0 0 951 1024"><path class="path1" d="M658.286 475.429q0-105.714-75.143-180.857t-180.857-75.143-180.857 75.143-75.143 180.857 75.143 180.857 180.857 75.143 180.857-75.143 75.143-180.857zM950.857 950.857q0 29.714-21.714 51.429t-51.429 21.714q-30.857 0-51.429-21.714l-196-195.429q-102.286 70.857-228 70.857-81.714 0-156.286-31.714t-128.571-85.714-85.714-128.571-31.714-156.286 31.714-156.286 85.714-128.571 128.571-85.714 156.286-31.714 156.286 31.714 128.571 85.714 85.714 128.571 31.714 156.286q0 125.714-70.857 228l196 196q21.143 21.143 21.143 51.429z"/></symbol><symbol id="icon-email" viewBox="0 0 1024 1024"><path class="path1" d="M950.857 859.429v-438.857q-18.286 20.571-39.429 37.714-153.143 117.714-243.429 193.143-29.143 24.571-47.429 38.286t-49.429 27.714-58.571 14h-1.143q-27.429 0-58.571-14t-49.429-27.714-47.429-38.286q-90.286-75.429-243.429-193.143-21.143-17.143-39.429-37.714v438.857q0 7.429 5.429 12.857t12.857 5.429h841.143q7.429 0 12.857-5.429t5.429-12.857zM950.857 258.857v-14t-0.286-7.429-1.714-7.143-3.143-5.143-5.143-4.286-8-1.429h-841.143q-7.429 0-12.857 5.429t-5.429 12.857q0 96 84 162.286 110.286 86.857 229.143 181.143 3.429 2.857 20 16.857t26.286 21.429 25.429 18 28.857 15.714 24.571 5.143h1.143q11.429 0 24.571-5.143t28.857-15.714 25.429-18 26.286-21.429 20-16.857q118.857-94.286 229.143-181.143 30.857-24.571 57.429-66t26.571-75.143zM1024 237.714v621.714q0 37.714-26.857 64.571t-64.571 26.857h-841.143q-37.714 0-64.571-26.857t-26.857-64.571v-621.714q0-37.714 26.857-64.571t64.571-26.857h841.143q37.714 0 64.571 26.857t26.857 64.571z"/></symbol><symbol id="icon-close" viewBox="0 0 805 1024"><path class="path1" d="M741.714 755.429q0 22.857-16 38.857l-77.714 77.714q-16 16-38.857 16t-38.857-16l-168-168-168 168q-16 16-38.857 16t-38.857-16l-77.714-77.714q-16-16-16-38.857t16-38.857l168-168-168-168q-16-16-16-38.857t16-38.857l77.714-77.714q16-16 38.857-16t38.857 16l168 168 168-168q16-16 38.857-16t38.857 16l77.714 77.714q16 16 16 38.857t-16 38.857l-168 168 168 168q16 16 16 38.857z"/></symbol><symbol id="icon-twitter" viewBox="0 0 951 1024"><path class="path1" d="M925.714 233.143q-38.286 56-92.571 95.429 0.571 8 0.571 24 0 74.286-21.714 148.286t-66 142-105.429 120.286-147.429 83.429-184.571 31.143q-154.857 0-283.429-82.857 20 2.286 44.571 2.286 128.571 0 229.143-78.857-60-1.143-107.429-36.857t-65.143-91.143q18.857 2.857 34.857 2.857 24.571 0 48.571-6.286-64-13.143-106-63.714t-42-117.429v-2.286q38.857 21.714 83.429 23.429-37.714-25.143-60-65.714t-22.286-88q0-50.286 25.143-93.143 69.143 85.143 168.286 136.286t212.286 56.857q-4.571-21.714-4.571-42.286 0-76.571 54-130.571t130.571-54q80 0 134.857 58.286 62.286-12 117.143-44.571-21.143 65.714-81.143 101.714 53.143-5.714 106.286-28.571z"/></symbol><symbol id="icon-facebook" viewBox="0 0 585 1024"><path class="path1" d="M548 6.857v150.857h-89.714q-49.143 0-66.286 20.571t-17.143 61.714v108h167.429l-22.286 169.143h-145.143v433.714h-174.857v-433.714h-145.714v-169.143h145.714v-124.571q0-106.286 59.429-164.857t158.286-58.571q84 0 130.286 6.857z"/></symbol><symbol id="icon-rss" viewBox="0 0 805 1024"><path class="path1" d="M219.429 768q0 45.714-32 77.714t-77.714 32-77.714-32-32-77.714 32-77.714 77.714-32 77.714 32 32 77.714zM512 838.286q1.143 16-9.714 27.429-10.286 12-26.857 12h-77.143q-14.286 0-24.571-9.429t-11.429-23.714q-12.571-130.857-105.429-223.714t-223.714-105.429q-14.286-1.143-23.714-11.429t-9.429-24.571v-77.143q0-16.571 12-26.857 9.714-9.714 24.571-9.714h2.857q91.429 7.429 174.857 46t148 103.714q65.143 64.571 103.714 148t46 174.857zM804.571 839.429q1.143 15.429-10.286 26.857-10.286 11.429-26.286 11.429h-81.714q-14.857 0-25.429-10t-11.143-24.286q-6.857-122.857-57.714-233.429t-132.286-192-192-132.286-233.429-58.286q-14.286-0.571-24.286-11.143t-10-24.857v-81.714q0-16 11.429-26.286 10.286-10.286 25.143-10.286h1.714q149.714 7.429 286.571 68.571t243.143 168q106.857 106.286 168 243.143t68.571 286.571z"/></symbol><symbol id="icon-google-plus" viewBox="0 0 951 1024"><path class="path1" d="M420 454.857q0 20.571 18.286 40.286t44.286 38.857 51.714 42 44 59.429 18.286 81.143q0 51.429-27.429 98.857-41.143 69.714-120.571 102.571t-170.286 32.857q-75.429 0-140.857-23.714t-98-78.571q-21.143-34.286-21.143-74.857 0-46.286 25.429-85.714t67.714-65.714q74.857-46.857 230.857-57.143-18.286-24-27.143-42.286t-8.857-41.714q0-20.571 12-48.571-26.286 2.286-38.857 2.286-84.571 0-142.571-55.143t-58-139.714q0-46.857 20.571-90.857t56.571-74.857q44-37.714 104.286-56t124.286-18.286h238.857l-78.857 50.286h-74.857q42.286 36 64 76t21.714 91.429q0 41.143-14 74t-33.714 53.143-39.714 37.143-34 35.143-14 37.714zM336.571 400q21.714 0 44.571-9.429t37.714-24.857q30.286-32.571 30.286-90.857 0-33.143-9.714-71.429t-27.714-74-48.286-59.143-66.857-23.429q-24 0-47.143 11.143t-37.429 30q-26.857 33.714-26.857 91.429 0 26.286 5.714 55.714t18 58.857 29.714 52.857 42.857 38.286 55.143 14.857zM337.714 898.857q33.143 0 63.714-7.429t56.571-22.286 41.714-41.714 15.714-62.286q0-14.286-4-28t-8.286-24-15.429-23.714-16.857-20-22-19.714-20.857-16.571-23.714-17.143-20.857-14.857q-9.143-1.143-27.429-1.143-30.286 0-60 4t-61.429 14.286-55.429 26.286-39.143 42.571-15.429 60.286q0 40 20 70.571t52.286 47.429 68 25.143 72.857 8.286zM800.571 398.286h121.714v61.714h-121.714v125.143h-60v-125.143h-121.143v-61.714h121.143v-124h60v124z"/></symbol><symbol id="icon-angle-down" viewBox="0 0 658 1024"><path class="path1" d="M614.286 420.571q0 7.429-5.714 13.143l-266.286 266.286q-5.714 5.714-13.143 5.714t-13.143-5.714l-266.286-266.286q-5.714-5.714-5.714-13.143t5.714-13.143l28.571-28.571q5.714-5.714 13.143-5.714t13.143 5.714l224.571 224.571 224.571-224.571q5.714-5.714 13.143-5.714t13.143 5.714l28.571 28.571q5.714 5.714 5.714 13.143z"/></symbol><symbol id="icon-github-alt" viewBox="0 0 951 1024"><path class="path1" d="M365.714 694.857q0 22.857-7.143 46.857t-24.571 43.429-41.429 19.429-41.429-19.429-24.571-43.429-7.143-46.857 7.143-46.857 24.571-43.429 41.429-19.429 41.429 19.429 24.571 43.429 7.143 46.857zM731.429 694.857q0 22.857-7.143 46.857t-24.571 43.429-41.429 19.429-41.429-19.429-24.571-43.429-7.143-46.857 7.143-46.857 24.571-43.429 41.429-19.429 41.429 19.429 24.571 43.429 7.143 46.857zM822.857 694.857q0-68.571-39.429-116.571t-106.857-48q-23.429 0-111.429 12-40.571 6.286-89.714 6.286t-89.714-6.286q-86.857-12-111.429-12-67.429 0-106.857 48t-39.429 116.571q0 50.286 18.286 87.714t46.286 58.857 69.714 34.286 80 16.857 85.143 4h96q46.857 0 85.143-4t80-16.857 69.714-34.286 46.286-58.857 18.286-87.714zM950.857 594.286q0 118.286-34.857 189.143-21.714 44-60.286 76t-80.571 49.143-97.143 27.143-98 12.571-95.429 2.571q-44.571 0-81.143-1.714t-84.286-7.143-87.143-17.143-78.286-29.429-69.143-46.286-49.143-65.714q-35.429-70.286-35.429-189.143 0-135.429 77.714-226.286-15.429-46.857-15.429-97.143 0-66.286 29.143-124.571 61.714 0 108.571 22.571t108 70.571q84-20 176.571-20 84.571 0 160 18.286 60-46.857 106.857-69.143t108-22.286q29.143 58.286 29.143 124.571 0 49.714-15.429 96 77.714 91.429 77.714 227.429z"/></symbol></defs></svg>
+
+        
+<header class="header-post" role="banner" style="background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('http://localhost:3000/assets/img/Docker/martin-reisch-272883-unsplash.jpg'); background-attachment: fixed; background-size: cover; background-repeat: no-repeat">
+
+    <div class="content">
+        
+            <time itemprop="datePublished" datetime="2018-01-05 02:25:28 +0000" class="date">05 Jan 2018</time>
+        
+        <h1 class="post-title" itemprop="name">Development across platforms with Docker</h1>
+        <p itemprop="description" class="subtitle">Making things easier and harder</p>
+    </div>
+     <a class="down" data-scroll href="#scroll"><svg class="icon icon-angle-down"><use xlink:href="#icon-angle-down"></use></svg></a>
+     <div class="search-wrapper">
+    <div class="search-form">
+        <input type="text" class="search-field" placeholder="Search...">
+        <svg class="icon-remove-sign"><use xlink:href="#icon-close"></use></svg>
+        <ul class="search-results search-list"></ul>
+    </div>
+</div>
+
+<div id="fade" class="overlay"></div>
+<a id="slide" class="slideButton fade">
+    <svg id="open" class="icon-menu"><use xlink:href="#icon-menu"></use></svg>
+    <svg id="close" class="icon-menu"><use xlink:href="#icon-close"></use></svg>
+</a>
+<aside id="sidebar">
+<nav id="navigation">
+  <h2>MENU</h2>
+  <ul>
+    
+      <li><a href="http://localhost:3000/">Home</a></li>
+    
+      <li><a href="http://localhost:3000/series">Series</a></li>
+    
+      <li><a href="http://localhost:3000/tags">Tags</a></li>
+    
+      <li><a href="http://localhost:3000/about">About Me</a></li>
+    
+    <li><a class="feed" href="http://localhost:3000/feed.xml" title="Atom/RSS feed">Feed</a></li>
+  </ul>
+</nav>
+</aside>
+<a id="search" class="dosearch">
+    <svg class="icon-menu icon-search"><use xlink:href="#icon-search"></use></svg>
+</a>
+</header>
+
+        <section class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <article role="article" id="scroll" class="post-content" itemprop="articleBody">
+                <p>Containerization has only recently become easy and cheap (in terms of memory, cost and development time) through tools like <a href="https://www.docker.com/">Docker</a>. This has made orchestrating large microservice and distributed architectures far easier, as well as cutting down development time for building and releasing tools. As we saw in the case of <a href="https://oyente.github.io/benchmarks/">Oyente</a> as well as a few other projects I’ve listed here, releasing complex pieces of software - especially for development and research purposes - has become much easier. Complicated and ever-updating lists of dependencies and kernels and distros can be effectively frozen in place and easily shared as Docker images.</p>
+
+<p>Years after release, <code class="highlighter-rouge">docker pull hrishioa/oyente</code> will still provide you with the exact same environment that the tool was in at the point of release, which makes the fact that it comes with it’s own perfectly sandboxed OS and sliceable filesystem just the icing.</p>
+
+<p>While Docker and its assorted set of tools have been a boon for all of these reasons, it’s been a primary component of my development toolchain for a different reason: cross-platform software development. By which I don’t mean developing <em>for</em> multiple platforms, I mean developing <em>from</em> multiple platforms. Through the course of my day I often need to work seamlessly through Windows, MacOS and Linux machines, and while one of those is definitely not like the other it still doesn’t make switching between endlessly changing package managers, keyboard shortcuts and development environments any easier. Docker makes my life a hell of a lot easier, and here we’ll cover enough to get started using it - and a case study in setting up my blog environment as a portable image.</p>
+
+<h2 id="basic-commands">Basic commands</h2>
+
+<p>Unfortunately, downloading docker has become somewhat harder, now that you need to register and create an account to do it. If you still want to, head over to the <a href="https://store.docker.com/search?type=edition&amp;offering=community">Docker Store</a> to download the free community edition after creating an account. There’s a dedicated installer for your platform, and keep in mind the Windows installer will ask you <a href="https://docs.docker.com/machine/drivers/hyper-v/">to enable Hyper-V</a>. This wasn’t much of a problem for me, seeing as the last time I used a VM was to try out the first ever alpha of ChromeOS. However, keep in mind that this will disable Virtualbox, and I’ll understand if you’d rather keep your VMs.</p>
+
+<p>Once Docker is installed, running</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run hello-world
+</code></pre></div></div>
+
+<p>should test your docker installation and make sure things are running well.</p>
+
+<p>Now, there are any number of Docker guides on the internet which are great for learning Docker in depth - <a href="https://docs.docker.com/get-started/#docker-concepts">the Docker docs</a> are a good example, and you can definitely chuck this guide if you’re going deep - so here we’re going to focus on the basic tools and commands to help you make your environments portable, while maintaining some idea of what’s happening underneath.</p>
+
+<p>Docker has two primary <em>types of objects</em> , if we’re to call them that: Images and Containers. <strong>Images</strong> are similar to the persistent memory or hard drive data on a system, containing the OS or application data. This is usually created once and used often, but remains unchanged after creation. <strong>Containers</strong> are created from images, and encapsulate the image along with some process memory to create what is effectively a complete sandboxed operating system. A container is a runtime instance, residing in memory and lost once it is destroyed. The image is usually what you create and share, often spawning any number of containers.</p>
+
+<p>Let’s try listing the containers and images currently present on your system. Before we do so, make sure to start the Docker daemon (usually the executable installed by the installer and give it a little while to finish setting up.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker images
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+
+<span class="nv">$ </span>docker containers <span class="nb">ls 
+</span>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</code></pre></div></div>
+
+<p>They’re both empty. but the columns are instructive. Docker images are often stored in repositories (not unlike those in git), contain tags specifying a version or release, as well as Image IDs for unique identification. Containers have an ID as well, along with which image they were created from, the running command (each container has a primary command run when the container spins up), the current status (up or down and how long), which ports are exposed to the host system, as well as a plaintext name for identification.</p>
+
+<p>Let’s run our first container, and let’s say we pick the latest LTS version of Ubuntu, 18.04. Creating a new container is usually done through the <code class="highlighter-rouge">docker run</code> command:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-it</span> <span class="nt">--name</span> first_container ubuntu:18.04
+Unable to find image <span class="s1">'ubuntu:18.04'</span> locally
+18.04: Pulling from library/ubuntu
+c64513b74145: Pull <span class="nb">complete
+</span>01b8b12bad90: Pull <span class="nb">complete
+</span>c5d85cf7a05f: Pull <span class="nb">complete
+</span>b6b268720157: Pull <span class="nb">complete
+</span>e12192999ff1: Pull <span class="nb">complete
+</span>Digest: sha256:3f119dc0737f57f704ebecac8a6d8477b0f6ca1ca0332c7ee1395ed2c6a82be7
+Status: Downloaded newer image <span class="k">for </span>ubuntu:18.04 
+root@c5f6d53ad1b9:/#
+</code></pre></div></div>
+
+<p>Let’s use the output to understand what’s going on. Images are usually specified in the format <code class="highlighter-rouge">name:tag</code>. We’re asking docker to create an instance from the image ubuntu of tag 18.04, naming the container <code class="highlighter-rouge">first_container</code>. The <code class="highlighter-rouge">-i</code> switch keeps STDIN open on the process we’re running, and the <code class="highlighter-rouge">-t</code> switch specifies a pseudo-terminal so that we can interact with the container. The default process set to run on this image is bash. As the command executes, we see docker looking for a local copy of the image, and failing which it fetches the image from the <a href="https://hub.docker.com/_/ubuntu/">repository</a> on Docker Hub. Images are built as layers, often on a storage driver like <a href="https://docs.docker.com/storage/storagedriver/aufs-driver/">AUFS</a>, and we’ll see how this is done later. The layers make changing and building on intermediate versions of an image much easier. Once the image is available locally the container is booted, allocated a random ID, and we’re presented with a root prompt on the now running container. If you open a separate terminal and run the previous commands again, you can see that things have changed:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              18.04               735f80812f90        4 days ago          83.5MB
+
+<span class="nv">$ </span>docker container <span class="nb">ls
+</span>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+c5f6d53ad1b9        ubuntu:18.04        <span class="s2">"/bin/bash"</span>         6 minutes ago       Up 6 minutes                            first_container
+</code></pre></div></div>
+
+<p>If you typed exit at the container’s prompt or closed the terminal session before running <code class="highlighter-rouge">docker container ls</code>, no running containers will show up. <code class="highlighter-rouge">docker container ls --all</code> should show you all the containers.</p>
+
+<p>Herein we can see the power of Docker. the entirety of the ubuntu image is 83.5 MB in size, and boots up in a few seconds on most modern laptops. This is really what makes Docker viable for quick encapsulation of development spaces, unlike Virtual Machines.</p>
+
+<p>Next, let’s leave the container running and see if can run a separate command on the same container. If you closed the container from before, you can also restart it:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker start <span class="nt">-i</span> first_container
+</code></pre></div></div>
+
+<p>Should have you back up. Failing this, you can always create a new container with <code class="highlighter-rouge">docker run</code> but a different name.</p>
+
+<p>With a container runnning, <code class="highlighter-rouge">docker exec</code> allows you to run more commands within the same container. Let’s first try something that isn’t interactive:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker <span class="nb">exec </span>first_container <span class="nb">cat</span> /etc/passwd
+</code></pre></div></div>
+
+<p>This should dump the contents of the passwd file from the running container directly to STDOUT. You can also run an interactive session, like so:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-it</span> first_container /bin/bash
+</code></pre></div></div>
+
+<p>Which should give you a second prompt. Now that’s all well and good, but before we move on, let’s do some cleanup. Working within Docker, especially when creating your ownn images, can create a lot of crud if you’re not careful. Docker keeps all the stopped containers and old images around. There wasn’t a solution to this before, needing the user to individually (or collectively but carefully) clean up containers and images. Now, Docker’s <a href="https://docs.docker.com/config/pruning/#prune-images">pruning</a> functionality allows for easier cleanup. To prune unused images and stopped containers, run</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker system prune
+</code></pre></div></div>
+
+<p>For specific changes, you can always run <code class="highlighter-rouge">docker rm &lt;container_name&gt;</code> and <code class="highlighter-rouge">docker rmi &lt;image_name&gt;</code> to remove specific containers and images.</p>
+
+<h2 id="building-images">Building images</h2>
+
+<p>Next we’ll look at how images are built, building one for ourselves. Images are often built using Dockerfiles. You can consider Dockerfiles like recipes, where each line represents an additional operation on an image until the final image is built. They’re really quite simple to read and write.</p>
+
+<p>Create a new folder somewhere, navigate to it and create a file named <code class="highlighter-rouge">Dockerfile</code>. Let’s try and build a sample python hello-world server in a Container. First some boilerplate. We’re starting with the ubuntu image we used earlier, so that goes in.:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM ubuntu:18.04
+MAINTAINER Hrishi Olickel (hrishioa@gmail.com)
+</code></pre></div></div>
+
+<p>All this instructs Docker to do is to use the ubuntu image with tag 18.04 as the base image for building our own, as well as some metadata for posterity’s sake.</p>
+
+<p>Let’s try building this image:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> myimage <span class="nb">.</span>
+Sending build context to Docker daemon  1.536kB
+Error response from daemon: the Dockerfile <span class="o">(</span>Dockerfile<span class="o">)</span> cannot be empty
+</code></pre></div></div>
+
+<p>We’re attempting to build the image using the <code class="highlighter-rouge">docker build</code> command. The <code class="highlighter-rouge">-t</code> switch specifies a tag name, and <code class="highlighter-rouge">.</code> tells Docker to use the current directory as a working directory. It looks for a Dockerfile in this directory and tries to build, and fails. Docker’s right; we haven’t really done anything yet!</p>
+
+<p>If we’re writing a simple python server, we’d need python. Add another line to the Dockerfile:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RUN apt-get update <span class="o">&amp;&amp;</span> apt-get <span class="nt">-y</span> upgrade
+RUN apt-get install <span class="nt">-yq</span> python
+</code></pre></div></div>
+
+<p>Dockerfile lines usually follow the <code class="highlighter-rouge">COMMAND &lt;arguments&gt;</code> structure. The <code class="highlighter-rouge">RUN</code> command takes an image and executes a new command on it to create another layer. All we’re doing here is to make sure the apt repos are up-to-date, and then installing python, with the <code class="highlighter-rouge">-y</code> switch turned on. Image creation isn’t interactive, so the process will abort at any rhetorical question.</p>
+
+<p>Try again:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> myimage <span class="nb">.</span>
+Sending build context to Docker daemon  2.048kB
+Step 1/4 : FROM ubuntu:18.04
+ <span class="nt">---</span><span class="o">&gt;</span> 735f80812f90
+Step 2/4 : MAINTAINER Hrishi Olickel <span class="o">(</span>hrishioa@gmail.com<span class="o">)</span>
+ <span class="nt">---</span><span class="o">&gt;</span> Running <span class="k">in </span>0473c58a6d1a
+Removing intermediate container 0473c58a6d1a
+ <span class="nt">---</span><span class="o">&gt;</span> d7dffa7d2684
+Step 3/4 : RUN apt-get update <span class="o">&amp;&amp;</span> apt-get <span class="nt">-y</span> upgrade
+ <span class="nt">---</span><span class="o">&gt;</span> Running <span class="k">in </span>177b62efa677
+Get:1 http://archive.ubuntu.com/ubuntu bionic InRelease <span class="o">[</span>242 kB]
+...................
+Step 4/4 : RUN apt-get install <span class="nt">-yq</span> python
+ <span class="nt">---</span><span class="o">&gt;</span> Running <span class="k">in </span>8503eba9707b
+Reading package lists...
+Building dependency tree...
+...................
+Processing triggers <span class="k">for </span>libc-bin <span class="o">(</span>2.27-3ubuntu1<span class="o">)</span> ...
+Removing intermediate container 8503eba9707b
+ <span class="nt">---</span><span class="o">&gt;</span> e9007552682a
+Successfully built e9007552682a
+Successfully tagged myimage:latest
+</code></pre></div></div>
+
+<p>First image! We can see what’s happening here. At each stage of the process, Docker is creating an intermediate container with the last image, running the command, saving the new filesystem as the next layer and deleting the intermediate image. Now the layers we saw when pulling the ubuntu image makes more sense. Once this is all done, the image is named and tagged. We didn’t provide a tag so the default tag of latest is added.</p>
+
+<p>Now let’s consider what we’d like our webserver to serve. Being old-fashioned myself, let’s serve some good old HTML. First, we need to create the file in our local filesystem.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'&lt;h1&gt;HELLO!&lt;/h1&gt;'</span> <span class="o">&gt;</span> index.html
+</code></pre></div></div>
+
+<p>Next, we need to ask Docker to create a directory, move the file into it, and change the working directory to the one we just made.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RUN mkdir /mysite
+WORKDIR /mysite
+COPY index.html /mysite
+</code></pre></div></div>
+
+<p>Of course, we could run the echo command directly in the Dockerfile, but this way we can copy any part of the host’s (the system creating the image) filesystem over to the image. Let’s build our image again:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> myimage <span class="nb">.</span>
+Sending build context to Docker daemon  3.072kB
+Step 1/7 : FROM ubuntu:18.04
+ <span class="nt">---</span><span class="o">&gt;</span> 735f80812f90
+Step 2/7 : MAINTAINER Hrishi Olickel <span class="o">(</span>hrishioa@gmail.com<span class="o">)</span>
+ <span class="nt">---</span><span class="o">&gt;</span> Using cache
+ <span class="nt">---</span><span class="o">&gt;</span> d7dffa7d2684
+Step 3/7 : RUN apt-get update <span class="o">&amp;&amp;</span> apt-get <span class="nt">-y</span> upgrade
+ <span class="nt">---</span><span class="o">&gt;</span> Using cache
+ <span class="nt">---</span><span class="o">&gt;</span> 41af45683a36
+Step 4/7 : RUN apt-get install <span class="nt">-yq</span> python
+ <span class="nt">---</span><span class="o">&gt;</span> Using cache
+ <span class="nt">---</span><span class="o">&gt;</span> e9007552682a
+Step 5/7 : RUN mkdir /mysite
+ <span class="nt">---</span><span class="o">&gt;</span> Running <span class="k">in </span>7b590fcf24be
+Removing intermediate container 7b590fcf24be
+ <span class="nt">---</span><span class="o">&gt;</span> 027a95797ce6
+Step 6/7 : WORKDIR /mysite
+ <span class="nt">---</span><span class="o">&gt;</span> Running <span class="k">in </span>48dd05f00287
+Removing intermediate container 48dd05f00287
+ <span class="nt">---</span><span class="o">&gt;</span> 62455d10d3ff
+Step 7/7 : COPY index.html /mysite
+ <span class="nt">---</span><span class="o">&gt;</span> 8f88ea6f63f0
+Successfully built 8f88ea6f63f0
+Successfully tagged myimage:latest
+</code></pre></div></div>
+
+<p>We can see the advantage of layers. The previously cached layers from installing python are used instead of rebuilding them from scratch. This saves a great deal of time when working with large and complicated build files.</p>
+
+<p>Now that we’ve got the files in the image, we need to start a server. We’re going to make use of python’s SimpleHTTPServer and run a server on port 8000. Except this time, we’re going to use the <code class="highlighter-rouge">CMD</code> command. Docker has two commands that are separate from the standard <code class="highlighter-rouge">RUN</code> command: <code class="highlighter-rouge">CMD</code> and <code class="highlighter-rouge">ENTRYPOINT</code>. Both of these are used to indicate that this command should be run in the final runtime instance of the container and not run and saved as part of the image. <code class="highlighter-rouge">CMD</code> can be overriden by the parameters we specify in <code class="highlighter-rouge">docker run</code>, while <code class="highlighter-rouge">ENTRYPOINT</code> cannot.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CMD ["python", "-m", "SimpleHTTPServer", "8000"]
+</code></pre></div></div>
+
+<p>If you’ve followed along, the build should be successful. Let’s try running our new image:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-it</span> <span class="nt">--name</span> tmp myimage:latest
+Serving HTTP on 0.0.0.0 port 8000 ...
+</code></pre></div></div>
+
+<p>Python is up and running, and seems to be serving on port 8000. But <em>whose</em> port is it serving at? Navigating to <a href="http://localhost:8000">http://localhost:8000</a> should show no indication of a server running. Running <code class="highlighter-rouge">docker container ls</code> shows no ports listed:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker container <span class="nb">ls
+</span>CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+d899b0570ac3        myimage:latest      <span class="s2">"python -m SimpleHTT…"</span>   4 seconds ago       Up 3 seconds                            tmp
+</code></pre></div></div>
+
+<p>This is the next step. In order to connect the docker container to the outside, we need to expose a port on the container and publish a port on the host. Exposing a port can be done in the Dockerfile:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EXPOSE 8000
+</code></pre></div></div>
+
+<p>Once we’ve rebuilt the image, we can run the command the specify that we wish to publish the port to port 8001 on the local host:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-it</span> <span class="nt">-p</span> 8001:8000 <span class="nt">--name</span> tmp myimage:latest
+</code></pre></div></div>
+
+<p>Now, navigating to <a href="http://localhost:8001">http://localhost:8001</a> should connect to port 8000 and through it the python server on the container.</p>
+
+<p>That’s the end of building our first Docker image. The full Dockerfile is below -</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM ubuntu:18.04
+MAINTAINER Hrishi Olickel (hrishioa@gmail.com)
+RUN apt-get update &amp;&amp; apt-get -y upgrade
+RUN apt-get install -yq python
+RUN mkdir /mysite
+WORKDIR /mysite
+COPY index.html /mysite
+CMD ["python", "-m", "SimpleHTTPServer", "8000"]
+EXPOSE 8000
+</code></pre></div></div>
+
+<p>Once this is done, you can also follow the quick process outlined <a href="https://docs.docker.com/docker-cloud/builds/push-images/">here</a> to tag and push your images to Docker Hub, so that they’re accessible publicly.</p>
+
+<h2 id="building-a-full-jekyllgulp-environment">Building a full Jekyll/Gulp environment</h2>
+
+<p>This is where I hope to highlight some of the problems and some of the advantages of such an approach. I’ve been using Jekyll and Gulp for managing the website you’re reading this on for some time. It’s acquired some bloat and curd over the years, but it still works and delivers mostly static content. It’s an easy arrangement for me - Jekyll takes care of markdown formatting, gulp and assorted packages take care of activereload and theme-based formatting, Github Pages provides hosting, etc.</p>
+
+<p>However, it is a major pain to set up on a new system, especially if that system is Windows. What this means for me is that if I’m not at my usualy laptop, I tend to put off writing anything - often forever. My primary solution to that has been to create a Docker image with a current working build system that I can quickly spin up, start writing, git push and shut down.</p>
+
+<p>Without ado, the full Dockerfile is below:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM ubuntu:16.04
+MAINTAINER Hrishi Olickel (hrishioa@gmail.com)
+
+RUN apt-get update &amp;&amp; apt-get -y upgrade \
+    &amp;&amp; apt-get install -yq --no-install-recommends \
+      ruby \
+      python \
+      ruby-dev \
+      make \
+      build-essential \
+      libssl-dev \
+      git \
+      nodejs \
+      curl \
+      sudo
+
+RUN echo 'export GEM_HOME=$HOME/gems' &gt;&gt; ~/.bashrc
+RUN echo 'export PATH=$HOME/gems/bin:$PATH' &gt;&gt; ~/.bashrc
+
+RUN /bin/bash -c "source ~/.bashrc"
+
+RUN gem install jekyll bundler
+
+RUN apt-get install --yes curl
+RUN curl --silent --location https://deb.nodesource.com/setup_8.x | sudo bash -
+RUN apt-get install --yes nodejs
+RUN apt-get install --yes build-essential
+
+RUN mkdir /Blog &amp;&amp; cd /Blog
+
+RUN cd /Blog \
+    &amp;&amp; git clone https://*************@github.com/hrishioa/hrishioa.github.io
+
+WORKDIR /Blog/hrishioa.github.io
+
+RUN rm -rf node_modules &amp;&amp; npm install &amp;&amp; npm install -g gulp
+</code></pre></div></div>
+
+<p>It looks quite small, but it over two hours to write. The primary issue lies in getting multilingual environments set up, with each package or language having it’s own suite of package managers, installers for said package managers and so on. Previously in the case of python, installing proved quite easy - <code class="highlighter-rouge">apt-get install python</code>. However, if we were to want numpy or jupyter on our system, the installation process is far more complex. Some of the installers are script-based and need to be downloaded into a particular directory, some others are scared of sudo and need a good amount of coaxing, so on and so on. A lot of distributions today come with docker images you can build from (node or ruby in this case), which should usually do the trick. In this case however, neither the node or ruby distributions played well with each other, with permissions issues everywhere.</p>
+
+<p>So why do it? Many reasons, one of which is that once you solve the problem for one platform and image, you’ve solved it anywhere you’d like to work. For another, docker images aren’t subject to code rot as much as complex environments often are. So if you’d like to preserve a completely executable snapshot of a working project, it’s often the best solution. The Dockerfile also serves as an easy to understand way to retrace your steps as opposed to a 20GB Virtual Machine Image that works, but you’re afraid to touch for fear of breaking and keep copying endlessly (not me of course, a friend of mine).</p>
+
+<p>Docker is a powerful tool, no doubt. The container image creation and orchestration software could get better (or I could at using them, which is far more likely), but even in our current state it is definitely a useful tool for development.</p>
+
+            </article>
+
+            <section class="share">
+    <h3>Share</h3>
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:3000/making-cross-platform-development-easy-and-hard-with-docker/%20via%20&#64;&hashtags=Docker,Virtualization,Oyente,Jekyll,Containers,"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
+        <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
+    </a>
+    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:3000/making-cross-platform-development-easy-and-hard-with-docker/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
+        <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
+    </a>
+    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://localhost:3000/making-cross-platform-development-easy-and-hard-with-docker/"
+    onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
+        <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg>
+    </a>
+</section>
+            <section class="author" itemprop="author">
+    <div class="details" itemscope itemtype="http://schema.org/Person">
+        <img itemprop="image" class="img-rounded" src="/assets/img/blog-author.jpg" alt="">
+        <p class="def">Author</p>
+        <h3 class="name">
+            <a itemprop="name" href="https://github.com/hrishioa/">hrishioa</a>
+        </h3>
+        <p class="desc">Yale-NUS '18.</p>
+        <a itemprop="email" class="email" href="mailto:hrishioa@gmail.com">hrishioa@gmail.com</a>
+    </div>
+</section>
+
+            <section class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+</section>
+<script type="text/javascript">
+    var disqus_loaded = false;
+
+    function load_disqus()
+    {
+        disqus_loaded = true;
+        var disqus_shortname = 'hrishioa';
+        var disqus_title = 'Development across platforms with Docker';
+        var disqus_url = '/making-cross-platform-development-easy-and-hard-with-docker/';
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        var ldr = document.getElementById('disqus_loader');
+    };
+    window.onscroll = function(e) {
+        if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 800)) {
+            //hit bottom of page
+            if (disqus_loaded==false)
+                load_disqus()
+        }
+    };
+</script>
+            <footer>
+    <p>Theme by <a href="http://willianjusten.com">Willian Justen</a></p>
+</footer>
+<script src="/assets/js/main.js"></script>
+        </section>
+    </body>
+</html>
