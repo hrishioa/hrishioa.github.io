@@ -4,6 +4,7 @@ description: Personal Blog and Data Repository - Hrishi Olickel
 
 url: "https://hrishioa.github.io" # the base hostname & protocol for your site 
 # url: "http://localhost:3000" # the base hostname & protocol for your site 
+title: "Hrishi Olickel"
 
 # User settings
 username: hrishioa

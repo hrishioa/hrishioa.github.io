@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title></title>
-    <description>Personal Blog and Data Repository</description>
+    <title>Hrishi Olickel - A Personal Blog</title>
+    <description>Personal Blog and Data Repository - Hrishi Olickel</description>
     <link>http://localhost:3000/</link>
     <atom:link href="http://localhost:3000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 09 Sep 2019 10:12:58 +0530</pubDate>
-    <lastBuildDate>Mon, 09 Sep 2019 10:12:58 +0530</lastBuildDate>
+    <pubDate>Mon, 09 Sep 2019 15:32:48 +0530</pubDate>
+    <lastBuildDate>Mon, 09 Sep 2019 15:32:48 +0530</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -32,7 +32,7 @@
       </item>
     
       <item>
-        <title>We're moving to Go</title>
+        <title>We are moving to Go</title>
         <description>&lt;p&gt;This post was inspired by a conversation I had a few days ago, where a friend of mine told me about the recent rewrite their systems were undergoing so they could move from a node backend to Go. I didn’t finish that conversation. I’m going to, but I wanted to think and talk about it first. I didn’t want to really ask what was going on, because I wanted plausible deniability that his case didn’t belong in here (What? No! There’s spousal abuse in other countries, its a real problem, but no one I know does it or I’d have...</description>
         <pubDate>Thu, 13 Jun 2019 00:01:06 +0530</pubDate>
         <link>http://localhost:3000/were-moving-to-go/</link>
