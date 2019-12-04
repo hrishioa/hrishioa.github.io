@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Adding Requeuing to Async Interval Queue"
+title: "Adding requeuing to Async Interval Queue"
 date: 2019-12-01 21:58:06
 image: 'AsyncQueue/requeue.jpg'
 share_image: 'AsyncQueue/requeue.jpg'
