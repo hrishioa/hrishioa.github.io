@@ -5,7 +5,7 @@ date: 2015-10-05 22:11:19
 image: 'LucasKanade/banner.jpeg'
 share_image: 'LucasKanade/banner.jpeg'
 description: 'Understanding the basics of Optical Flow and XCode'
-tags: 
+tags:
 - Lucas-Kanade
 - Optical Flow
 - Computer Vision
@@ -19,7 +19,7 @@ twitter_text:
 
 ## Background
 
-In Computer Vision, [Optical Flow][opflowiki] deals with the detection of apparent movement between the frames of a video, or between images. 
+In Computer Vision, [Optical Flow][opflowiki] deals with the detection of apparent movement between the frames of a video, or between images.
 The simplest of these is called a [Lucas-Kanade Tracker][lktwiki], which attempts to solve the Optical Flow equation using the least-squares method.
 
 ## Method
@@ -63,7 +63,7 @@ Now, we have more equations than we have unknowns. Once again, the assumption of
 
 ## Corner Tracking
 
-We need to identify points where motion can be detected in successive frames. It stands to reason that motion can be detected easily in corners, as there may not be enough detection in uniform areas within the tracked object. 
+We need to identify points where motion can be detected in successive frames. It stands to reason that motion can be detected easily in corners, as there may not be enough detection in uniform areas within the tracked object.
 
 The science of corner detection is almost as deep as that of optical flow, and the two often go hand in hand. For this implementation, as we're focusing on Optical Flow (and because of my inexperience), we're going to pick the simplest. [Moravec Corner-Detection][morawiki] makes the assumption that a corner is a point of low self-similarity. There are many complex mathematical implementations of this, but we're simply looking for a few corners so we can see our algorithm in action. But before we do that, we need to set up.
 
@@ -71,17 +71,17 @@ The science of corner detection is almost as deep as that of optical flow, and t
 
 ## XCode
 
-We're going to need some functionality for capturing and representing images. For this purpose, (and this purpose alone) we're going to use OpenCV. Later on - once this concept is stable - we can start using functions from OpenCV so we're not building on reinvented wheels. 
+We're going to need some functionality for capturing and representing images. For this purpose, (and this purpose alone) we're going to use OpenCV. Later on - once this concept is stable - we can start using functions from OpenCV so we're not building on reinvented wheels.
 
 Setting up OpenCV in XCode turned out to be relatively painless. There are two tutorials online that made this easy, [one on installing OpenCV libraries on Mac][xcodetut1], and [the other on linking the installed libraries to XCode][xcodetut2].
 Make sure the libraries are installed by running the following piece of code.
 
-{% highlight C++ %}
+```cpp
 #include <opencv2/imgcodecs.hpp>
 int main(int ac, char** av) {
     Mat img;
 }
-{% endhighlight %}
+```
 
 If it compiles and links fine, we're ready for implementation.
 
@@ -89,20 +89,20 @@ If it compiles and links fine, we're ready for implementation.
 
 Implementation here is quite easy. Here's a simplified version of the full system:
 
-{% highlight C++ %}
+```cpp
 deque<Point> findCorners(Mat img, int xarea, int yarea, int thres, bool verbose=true) {
         deque<Point> corners;
 
         ofstream log; //This will be used for dumping raw data for corner analysis
         log.open("log.csv");
         log << "x,y,score1,score2\n";
-        
+
         //Image for marking up corners
-        Mat outimg = img.clone(); 
-        
+        Mat outimg = img.clone();
+
         //Dimensions
         int dimx = img.cols, dimy = img.rows;
-        
+
         //Count number of corners, start looping
         int count = 0;
         for(int startx=0;(startx+xarea)<dimx;startx+=xarea)
@@ -137,30 +137,30 @@ deque<Point> findCorners(Mat img, int xarea, int yarea, int thres, bool verbose=
                             break;
                     }
                     Mat newarea = img(Range(newsy,min(newsy+yarea,dimy)),Range(newsx,min(newsx+xarea,dimx)));
-    
+
                     if(newarea.cols!=curarea.cols || newarea.rows!=curarea.rows)
                         continue;
-    
+
                     Mat diff = abs(curarea-newarea);
                     results[dir%2] = mean(mean(diff))(0);
                 }
                 results[0]/=2;
                 results[1]/=2;
-                
+
                 //thresholding
                 if(results[0]>=thres && results[1]>=thres)
                 {
                     corners.push_back(Point(startx,starty));
                     rectangle(outimg, Point(startx,starty), Point(startx+xarea,starty+yarea), Scalar(0),2);
                 }
-                
+
                 log << startx << "," << starty << "," << results[0] << "," << results[1] << "\n";
             }
-        log.close();        
+        log.close();
         return corners;
     }
 }
-{% endhighlight %}
+```
 
 We're isolating windows, looking at equal sized windows in each direction, and compiling a score that would tell us the probability of a particular window containing a corner. We're also taking into account the size of the image and any possible issues we could have with clipping.
 
@@ -172,7 +172,7 @@ Looking at the results, we've managed to isolate a few useful markers to track m
 
 ##Lucas-Kanade Corner Tracking
 
-Remember the equation we considered before: 
+Remember the equation we considered before:
 
 $$
 A = \begin{bmatrix}
@@ -182,15 +182,15 @@ A = \begin{bmatrix}
     ...
 \end{bmatrix}
 $$
-, 
+,
 $$
-v = 
+v =
 \begin{bmatrix}
     V_x \\
     V_y
 \end{bmatrix}
 $$
-, 
+,
 $$
 T = \begin{bmatrix}
     -I_t(p_1) \\
@@ -209,27 +209,27 @@ And here we can see why we're looking for corners. The matrix $$A$$ needs to be 
 
 First, we compute $$I_x$$ and $$I_y$$ for each pixel using the intensity values of adjacent pixels:
 
-{% highlight C++ %}
+```cpp
 Ix.at<uchar>(y,x) = ((int)imgA.at<uchar>(y,px)-(int)imgA.at<uchar>(y,nx))/2;
 Iy.at<uchar>(y,x) = ((int)imgA.at<uchar>(py,x)-(int)imgA.at<uchar>(ny,x))/2;
-{% endhighlight %}
+```
 
 Computing $$I_t$$ by subtracting intensity values between frames:
 
-{% highlight C++ %}
+```cpp
 double curdI = ((int)imgA.at<uchar>(y,x)-(int)imgB.at<uchar>(y,x));
-{% endhighlight %}
+```
 
 And here is the part I'm ashamed of. I was working with a vanilla install of XCode, and not wanting to bother with matrix libraries, I decided to implement it by hand:
 
-{% highlight C++ %}
+```cpp
 double detG = (G[0][0]*G[1][1])-(G[0][1]*G[1][0]);
 double Ginv[2][2] = {0,0,0,0};
 Ginv[0][0] = G[1][1]/detG;
 Ginv[0][1] = -G[0][1]/detG;
 Ginv[1][0] = -G[1][0]/detG;
 Ginv[1][1] = G[0][0]/detG;
-{% endhighlight %}
+```
 
 But it works, and final implementation shows both the corners and the velocity values we've computed.
 

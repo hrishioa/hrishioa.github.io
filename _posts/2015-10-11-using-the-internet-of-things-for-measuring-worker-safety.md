@@ -19,11 +19,11 @@ twitter_text:
 
 I hate using the phrase "Internet of Things", but I must admit that it has gotten a lot easier to do so, having used it so many times during, \*sigh\* [The Internet of Things hackathon][iothacks]. During the hackathon, we were given different pieces of hardware, a collection of sensors and asked to build sometthing related to one of three themes: **Transport, Health and Construction**. We arrived at the hackathon, and realised that due to the preliminary selection process, there were a total of 10 teams. *For six prizes*. One for each category, and a 1st, 2nd and 3rd prize overall.
 
-We decided to go with Construction. It had nothing to do with the fact that there was only one other team in the category (sometimes it doesn't hurt to play the odds). Thinking about the issues in construction, we were delighted to find that one of our members - Aaron - could find out first hand from his father about the primary pain points in construction. We wanted to make sure we found something that solved problems for both workers and contractors to improve the possibility for adoption. 
+We decided to go with Construction. It had nothing to do with the fact that there was only one other team in the category (sometimes it doesn't hurt to play the odds). Thinking about the issues in construction, we were delighted to find that one of our members - Aaron - could find out first hand from his father about the primary pain points in construction. We wanted to make sure we found something that solved problems for both workers and contractors to improve the possibility for adoption.
 
 ## The Problem
 
-We were surprised to learn that - despite implementing a number of stringent safety protocols at construction sites - Singapore has had a number of incidents, with a small but non-zero number of casualties. We wanted to improve worker safety, and at the same time provide an incentive to contractors to fork out the costs of implementing the system. We devised a two part system, each based on a similar array of sensors.  
+We were surprised to learn that - despite implementing a number of stringent safety protocols at construction sites - Singapore has had a number of incidents, with a small but non-zero number of casualties. We wanted to improve worker safety, and at the same time provide an incentive to contractors to fork out the costs of implementing the system. We devised a two part system, each based on a similar array of sensors.
 
 ### Part 1 - Worker Safety
 
@@ -43,7 +43,7 @@ The implementation process was fairly smooth, but from the outset we needed thre
 
 ### Processor
 
-We were provided the new development board from MediaTek Labs, the LinkIT One. Based on the Mediatek MT2502 SoC, the board provided Arduino-compatible ARM Development. 
+We were provided the new development board from MediaTek Labs, the LinkIT One. Based on the Mediatek MT2502 SoC, the board provided Arduino-compatible ARM Development.
 
 ![linkitOne]({{site.url}}/assets/img/IOTHacks/package-linkit-one.png)
 
@@ -53,7 +53,7 @@ To their credit, the SDK was pretty simple to install on Windows and Mac. Despit
 
 We made use of the sensor kit provided at the Hackathon for the LinkIT One. We were surprised to find that it contained all the sensors we required, and we appreciated the Li-ion battery and charger included.
 
-![linkitkit]({{site.url}}/assets/img/IOTHacks/linkit-kit.jpg) 
+![linkitkit]({{site.url}}/assets/img/IOTHacks/linkit-kit.jpg)
 
 ### Web Frontend
 
@@ -67,8 +67,8 @@ Now that we had the infrastructure ready, we moved on to implementation.
 
 The first task was to ensure that the Wifi-connectivity on the LinkIT functioned well enough for us to use it for streaming. From an overall evaluation of the system, we were quite sure that it was upto the task, but we wanted to make sure that it still performed reliably when operated from the bloated Arduino IDE while simulatenously pulling sensor data and peforming analytics.
 
-{% highlight C++ %}
-//Wifi Request Variables 
+```cpp
+//Wifi Request Variables
 char action[] = "POST ";
 char server[] = "things.ubidots.com";
 char path[] = "/api/v1.6/variables/####################/values";
@@ -90,9 +90,9 @@ while (0 == c.connect(server, 80))
 //....Print all relevant data to server using c
 
 Serial.println("POST Posted: var = "+var);
-{% endhighlight %}
+```
 
-Our JSON Builder was mostly our editor, but we didn't want to incur the memory penalty of adding a JSON Library to our Code. 
+Our JSON Builder was mostly our editor, but we didn't want to incur the memory penalty of adding a JSON Library to our Code.
 
 Before we could test it, we needed to collect data from our sensors. This proved to be quite straightforward, and (after an hour of looking for valid libraries) we wrote some I2C code ourselves that managed this task. The complete code is at the link at the end of this post, and it's fairly long.
 
@@ -100,20 +100,20 @@ We then ran a few tests and found that the POST requests held up the system for 
 
 Now that we were successfully accessing sensor data and uploading it to our front-end, we needed to perform analytics that would hide raw data from the consumer and prevent exploitation. For this end we implemented two singular scores on each side. The first we called the `Safety Score`. In a number, it would provide an analysis of worker safety conditions. The closer you are to zero, the safer your conditions.
 
-{% highlight C++ %}
+```cpp
 temp_var = ((temp_var*datapoints)+abs(temp-ideal_temp))/(datapoints+1);
 humid_var += ((temp_var*datapoints)+abs(humid-ideal_humid))/(datapoints+1);
 if(avg_accel > accel_thres)
   accel_var++;
 
 safety_score = ((temp_var*0.001)+(humid_var*0.001)+(accel_var*0.1));
-{% endhighlight %}
+```
 
 Temperatures and humidity beyond a pre-set threshold would increase the safety score, along with falls and incidents and anomalies in accelerometer data.
 
 The second part, which we called the `Productivity Score` would aggregate accelerometer data, compare it against a dynamic threshold for activity, and update the system on the percentage of activity in a certain day. If you worked for six hours total in a span of eight hours, your score would be `0.75`.
 
-{% highlight C++ %}
+```cpp
 avg_accel = (abs(Axyz[0])+abs(Axyz[1])+abs(Axyz[2]))/3;
 
 if(avg_accel>max_accel)
@@ -125,7 +125,7 @@ if(avg_accel>((max_accel+min_accel)/2))
   points_above++;
 else
   points_below++;
-{% endhighlight %}
+```
 
 Not the most elegant solution, but in hackathons we've found often that *done is better than perfect*.
 

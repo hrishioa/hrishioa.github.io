@@ -47,7 +47,7 @@ python -m textblob.download_corpora lite
 
 Once you've got the library, you need to download your data from facebook. 
 
-Disclaimer: Now before you do so, let me confirm that converse is an offline library (the extremely paranoid can disable network connectivity on the docker container), and I retain (nor do I have any interest in) none of your information. The code is quite short and on [github](https://github.com/hrishioa/converse), where you can also find the dockerfile and sample conversations. That being said, it makes use of several large libraries for sentiment analysis, plotting and data management (primarily plotly, pandas and Textblob), and I take no responsibility for your data.
+Disclaimer: Now before you do so, let me confirm that converse is an offline library (the extremely paranoid can disable network connectivity on the docker container), and I don't retain (nor do I have any interest in) any of your information. The code is quite short and on [github](https://github.com/hrishioa/converse), where you can also find the dockerfile and sample conversations. That being said, it makes use of several large libraries for sentiment analysis, plotting and data management (primarily plotly, pandas and Textblob), and I take no responsibility for your data.
 
 [Here](https://www.imore.com/how-download-copy-your-facebook-data) [are](https://sea.pcmag.com/software/20441/feature/how-to-download-your-facebook-data-and-6-surprising-things-i) a few guides on how to download your data, but here's a quick overview:
 
