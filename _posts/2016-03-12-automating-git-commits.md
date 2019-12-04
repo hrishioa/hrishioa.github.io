@@ -46,7 +46,7 @@ Try pushing again. If all goes well, after you accept the keys from the server o
 
 At this point, our work is simple. While there is a python package to interface with git, I decided this was overkill and just wrote a timed loop:
 
-{% highlight Python %}
+```
 import os, sys, calendar, time
 
 while(True):
