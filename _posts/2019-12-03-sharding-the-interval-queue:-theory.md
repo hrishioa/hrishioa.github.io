@@ -6,7 +6,15 @@ image: 'ShardQueue/shards.jpeg'
 share_image: 'ShardQueue/shards.jpeg'
 description: "Concepts, failed ideas and the final structure"
 tags:
+- Distributed Systems
+- Sharding
+- Async
+- Promises
+- Javascript
+- Queue
+- Rate limiting
 categories:
+- Software Builds
 twitter_text:
 ---
 
