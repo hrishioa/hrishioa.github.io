@@ -20,6 +20,8 @@ twitter_text:
 
 The completed [Sharded Interval Queue](https://www.npmjs.com/package/sharded-interval-queue) is up on npm if you'd like to take a look or use it. This is the first of a two-parter on the theory and implementation.
 
+([Part 2](/sharding-the-interval-queue-implementation/) is now up!)
+
 Some time ago, I needed an interval queue (something that can queue jobs and run them at a rate limit) for async (or promise-based) functions in Javascript. I couldn't find one, so I [wrote one up](/async-queue/). The theory is pretty simple: you have an array that functions as a queue, you append items to the end and keep a pointer to the current item. You run a function at an interval that will take the next job and run it, or stop the queue when empty.
 
 The only real complication was in the implementation of promises with delayed resolution, and the issues with building a direct drop-in replacement for async functions. Thankfully, the implementation works without any problems. The integrated decorator does a good job replacing any function you have with a queued replacement that works the same exact way, but resolves only when the queue has finished the job.
