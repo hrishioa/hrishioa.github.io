@@ -61,7 +61,7 @@ We wait for Parag to do a 20 minute sketch before we start climbing. The rains h
 
 #### ...
 
-Some skinned knees and broken packets of biscuits later, we're at the top. Parag has been great, and I don't hear a word of complaint even though we're both sweating through our jeans (bad choice, I know) as we climb the final rock. 'I prefer slippery rocks to vegetation', he remarks as I help him up after he's just destroyed the humble abode of a dozen angry spiders. We don't hear the sounds of people any more. 
+Some skinned knees and broken packets of biscuits later, we're at the top. Parag has been great, and I don't hear a word of complaint even though we're both sweating through our jeans (bad choice, I know) as we climb the final rock. 'I prefer slippery rocks to vegetation', he remarks as I help him up after he's just destroyed the humble abode of a dozen angry spiders. We don't hear the sounds of people any more.
 
 ![]({{site.url}}/assets/img/TripLogs/IMG_9273.jpg)
 
@@ -81,7 +81,7 @@ We suffer the sun as we take our pictures. Parag begins sketching; we've missed 
 
 ![]({{site.url}}/assets/img/TripLogs/IMG_9306.jpg)
 
-###Unexpected Stop: Kallayi. Odometer reads 10079.2.
+### Unexpected Stop: Kallayi. Odometer reads 10079.2.
 
 We're sidelined by heavy rains and sunny skies. We were going to push on, but the fact that we're on a deserted road meant we had to stop at the first shelter, assess conditions and continue. We also took this opportunity to gulp down the one packet of biscuits and the drinks we had left. We haven't had a proper meal yet. Onto the highway.
 
@@ -164,7 +164,7 @@ Around 10680, I'm watching the sky and the road as I manoevre at 80, and I sudde
 
 Parag and I settle into a strong groove, him giving me instructions and holding on as I navigate. He tells me he is worried, and I tell him to trust me, doubtful that I would do the same in his position. I know myself well, and I trust me to stop and resign when I know I can't complete this. It hasn't happened yet. We're still in the first day of the malayalam calendar month of Dhanu, and the cold wind it promised has already begun assaulting me. Invigorated, I continue.
 
-## Day 3. 
+## Day 3.
 
 The odometer reads 10792.0.
 
@@ -177,7 +177,7 @@ This time though, we're starting around 6.30. The sun's up, and it'll be a littl
 ![]({{site.url}}/assets/img/TripLogs/GOPR0160.jpg)
 
 We've had a few rest stops at some great a looking places, but I guess I didn't have the  time. We're almost in Kochi now, one of the biggest cities in Kerala. Quite the tech hub. I'd like to live here at some point, and I would have already had it not been for the insufferable traffic. Speaking of which, the gridlock is going to be insane for a while. Rush hour is setting in.
- 
+
 ### Stop 1. Kuttanad. Odometer reads 10896.0
 
 ![]({{site.url}}/assets/img/TripLogs/IMG_9522.jpg)
