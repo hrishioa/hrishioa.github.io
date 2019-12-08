@@ -38,23 +38,25 @@ Looks like a single cell, rated voltage is 3.7V. Since the camera powers up, it'
 
 Looks good, pretty healthy. Next order of business, we need to find out how to charge this thing. Thankfully, Dave from EEVBlog has a helpful video (when does he not)?
 
-[Link to eevblog video]
+{% include youtubePlayer.html id="A6mKd5_-abk" %}
 
 So the basic theory is to charge constant current until we reach the charging voltage, then constant voltage until the charging current drops off or you reach the recommended charging limit. Sounds good, but we should make sure what those numbers are for our particlar cell. A number of factors, like cathode chemistry, internal limiting circuits and thermal compensation all play into what the charging current and time should be.
 
 ![battery]({{site.url}}/assets/img/LiIonCharger/secondbattery.jpg)
 
-The model is an NP-45S, and sadly there aren't any real datasheets available for this particular one. [There is one out there](link to datasheet) for NP-45 though, which should be close enough. It's not much of a datasheet - no charge or discharge curves here - but it's got the numbers we're looking for.
+The model is an NP-45S, and sadly there aren't any real datasheets available for this particular one. [There is one out there](https://produktinfo.conrad.com/datenblaetter/1500000-1599999/001542320-da-01-en-ANSMANN_KAMERAAKKU_FUJFILM_NP_45.pdf) for NP-45 though, which should be close enough. It's not much of a datasheet - no charge or discharge curves here - but it's got the numbers we're looking for.
 
 ![Charging Specs]({{site.url}}/assets/img/LiIonCharger/chargingspecs.png)
 
-Let's stick with `325 mA` until we know how it charges, then we can try upping it to fast charge if it looks right. Now, we need a constant current and constant voltage supply. The latter is pretty simple - I've had a small [PC power supply](link to power supply) from Aliexpress sitting on my desk that serves that purpose. Thank god for economies of scale - a low ripple, high wattage DC rail can be had for cheap in a PC power supply - even a second hand one'll do the job perfectly well. Anything barely good enough for a CPU is way overkill for me.
+Let's stick with `325 mA` until we know how it charges, then we can try upping it to fast charge if it looks right. Now, we need a constant current and constant voltage supply. The latter is pretty simple - I've had a small [PC power supply](https://www.lazada.sg/products/180w-htpc-power-supply-fsp180-50pla-small-1u-flex-computer-power-supply-small-desktop-computer-cash-register-i330156070-s707876141.html?spm=a2o42.searchlist.list.10.3e596b38NsDNEC&search=1) from Aliexpress sitting on my desk that serves that purpose. Thank god for economies of scale - a low ripple, high wattage DC rail can be had for cheap in a PC power supply - even a second hand one'll do the job perfectly well. Anything barely good enough for a CPU is way overkill for me.
 
-Constant current can be a bit more complicated, as is specifying a exact voltage. What we need is a DC-DC supply. Now, I could buy a >[$200 bench power supply](link to power supply), or I can build my own, which is exactly what I did some time ago once I found [this](link to supply).
+Constant current can be a bit more complicated, as is specifying a exact voltage. What we need is a DC-DC supply. Now, I could buy a >[$200 bench power supply](https://www.lazada.sg/products/tenma-72-2550-bench-power-supply-dc-programmable-1-output-0-v-60-v-0-a-3-a-i242153278-s371382992.html?spm=a2o42.searchlist.list.23.4494727dK4itVO&search=1), or I can build my own, which is what I did some time ago once I found [this](https://rdtech.aliexpress.com/store/group/DPS-Programmble-control-power-supply/923042_508466030.html).
 
 ![Cute Little Module]({{site.url}}/assets/img/LiIonCharger/cutemodule.jpg)
 
-Isn't that the cutest little module you ever saw? When I got it, it was S$20 including shipping, and it's rated for up to [info needed]. Comes with a beautiful display, simultaneous constant current AND constant voltage settings, as well as overvoltage and overcurrent protection. A number of other features, but this is already amazing for the price. If you're looking for more info, [Dave's](link to EEVBLog) covered this one in detail, including characterization.
+Isn't that the cutest little module you ever saw? When I got it, it was S$20 including shipping, and it's rated for up to 160 W, so if it does 50% of that I'm good for my needs. Comes with a beautiful display, simultaneous constant current AND constant voltage settings, as well as overvoltage and overcurrent protection. A number of other features, but this is already amazing for the price. If you're looking for more info, Dave's covered this one in detail, including characterization.
+
+{% include youtubePlayer.html id="qWAqSSLwBtw" %}
 
 It does DC-DC, so all it needs is a clean DC output which the PSU can happily provide. Hook the two together, and you've got a good bench power supply for most any need.
 
@@ -70,7 +72,7 @@ Works like a charm. We've got the supply tuned to the charging voltage, with a c
 
 ![Supply Voltage]({{site.url}}/assets/img/LiIonCharger/supplyvoltage.jpg)
 
-([I've since discovered](link to youtube comment) that the inaccuracy is partly due to temperature, and that the module has a little calibration mode you can use to get better output. Awesome!)
+([I've since discovered (top comment here)](https://www.youtube.com/watch?v=Cw2AjcczHg4)) that the inaccuracy is partly due to temperature, and that the module has a little calibration mode you can use to get better output. Awesome!)
 
 And we're away!
 
