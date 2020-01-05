@@ -3,6 +3,7 @@ layout: post
 title: "Governing a Company"
 date: 2019-12-31 01:38:23
 image: 'GovernCompany/governing.jpeg'
+share_image: 'GovernCompany/governing.jpeg'
 description: Something feels wrong in Denmark
 tags:
 categories:
