@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Raising seed capital in Singapore: A postmortem"
-date: 2020-01-02 17:44:21
+date: 2020-01-31 17:44:21
 image: 'FundSingapore/sgdollar.jpg'
 share_image: 'FundSingapore/sgdollar.jpg'
 description: 'Some things about a less well-known market'
