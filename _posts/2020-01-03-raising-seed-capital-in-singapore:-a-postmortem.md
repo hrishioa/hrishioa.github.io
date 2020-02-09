@@ -6,11 +6,12 @@ image: 'FundSingapore/sgdollar.jpg'
 share_image: 'FundSingapore/sgdollar.jpg'
 description: 'Some things about a less well-known market'
 tags:
+- Greywing
+- Fundraising
 categories:
+- Greywing
 twitter_text:
 ---
-
-`This is an unpublished draft - if you're somehow here, bear with me on the invalid links and occasional formatting error.`
 
 It feels good to be proven right, to be vindicated. For me these moments are few and far between, so the recent ones stand out in my memory - especially because they brought about polar reactions.
 
@@ -38,7 +39,7 @@ We didn't.
 This is not a story of failure, but it contains many failings. Many of them mine, the majority of them unattributable - results of things we didn't know we didn't know, the emergent nature of human interaction, and sometimes just chance. We had over a hundred meetings, three term sheets, and one other offer for funding that wasn't a term sheet. What I'm hoping to do here is to provide an overview of what it was like, and in doing so put something out there that
 could have helped me, six months ago. I hope it helps you. The American market often speaks the loudest, and sometimes that can drown out cultural differences and the nuances of raising outside of Sand Hill road. Every market is different - and more visibility helps us all.
 
-Speaking anecdotally, I'll cover the things [we know helped us](#what-helps), [the things that hurt us or almost hurt us](#what-hurts), and some conventional wisdom that [didn't hold up](#not-always-true).
+Speaking anecdotally, I'll cover the things [we know helped us](#what-helped-us), [the things that hurt us or almost hurt us](#what-hurt-us), and some conventional wisdom that [didn't hold up](#not-always-true).
 
 ## What helped us
 
@@ -50,7 +51,7 @@ I cannot stress how much this helped. Investors are in a strange job, and this i
 
 Understandably so. You know you work hard and move things, but it looks very quiet from the outside - unless you say something. A regular update (much like the one your Mom keeps asking for) lets someone look in to see a company in motion, the founders at work. It provides them with more data to assess you past the initial pitch - and this is data you want to give. Even if some of it doesn't impress, it still shows tenacity and paints you as a human being willing to learn from your mistakes. No one expects founders (or anyone) to make all the right moves; but they would like to see what you do when things go wrong.
 
-<!-- TODO: ACTUALLY PUT PICTURE OF THE UPDATE IN HERE -->
+![Update]({{site.url}}/assets/img/FundSingapore/update.png)
 
 In our update emails, we convey four key pieces of information. Good news, bad news, what we did last week and what we're planning to accomplish next week.
 If we had a lot to say we sometimes split them up into business, tech and fundraising. That last topic was us going out on a limb, but it preempted questions we answered in person anyway, and definitely explained where our time went when we were spending a good chunk of it on meetings. Setting the goals (which are ideally small and not too lofty) allowed us to look ahead, and look behind each week to see what we couldn't do and why. It kept us honest to ourselves, and I'd like to think that showed.
@@ -77,9 +78,7 @@ Again, take these with a pinch of salt and know that while nothing is new under 
 
 #### 1. Forecasts are nothing more than forecasts
 
-[Point 3](#do-3) above asks you to do a few things investors would do in your financials, but I would be wary of letting investors or yourself believe in it too much.
-<!-- TODO: Add the link below -->
-The only thing you know about projections this early is that they are wrong. Don't fall into the trap of valuing your company with money you don't have yet, and holding on to things that have no defined worth yet. A little might be okay, but if you believe in your future with double digit
+[Point 3](#do-3) above asks you to do a few things investors would do in your financials, but I would be wary of letting investors or yourself believe in it too much. The only thing you know about projections this early is that they are wrong. Don't fall into the trap of valuing your company with money you don't have yet, and holding on to things that have no defined worth yet. A little might be okay, but if you believe in your future with double digit
 precision, you've gone off the reservation - so keep the people who read your forecasts from falling into the same pit.
 
 Then why do it? A detailed forecast lets you write down - in discrete form - your assumptions, even the things you didn't know were assumptions. I can say with almost complete conviction that you will be wrong on every count. You'll either undershoot or overshoot all of them. Which direction and by how much will let you reevaluate what made you think the way you did in the past. For an early stage company, it's valuable journaling.
