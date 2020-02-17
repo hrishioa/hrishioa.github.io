@@ -76,6 +76,8 @@ The final one was, I think, the most special to her. This was a small 3d-printed
 
 ![the thing]({{site.url}}/assets/img/HomeCookedApps/output2.gif)
 
-Super cheesy, I know. But hey, home-cooked apps are allowed to be as cheesy as they want. I've built a lot of them over the years for family and friends, and it's taught me a lot about building apps. Personal projects tend to be messy and unfinished, but when your creations go out to a small group of people you really care about, even the small bugs are important. You don't have the benefit of scale, you can't forget about that 0.001% of your users. You really learn to deploy and take care of things.
+(On a side note, [ffmpeg](https://www.ffmpeg.org/) is amazing. Since I found it, I've yet to find something it cannot do that I need. Also, the code is [here](https://github.com/hrishioa/Breathy) if you're interested.)
+
+It's super cheesy, I know. But hey, home-cooked apps are allowed to be as cheesy as they want. I've built a lot of them over the years for family and friends, and it's taught me a lot about building apps. Personal projects tend to be messy and unfinished, but when your creations go out to a small group of people you really care about, even the small bugs are important. You don't have the benefit of scale, you can't forget about that 0.001% of your users. You really learn to deploy and take care of things.
 
 It's definitely something I'd recommend to everyone regardless of skill level - I've learned so much building these, and both creating them and the impact of the final results have brought a lot of happiness into the world, a lot of it mine.
