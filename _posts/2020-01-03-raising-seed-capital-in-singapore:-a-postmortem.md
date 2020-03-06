@@ -13,7 +13,7 @@ categories:
 twitter_text:
 ---
 
-It feels good to be proven right, to be vindicated. For me these moments are few and far between, so the recent ones stand out in my memory - especially because they brought about polar reactions.
+<!-- It feels good to be proven right, to be vindicated. For me these moments are few and far between, so the recent ones stand out in my memory - especially because they brought about polar reactions.
 
 The first incident was after three months of fundraising, when the time came for me and my partner to decide on which of the offers on the table we should accept. We had about three real offers. One was about to explode, and a fourth was waiting on the wings in uncertainty.
 In what my partner calls the only real argument we've ever had (every couple has one, I was glad we got it out of the way), we ended up fighting for different offers. His side was the one that promised the better valuation, but I found it
@@ -30,9 +30,9 @@ The second was a Monday. We had agreed terms with all investors and the paperwor
 
 I was right. We walked into a room of sombre expressions, and knew something was terribly wrong. We were told the deal was buried with no chance of saving it. They cited personal reasons, lightly explained. I was right, but I did not want to be this time.
 
-## Background
+## Background -->
 
-I co-founded <a href="https://grey-wing.com" target="_blank">Greywing</a> six months ago, with the intention of building a SaaS-enabled marketplace for physical security. We secured pre-seed funding, built a product, took it to 130K total market volume in a month of release. With our sights on the next round, with the intention of growing the company from where it stood. Beautiful start right out of the gate. Until the very last moment, it looked like a sure thing, a home run racing into the sky.
+I co-founded <a href="https://grey-wing.com" target="_blank">Greywing</a> six months ago, with the intention of building a SaaS-enabled marketplace for physical security. We secured pre-seed funding, built a product, took it to 130K total market volume in a month of release. With our sights on the next round, we looked to the next round with the intention of growing the company from where it stood. Beautiful start right out of the gate. Until the very last moment, it looked like a sure thing, a home run racing into the sky.
 
 We didn't.
 
