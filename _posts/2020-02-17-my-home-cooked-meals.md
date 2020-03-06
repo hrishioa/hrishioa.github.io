@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Home cooked apps to the cause of love"
+title: "Home cooked apps"
 date: 2020-02-16 21:12:49
 image: 'HomeCookedApps/homecookedcover.jpg'
 share_image: 'HomeCookedApps/homecookedcover.jpg'
-description: Who do we code for?
+description: Who do we build for?
 tags:
 - Electronics
 - Python
@@ -25,20 +25,6 @@ Robin Sloan's post about [how an app can be a home-cooked meal](https://www.robi
 These (I'll call them home-cooked apps) are essentially apps with a tiny user base, mostly unpublished to the rest of the world, and truly built and maintained with love. If I could put the same amount of thought into everything I build, I think I'll consider myself pretty happy.
 
 Here are some of the ones I made over the time I've spent with my partner. Some are useful, some are fun, and most were also because I wanted to learn something new!
-
-## A Mix Tape
-
-Of course I made her a mixtape. This was the simplest of all the projects, but out of the many years we've been together, this is still in the top 3 most frequently used (of course I collect analytics).
-
-This was back in college, and she wanted to find out more about the different music I listened to. I spent an embarrassing amount of time making a carefully put together playlist that spanned four languages and twice that many styles of music, in true High fidelity style.
-
-![high fidelity](https://media.giphy.com/media/J0u1qXVZS4Xny/giphy.gif)
-
-This wasn't the early 2000s, so while a physical disk or CD-ROM would have been sweet, I knew she couldn't get much play out of these things. I was also venturing into frontend and wanted to build something a bit cooler with CSS stuff. I learned some things and borrowed heavily from [Codrops](https://tympanus.net/codrops/2012/07/12/old-school-cassette-player-with-html5-audio/) to build her one. Putting it on the web meant she could cache it on her browser, and while I sent her the files I knew she'd lose them in a week. This one she could bookmark.
-
-![mixtape]({{site.url}}/assets/img/HomeCookedApps/mixtape.png)
-
-I don't think she'd want me to share the full app, but the code (with the playlist) is [here](https://github.com/hrishioa/HerebeMusic/).
 
 ## A literal life-saver
 
@@ -69,6 +55,20 @@ The app also sent you a GIF that was generated from the reason the other person 
 There was also cat speak, and many more embarrassing features. Let me know if you'd like to try the app, I'm careful about releasing it even though it can support any number of pairs so I'll do so if there's demand.
 
 It wasn't that complicated in the end - just a simple state machine - so here's the full code in a [gist](https://gist.github.com/hrishioa/64c8644a09c3af80030f1e1a690bf520).
+
+## A Mix Tape
+
+Of course I made her a mixtape. This was the simplest of all the projects, but out of the many years we've been together, this is still in the top 3 most frequently used (of course I collect analytics).
+
+This was back in college, and she wanted to find out more about the different music I listened to. I spent an embarrassing amount of time making a carefully put together playlist that spanned four languages and twice that many styles of music, in true High fidelity style.
+
+![high fidelity](https://media.giphy.com/media/J0u1qXVZS4Xny/giphy.gif)
+
+This wasn't the early 2000s, so while a physical disk or CD-ROM would have been sweet, I knew she couldn't get much play out of these things. I was also venturing into frontend and wanted to build something a bit cooler with CSS stuff. I learned some things and borrowed heavily from [Codrops](https://tympanus.net/codrops/2012/07/12/old-school-cassette-player-with-html5-audio/) to build her one. Putting it on the web meant she could cache it on her browser, and while I sent her the files I knew she'd lose them in a week. This one she could bookmark.
+
+![mixtape]({{site.url}}/assets/img/HomeCookedApps/mixtape.png)
+
+I don't think she'd want me to share the full app, but the code (with the playlist) is [here](https://github.com/hrishioa/HerebeMusic/).
 
 ## A heart
 
