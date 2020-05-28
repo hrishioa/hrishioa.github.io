@@ -49,7 +49,7 @@ There was the collective hope that it would blow over, but it did not look that 
 
 ![In action]({{site.url}}/assets/img/mariners/cry4-big.gif)
 
-The first problem was information. A vessel goes to port to exchange goods and people, but *its dictated by the nature and interest of the cargo more than its people. Not a problem when you could berth anyone practically anywhere, but now what we had was a quagmire of changing regulations. Clients recounted stories of flights being booked only to discover that port state control did not allow the crew change, and immigration and disembarkation procedures being complied with only to discover that transport (last mile and otherwise) was virtually impossible.
+The first problem was information. A vessel goes to port to exchange goods and people, but*its dictated by the nature and interest of the cargo more than its people. Not a problem when you could berth anyone practically anywhere, but now what we had was a quagmire of changing regulations. Clients recounted stories of flights being booked only to discover that port state control did not allow the crew change, and immigration and disembarkation procedures being complied with only to discover that transport (last mile and otherwise) was virtually impossible.
 
 To us, this became an n-dimensional optimization problem. If we had structured data on port control, flight control, immigration restrictions, flight availability, crew member nationality and vessel voyage plan, we could chart a path for the vessel that would get its crew replaced.
 
