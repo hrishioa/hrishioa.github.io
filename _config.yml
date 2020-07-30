@@ -2,15 +2,15 @@
 description: Personal Blog and Data Repository - Hrishi Olickel
 #baseurl: "" # the subpath of your site, e.g. /blog/
 
-url: "https://hrishioa.github.io" # the base hostname & protocol for your site 
-# url: "http://localhost:3000" # the base hostname & protocol for your site 
+url: "https://hrishioa.github.io" # the base hostname & protocol for your site
+# url: "http://localhost:3000" # the base hostname & protocol for your site
 title: "Hrishi Olickel"
 
 # User settings
 username: hrishioa
-user_description: Building marketplaces for physical security at Greywing.
+user_description: Building maritime risk intelligence tools at Greywing.
 user_title: Hrishi Olickel
-email: hrishioa@gmail.com
+email: hrishioa[at]grey-wing.com
 github_username:  hrishioa
 disqus_username: hrishioa
 future: false
