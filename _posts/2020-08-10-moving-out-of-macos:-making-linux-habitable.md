@@ -29,7 +29,7 @@ Before you get started with the specifics, doing some things first will speed up
 
 ### Gnome Shell Extensions
 
-Ubuntu uses Gnome 3, which (despite the reports I see online) has been a relatively light and power-sipping window manager in my use. It's the Goldilocks spot for me - you'll have better battery life and speed with LFCE, more customization with KDE, but Gnome is yet to give me a reason to leavel .Gnome Extensions make it a lot more customizable and powerful, so the first thing you'll want to do is to install [the Gnome Tweak Tool](https://linuxconfig.org/how-to-install-tweak-tool-on-ubuntu-20-04-lts-focal-fossa-linux). Don't forget to install the [browser extension](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=en) for Chrome (or the browser of your choice), it makes installation and management painless.
+Ubuntu uses Gnome 3, which (despite the reports I see online) has been a relatively light and power-sipping window manager in my use. It's the Goldilocks spot for me - you'll have better battery life and speed with LFCE, more customization with KDE, but Gnome is yet to give me a reason to leave. Gnome Extensions make it a lot more customizable and powerful, so the first thing you'll want to do is to install [the Gnome Tweak Tool](https://linuxconfig.org/how-to-install-tweak-tool-on-ubuntu-20-04-lts-focal-fossa-linux). Don't forget to install the [browser extension](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=en) for Chrome (or the browser of your choice), it makes installation and management painless.
 
 Once that's done, you'll want to install a nice theme and set up a few extensions. Here's what I'm running:
 
