@@ -37,7 +37,7 @@ Once that's done, you'll want to install a nice theme and set up a few extension
 
 1. [Flat Remix Blue Theme](https://www.gnome-look.org/p/1214931/) - simple aesthetic preference but I like the transparency (if it has an impact on battery life I'm yet to see it), and the blue accents.
 
-2. [Workspace Matrix](https://extensions.gnome.org/extension/1485/workspace-matrix/) - I held off on this one for a while, hearing about issues but I've been a happy camper ever since I switched. Set rows to 1 for a more Mac-like experience with workspaces.
+2. [Workspace Matrix](https://extensions.gnome.org/extension/1485/workspace-matrix/) - I held off on this one for a while, hearing about issues but I've been a happy camper ever since I switched. Workspace Matrix lets to change the workspace arrangement in Ubuntu (usually top to bottom), to any grid pattern you wish. Set rows to 1 for a more Mac-like experience with workspaces.
 
 3. [Caffeine](https://extensions.gnome.org/extension/517/caffeine/) - very similar to the one I had on MacOS, keeps your device from going to sleep. Turn it on when you've got something you'd like to run uninterrupted.
 
@@ -224,6 +224,6 @@ There are still a few things that I haven't found a solution for. If you're read
 
 ## Conclusions
 
-I'll admit that all of this took some time, but in the end I'm quite happy with it. It's settled into an equilibrium where I'm simply using my computer as a tool and not reaching in all the time to chisel it more. Once you get to this point, Linux really shines. You're not locked to hardware anymore, and for developers - especially backend - actually working on the same kernel as the one you deploy to is a major bonus. The system is as snappy as MacOS is, and on the XPS 13 the keyboard, display and industrial design are miles ahead. I'd give a slight edge to the Macbook trackpad, and a strong edge to the Macbook speakers, but they're still pretty great. No more mucking around with brew and macports and competing versions of ruby and python, no more touchbar. Life is good.
+I'll admit that all of this took some time, but in the end I'm quite happy with it. It's settled into an equilibrium where I'm simply using my computer as a tool and not reaching in all the time to chisel it more. Once you get to this point, Linux really shines. You're not locked to hardware anymore, and for developers - especially backend - actually working on the same kernel as the one you deploy to is a major bonus. The system is as snappy as MacOS is. On the XPS 13, the keyboard, display and industrial design are miles ahead. I'd give a slight edge to the Macbook trackpad, and a strong edge to the Macbook speakers, but they're still pretty great. No more mucking around with brew and macports and competing versions of ruby and python, no more touchbar. Life is good.
 
-This is not to say that I'm leaving the Apple ecosystem for good. If - and when - Apple can prove that it still cares about the Macbook (beyond turning it into a heavier iPad) and the developers who use it for non-Apple development, and they regain the giant lead they once had in hardware, I'll happily switch.
+This is not to say that I'm leaving the Apple ecosystem for good. If - and when - Apple can prove that it still cares about the Macbook (beyond turning it into a heavier iPad) and the developers who use it for non-Apple development while regaining the giant lead they once had in hardware, I'll happily switch.
