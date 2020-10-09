@@ -1,23 +1,23 @@
 ---
 layout: post
 title: "Subqueries and CTEs: an example of query optimization in Postgres"
-date: 2020-10-09 22:34:37
+date: 2020-10-08 22:34:37
 image: 'CTESubqueries/cover.jpg'
 share_image: 'CTESubqueries/cover.jpg'
 description: "Optimization isn't always premature"
 tags:
-	- Postgres
-	- SQL
-	- Common Table Expressions
-	- CTE
-	- Greywing
-	- Port Agents
-	- Semaphore
-	- Query Planning
-	- Subqueries
+- Postgres
+- SQL
+- Common Table Expressions
+- CTE
+- Greywing
+- Port Agents
+- Semaphore
+- Query Planning
+- Subqueries
 categories:
-	- Greywing
-	- Tales of Work and Woe
+- Greywing
+- Tales of Work and Woe
 twitter_text:
 ---
 
