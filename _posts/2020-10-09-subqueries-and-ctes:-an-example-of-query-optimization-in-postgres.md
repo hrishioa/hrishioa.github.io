@@ -97,7 +97,9 @@ When we first ran this plan, it highlighted one of the first problems we need to
 
 The first thing we'll notice is that both of these are massive queries. We're running a substring search, which is already quite expensive. Secondly, we're performing this search on multiple columns before concatenating the result. Beyond a certain size, using systems like [ElasticSearch](https://www.elastic.co/) is the right option - but for a feature that we're testing the usage of, complicating the tech stack before validation might be putting the cart ahead of the horse.
 
-Even so, the differences are clear. The subqueries are faster when performed on the much smaller CTE, pound for pound. Query 1 wins. We can also look at the proposed query plan for both. Here's Query 1:
+Even so, the differences are clear. The subqueries are faster when performed on the much smaller CTE, pound for pound. Query 1 wins. However, it's worth noting that CTEs can often be a tradeoff between [speed and space complexity](https://paquier.xyz/postgresql-2/postgres-12-with-materialize/), as we're essentially creating a copy table that is being used for subsequent filtering operations. It remains to be seen whether this makes it a worse option in our use case, but our estimation is that it will not be - especially considering the additional filters we might need to apply to our CTE that we'll discuss below.
+
+Let's also look at the proposed query plan for both. Here's Query 1:
 
 ![Query 1 Plan]({{site.url}}/assets/img/CTESubqueries/Q1Plan.png)
 
