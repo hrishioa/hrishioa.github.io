@@ -33,7 +33,7 @@ Here, we're considering the query over the Port Agent database. The intention he
 
 ## The Problem
 
-The database currently has >7K rows, and this is only expected to grow. How to do this well? With a *relatively simple* query, we can perform a substring search on these columns:
+The database currently has >7K rows, and this is only expected to grow. How to do this well? With a relatively simple query, we can perform a substring search on these columns:
 
 ```sql
 SELECT * FROM port_agents WHERE email ilike '%wil%' and region ilike '%wil%' and agency ilike '%wil%';
