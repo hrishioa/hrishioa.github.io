@@ -3,9 +3,14 @@ layout: post
 title: "The two innovations of Hashmasks"
 date: 2021-02-13 21:12:27
 image: Hashmasks/cover2.png
-description: "Understanding digital art and the possibilities"
+description: "Understanding new forms of digital art and the possibilities"
 tags:
+- Blockchain
+- Ethereum
+- NFTs
+- Hashmasks
 categories:
+- Emerging Fields
 twitter_text:
 ---
 
